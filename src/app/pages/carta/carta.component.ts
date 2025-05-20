@@ -98,7 +98,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     try {
       this.cartaId = params.get('id');
       this.slug = params.get('slug');
-      this.http.get<Pagina>(`http://192.168.0.140:8080/paginas/${this.slug}/${this.cartaId}`).subscribe((res) => {
+      this.http.get<Pagina>(`https://lovelink-backend-deploy.onrender.com/paginas/${this.slug}/${this.cartaId}`).subscribe((res) => {
         this.cartaData = res;
         this.safeMusicaUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.cartaData.videoId}`);
         this.inicializaPlaylist();
