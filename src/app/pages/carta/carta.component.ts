@@ -189,7 +189,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   }
   }
   adicionarFotoAlbum(){
-    this.http.post<Pagina>(`http://192.168.0.140:8080/paginas/${this.slug}/${this.cartaId}/adc-album`, this.novaFoto).subscribe((res)=>
+    this.http.post<Pagina>(`https://lovelink-backend-deploy.onrender.com/paginas/${this.slug}/${this.cartaId}/adc-album`, this.novaFoto).subscribe((res)=>
     {
       this.cartaData = res;
       this.closeModal();

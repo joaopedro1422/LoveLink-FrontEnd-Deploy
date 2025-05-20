@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmailServiceService {
-  private baseUrl = 'http://localhost:8080/api/email';
+  private baseUrl = 'https://lovelink-backend-deploy.onrender.com/api/email';
   constructor(private http: HttpClient) { }
 
   enviarCodigo(email: string) {
