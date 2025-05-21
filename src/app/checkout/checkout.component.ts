@@ -9,6 +9,8 @@ import { PaginaServiceService } from '../services/pagina-service.service';
 import { Pagina } from '../models/pagina';
 import { HttpClient } from '@angular/common/http';
 import { MercadoPagoServiceService } from '../services/mercado-pago-service.service';
+import { environment } from '../../environments/api';
+const apiUrl = `${environment.apiUrl}`;
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -43,7 +45,7 @@ export class CheckoutComponent implements OnInit {
   
  loadValoresPlanos(){
  
-  this.http.get<any>(`https://lovelink-backend-deploy.onrender.com/planos/${this.formData.planoSelecionado}`).subscribe((res)=> {
+  this.http.get<any>(apiUrl+ `/planos/${this.formData.planoSelecionado}`).subscribe((res)=> {
     this.valorPlanoSelecionado = res.preco;
     this.planoSelecionado = res.nome;
 
@@ -71,7 +73,7 @@ export class CheckoutComponent implements OnInit {
   registrarPagina(){
     console.log(this.formData)
   this.carregandoRegistro = true;
-  this.http.post<Pagina>('https://lovelink-backend-deploy.onrender.com/paginas', this.formData)
+  this.http.post<Pagina>(apiUrl+ '/paginas', this.formData)
     .subscribe((res) => {
       console.log("pagina registrada com sucesso"+res)
       this.registroCompleto = true;

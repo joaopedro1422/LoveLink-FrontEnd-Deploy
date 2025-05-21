@@ -1,13 +1,20 @@
-<div class="dialog-container" (click)="close()">
+   
+<div class="dialog-container" >
 
         <ng-container *ngIf="imageUrl; else loading">
-            <img [src]="imageUrl" alt="Imagem detalhada" />
+            <img [src]="imageUrl" alt="Imagem detalhada" (click)="close()"/>
           </ng-container>
-          <p>Nosso pedido de namoro.</p>
-          <span>14/03/2024</span>
+          <p>{{descricao}}.</p>
+          <span>{{data_const | date:'dd/MM/yyyy'}}</span>
+           <div class="btn-wrapper">
+            <button (click)="removerFoto()" class="btn-remover-outro">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
           <ng-template #loading>
             <p>Carregando imagem...</p>
           </ng-template>
+        
         
          
   

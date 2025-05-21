@@ -12,12 +12,20 @@ import { CommonModule , NgFor, NgForOf, NgIf} from '@angular/common';
 })
 export class ImageDialogComponent implements OnInit {
   imageUrl: string = '';
+  descricao: string ='';
+  data_const: Date | null = null;
   constructor(
     public dialogRef: MatDialogRef<ImageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {  imagePath?: string}
+    @Inject(MAT_DIALOG_DATA) public data: {  imagePath?: string, descricao?: string, data?: Date}
   ) {}
   ngOnInit(): void {
+    
     this.getImage();
+    if(this.data.descricao)
+    this.descricao = this.data.descricao
+
+    if(this.data.data)
+      this.data_const = this.data.data;
   }
   getImage() {
     const storage = getStorage();
@@ -32,4 +40,7 @@ export class ImageDialogComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
+  removerFoto() {
+  this.dialogRef.close({ remover: true, imagePath: this.imageUrl });
+}
 }

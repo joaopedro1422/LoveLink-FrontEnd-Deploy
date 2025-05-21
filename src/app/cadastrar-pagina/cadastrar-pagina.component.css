@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
   }
-
   .top-alert {
     background: linear-gradient(to right,#ed3232, #82080f, #ff6b00);
     color: #ffffff;
@@ -475,13 +474,13 @@ margin-top: 15px;
     font-family: 'Poppins', sans-serif;
     text-decoration: line-through;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 19px;
   }
   .valores .promocional{
     color: rgb(255, 255, 255);
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
-    font-size: 31px;
+    font-size: 30px;
     margin-top: -11px;
   }
 
@@ -866,6 +865,15 @@ margin-top: 15px;
       width: 80vh;
     }
   }
+  .video-card.selected {
+  border: 2px solid #f71212; /* rosa, ou a cor que quiser */
+  background-color: #e40b0b; /* leve destaque no fundo, opcional */
+  color: white;
+  scale: 1.02;
+}
+.video-card.selected p{
+  color: white;
+}
 
   .search-results {
   display: flex;
@@ -1003,6 +1011,23 @@ margin-top: 15px;
   margin-right: 5px;
   vertical-align: middle;
 }
+.btn-cupido{
+  margin-top: 10px; padding: 10px 20px; background-color: #111111; color: white; border: 1px solid rgb(75, 75, 75); border-radius: 6px; cursor: pointer;
+   animation: rotate 3s linear infinite;
+    z-index: 0;
+        font-size: 0.9rem;
+        font-weight: 600;
+    --border-size: 1px;
+    border: var(--border-size) dotted transparent;
+    background-image: 
+    linear-gradient(to right, #111111, #141414,#141414),
+    /* Camada da borda: gradiente giratório */
+    conic-gradient(from var(--angle), rgb(56, 56, 56), rgb(56, 56, 56), rgb(56, 56, 56), rgb(56, 56, 56), rgb(138, 124, 0), rgb(48, 25, 0), rgb(56, 56, 56));
+  
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+}
 
 @keyframes spin {
   to {
@@ -1023,7 +1048,6 @@ margin-top: 15px;
 }
     
   }
-
 .remove-button {
   background: none;
   border: none;

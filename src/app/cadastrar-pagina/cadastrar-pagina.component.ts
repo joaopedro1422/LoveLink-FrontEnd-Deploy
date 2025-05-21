@@ -21,8 +21,13 @@ import { Pagina } from '../models/pagina';
 import { PaginaServiceService } from '../services/pagina-service.service';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { environment } from '../../environments/api';
+import { mensagensCupido } from '../../environments/mensagensCupido';
 {FooterComponent}
+
 declare var MercadoPago: any;
+const mensagensCupidoList = mensagensCupido.mensagens
+const apiUrl = `${environment.apiUrl}`;
 @Component({
   selector: 'app-cadastrar-pagina',
   standalone: true,
@@ -34,6 +39,7 @@ declare var MercadoPago: any;
 
 
 export class CadastrarPaginaComponent implements OnInit {
+ 
   currentStep = 0;
   imagePreviews: string[] = [];
   selectedFiles: File[] = [];
@@ -208,10 +214,6 @@ export class CadastrarPaginaComponent implements OnInit {
       album: Array.isArray(formStorage.album) ? formStorage.album : [],
     };
     } 
-
-
-
-
   }
 
   this.preencherAlbumPadrao();
@@ -221,8 +223,7 @@ export class CadastrarPaginaComponent implements OnInit {
  }
 
  loadValoresPlanos(){
- 
-  this.http.get<any[]>('https://lovelink-backend-deploy.onrender.com/planos').subscribe((res)=> {
+  this.http.get<any[]>(apiUrl+ '/planos').subscribe((res)=> {
     this.planos = res
     for(let i=0; i < this.planos.length; i++){
       if(this.planos[i].nome === "Anual"){
@@ -309,10 +310,21 @@ export class CadastrarPaginaComponent implements OnInit {
     getSafeUrl(videoId: string): SafeResourceUrl {
       return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
     }
-    selectVideo(videoId: string): void {    
+    selectVideo(videoId: string): void {   
+      if(this.form.videoId === videoId){
+        this.form.videoId = '';
+        return 
+      } 
       this.form.videoId = videoId;
       this.form = { ...this.form };
     }
+    debounceTimer: any;
+    onSearchChange() {
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = setTimeout(() => {
+        this.searchYoutube();
+      }, 400); // espera 500ms após parar de digitar
+}
    playVideo(videoId: string): void {
     // Cria o URL de embed sem autoplay
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
@@ -341,7 +353,7 @@ export class CadastrarPaginaComponent implements OnInit {
 
     for (let file of newFiles) {
       const storage = getStorage();
-      const path = `imagens/${Date.now()}_${file.name}`;
+      const path = `imagens/${this.form.autor}/${Date.now()}_${file.name}`;
       const storageRef = ref(storage, path);
       try {
         await uploadBytes(storageRef, file); 
@@ -382,7 +394,7 @@ validaEmail(email : string){
   }
 
      this.carregandoEnvio = true;
-    this.http.post('https://lovelink-backend-deploy.onrender.com/api/confirmacao-email/enviar-codigo', { email: this.form.email}).subscribe({
+    this.http.post(apiUrl+ '/api/confirmacao-email/enviar-codigo', { email: this.form.email}).subscribe({
       next: response => {
        this.emailEnviado = true;
         this.codigo = ['', '', '', '', '', ''];
@@ -404,7 +416,7 @@ validaEmail(email : string){
  verificarCodigo() {
   const codigoDigitado = this.codigo.join('');
   console.log(codigoDigitado)
-  this.http.post('https://lovelink-backend-deploy.onrender.com/api/confirmacao-email/validar-codigo', { email: this.form.email, codigo: codigoDigitado })
+  this.http.post(apiUrl+ '/api/confirmacao-email/validar-codigo', { email: this.form.email, codigo: codigoDigitado })
     .subscribe(() => {
       this.emailConfirmado = true;
       clearInterval(this.interval);
@@ -467,6 +479,10 @@ startReenviarTimer() {
     const sessionId = Date.now().toString();
     localStorage.setItem('sessionId', sessionId);
     localStorage.setItem('dadosCadastro_' + sessionId, JSON.stringify(formStorage));
+    if(this.currentStep ===0 && !this.form.autor){
+      alert("Informe o seu nome para poder avançar.")
+      return
+    }
     if(this.currentStep ===6){
       if(!this.emailConfirmado){
         //alert("Verifique o seu Email para poder avançar.")
@@ -517,6 +533,14 @@ startReenviarTimer() {
     this.searchResults = await this.spotifyService.searchTracks(this.searchSpotify);
    }
 
+   gerarMensagemDoCupido() {
+    this.form.mensagem = 'Gerando mensagem do cupido... '; // Mensagem temporária opcional
+
+  setTimeout(() => {
+    const indiceAleatorio = Math.floor(Math.random() * mensagensCupidoList.length);
+    this.form.mensagem = mensagensCupidoList[indiceAleatorio];
+  }, 2000); 
+  }
    
 
 
@@ -537,3 +561,4 @@ startReenviarTimer() {
     this.form = { ...this.form, album: [...this.albumRascunho] };
   }
 }
+

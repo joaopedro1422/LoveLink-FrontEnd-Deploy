@@ -19,7 +19,7 @@
                             Clique para adicionar foto
                             </label>
                     </div>
-                    <img style="height: 70px; width: auto" [src]="fileSelected" alt="">
+                    <img style="height: 70px; width: auto" *ngIf="fileSelected" [src]="fileSelected" alt="">
                     <div class="container-input" style="margin-top: 5px;">
                         <span>Data</span>
                         <input type="date" [(ngModel)]="novaFoto.data" name="" id="">
@@ -97,9 +97,10 @@
             <h3>Nosso álbum</h3>
             <div  class="container-album"  #albumContainer>
                 <div *ngFor="let card of cartaData.album" >
-                    <div class="container-imagemAlbum"  (click)="openImageDialog($event, card.url)">
+                    <div class="container-imagemAlbum"  (click)="openImageDialog($event, card.url, card.descricao, card.data)">
                         <img [src]="card.url" alt="">
                         <h5 style="font-size: 7px;">{{ card.data | date:'dd/MM/yyyy' }}</h5>
+                       
                     </div>
                 </div>       
                 <img src="adicionar1.png" (click)="showModal()" class="btn-add" alt="">     

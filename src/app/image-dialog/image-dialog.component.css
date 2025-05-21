@@ -50,3 +50,9 @@ p{
 
     background-color: red;
   }
+
+  .btn-remover-outro{
+    padding: 0;
+    color: red;
+    border: none;
+  }

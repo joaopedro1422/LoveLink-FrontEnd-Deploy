@@ -17,6 +17,13 @@ import { ChangeDetectorRef } from '@angular/core';
 import { SimpleChanges } from '@angular/core';
 import { ModalAdcAlbumComponent } from '../../modal-adc-album/modal-adc-album.component';
 import { ControlContainer, FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/api';
+const apiUrl = `${environment.apiUrl}`;
+interface FotoAlbum {
+  url: string;
+  descricao: string;
+  data: string; // ou `Date`, dependendo de como vem
+}
 @Component({
   selector: 'app-carta',
   standalone: true,
@@ -51,7 +58,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   }
  
   @ViewChild('albumContainer', { static: true }) albumContainer!: ElementRef;
-  openImageDialog(event: MouseEvent,image: string): void {
+  openImageDialog(event: MouseEvent,image: string, descricao: string, data: Date): void {
     const container = document.querySelector('.body-carta') as HTMLElement;
     if (container) {
       container.style.opacity = '0.2'; // Deixa o fundo mais escuro
@@ -61,13 +68,13 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const viewportHeight = window.innerHeight;
     const dialogRef = this.dialog.open(ImageDialogComponent, {
-      data: { imagePath: image },
+      data: { imagePath: image, descricao: descricao, data: data },
       panelClass: 'custom-fullscreen-dialog',
       width: '65vw',
       disableClose: false,
       backdropClass: 'dark-backdrop', // Escurece o fundo
       hasBackdrop: true, // Garante o fundo escuro
-      position: { top: `${160}%`, left: '16%' },
+      position: { top: `${163}%`, left: '16%' },
     });
   
     dialogRef.afterOpened().subscribe(() => {
@@ -77,10 +84,16 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       });
     });
     // Restaura a opacidade do container quando o Dialog for fechado
-    dialogRef.afterClosed().subscribe(() => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (container) {
-        container.style.opacity = '1'; // Restaura a opacidade normal
-        container.style.pointerEvents = 'auto'; // Restaura a interação com o conteúdo
+        container.style.opacity = '1'; 
+        container.style.pointerEvents = 'auto'; 
+      }
+    
+      if (result?.remover && result.imagePath) {    
+        console.log("Aquiiiii emininii")
+        this.removeFotoAlbum(result.imagePath)
+        
       }
     });
   }
@@ -98,9 +111,9 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     try {
       this.cartaId = params.get('id');
       this.slug = params.get('slug');
-      this.http.get<Pagina>(`https://lovelink-backend-deploy.onrender.com/paginas/${this.slug}/${this.cartaId}`).subscribe((res) => {
+      this.http.get<Pagina>(`${apiUrl}/paginas/${this.slug}/${this.cartaId}`).subscribe((res) => {
         this.cartaData = res;
-        this.safeMusicaUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.cartaData.videoId}`);
+        this.safeMusicaUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.cartaData.videoId}?autoplay=1`);
         this.inicializaPlaylist();
         this.cdRef.detectChanges();
         setInterval(() => {
@@ -175,7 +188,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
 
     for (let file of newFiles) {
       const storage = getStorage();
-      const path = `imagens/${this.cartaData.nomeCasal}/${Date.now()}_${file.name}`;
+      const path = `imagens/${this.cartaData.autor}/${Date.now()}_${file.name}`;
       const storageRef = ref(storage, path);
       try {
         await uploadBytes(storageRef, file); 
@@ -189,12 +202,33 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   }
   }
   adicionarFotoAlbum(){
-    this.http.post<Pagina>(`https://lovelink-backend-deploy.onrender.com/paginas/${this.slug}/${this.cartaId}/adc-album`, this.novaFoto).subscribe((res)=>
+    this.http.post<Pagina>(`${apiUrl}/paginas/${this.slug}/${this.cartaId}/adc-album`, this.novaFoto).subscribe((res)=>
     {
+      this.fileSelected = '';
       this.cartaData = res;
       this.closeModal();
       console.log(res);;
     })
+  }
+
+  removeFotoAlbum(url: string){
+    const storage = getStorage(); 
+    const albumAtualizado = this.cartaData.album.filter((card: FotoAlbum) => card.url !== url);  
+    this.cartaData.album = albumAtualizado;
+    this.http.put<Pagina>(`${apiUrl}/paginas/${this.slug}/${this.cartaId}/update`, this.cartaData).subscribe(
+    async (res) => {
+       try {
+           const imageRef = ref(storage, url);
+           await deleteObject(imageRef); // Remove do Firebase
+         } catch (error) {
+           console.error('Erro ao remover imagem do Firebase:', error);
+         }
+      console.log('Foto removida com sucesso!', this.cartaData);
+    },
+    (error) => {
+      console.error('Erro ao remover foto do álbum', error);
+    }
+  );
   }
   iniciarTimer(): void {
     this.timerSubs = timer(11000).subscribe(() => {
