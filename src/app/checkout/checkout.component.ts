@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , AfterViewInit} from '@angular/core';
 import { CheckoutServiceService } from '../checkout-service.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -20,7 +20,7 @@ declare var MercadoPago: any;
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, AfterViewInit {
   formData: any;
   pixOpen = false;
   cartaoOpen = false;
@@ -35,7 +35,66 @@ export class CheckoutComponent implements OnInit {
   cardForm: any;
 
   constructor(private checkoutService: CheckoutServiceService, private router: Router, private paginaService: PaginaServiceService, private http: HttpClient ,private mpService: MercadoPagoServiceService) {}
+  ngAfterViewInit() {
+  this.mp = new MercadoPago('TEST-CHAVE_PUBLICA', {
+    locale: 'pt-BR',
+  });
 
+  this.mp.cardForm({
+    amount: '100.00',
+    iframe: true,
+    form: {
+      id: 'form-checkout',
+      cardNumber: {
+        id: 'form-checkout__cardNumber',
+        placeholder: 'Número do cartão',
+      },
+      expirationDate: {
+        id: 'form-checkout__expirationDate',
+        placeholder: 'MM/AA',
+      },
+      securityCode: {
+        id: 'form-checkout__securityCode',
+        placeholder: 'CVV',
+      },
+      cardholderName: {
+        id: 'form-checkout__cardholderName',
+        placeholder: 'Nome do titular',
+      },
+      issuer: {
+        id: 'form-checkout__issuer',
+        placeholder: 'Banco emissor',
+      },
+      installments: {
+        id: 'form-checkout__installments',
+        placeholder: 'Parcelas',
+      },
+      identificationType: {
+        id: 'form-checkout__identificationType',
+        placeholder: 'Tipo de documento',
+      },
+      identificationNumber: {
+        id: 'form-checkout__identificationNumber',
+        placeholder: 'Número do documento',
+      },
+      cardholderEmail: {
+        id: 'form-checkout__cardholderEmail',
+        placeholder: 'Email',
+      },
+    },
+    callbacks: {
+      onFormMounted: (error: any) => {
+        if (error) return console.warn('Erro ao montar o form:', error);
+        console.log('Formulário do Mercado Pago montado!');
+      },
+      onSubmit: (event:any) => {
+        event.preventDefault();
+        const data = this.cardForm.getCardFormData();
+        console.log(data); // aqui você pode chamar seu backend
+      },
+    },
+  });
+}
   ngOnInit(): void {
     this.mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
       locale: 'pt-BR',

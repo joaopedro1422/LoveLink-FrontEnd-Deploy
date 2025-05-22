@@ -69,20 +69,21 @@
           <span [class.rotated]="cartaoOpen">▼</span>
         </div>
         <div class="option-content" *ngIf="cartaoOpen">
-            <div id="form-checkout" class="card-form"></div>
+            <form id="form-checkout">
+                <div id="form-checkout__cardNumber" class="container"></div>
+                <div id="form-checkout__expirationDate" class="container"></div>
+                <div id="form-checkout__securityCode" class="container"></div>
 
-        <button
-          class="confirm-button"
-          (click)="pagarCartao()"
-          [disabled]="carregandoRegistro"
-        >
-          <span *ngIf="!carregandoRegistro" style="color: white">
-            <i class="fas fa-lock"></i> Confirmar Pagamento
-          </span>
-          <span *ngIf="carregandoRegistro">
-            <span class="spinner"></span> Enviando...
-          </span>
-        </button>
+                <input type="text" id="form-checkout__cardholderName" />
+                <select id="form-checkout__issuer"></select>
+                <select id="form-checkout__installments"></select>
+                <select id="form-checkout__identificationType"></select>
+                <input type="text" id="form-checkout__identificationNumber" />
+                <input type="email" id="form-checkout__cardholderEmail" />
+
+                <button type="submit" id="form-checkout__submit">Pagar</button>
+                <progress value="0" class="progress-bar">Carregando...</progress>
+              </form>
         </div>
       </div>
       <div class="message">
