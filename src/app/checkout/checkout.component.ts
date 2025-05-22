@@ -66,7 +66,10 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
           visual: {
             style: {
               theme: 'dark',
-              customVariables: {},
+                customVariables: {
+										  formBackgroundColor: "#000000",
+										  baseColor: "#00C851"
+                  },
             },
           },
           paymentMethods: {
@@ -79,12 +82,16 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
           },
           onSubmit: (cardFormData: any) => {
             return new Promise((resolve, reject) => {
+               const payload = {
+                ...cardFormData,
+                transactionAmount: 100, // valor em reais
+              };
               fetch('https://lovelink-backend-deploy.onrender.com/api/payment/card', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(cardFormData),
+                body: JSON.stringify(payload),
               })
                 .then((response) => response.json())
                 .then((result) => {
