@@ -21,7 +21,7 @@ export class QrcodeComponent implements AfterViewInit{
   qrCode = new QRCodeStyling({
     width: 300,
     height: 300,
-    data: `http://192.168.0.140:4200/${this.slug}/${this.paginaId}`,
+    data: `https://lovelink-frontenddeploy.vercel.app/${this.slug}/${this.paginaId}`,
     image: "/coracaoLoveLink.png", // ícone central (adicione no /assets)
     dotsOptions: {
       gradient: {
@@ -57,7 +57,7 @@ export class QrcodeComponent implements AfterViewInit{
       this.handleRouteParams(params);
         console.log('Elemento do canvas:', this.paginaId);
         this.qrCode.update({
-            data: `http://192.168.0.140:4200/${this.slug}/${this.paginaId}`
+            data: `http://https://lovelink-frontenddeploy.vercel.app/${this.slug}/${this.paginaId}`
         });
 
 
