@@ -96,7 +96,6 @@ cardData = {
 
 pagarCartao() {
     this.carregandoRegistro = true;
-    this.registrarPagina();
     const cardPaymentDTO = {
       transactionAmount: this.valorPlanoSelecionado,
       description: "Página Personalizada LoveLink",
