@@ -69,73 +69,54 @@
           <span [class.rotated]="cartaoOpen">▼</span>
         </div>
         <div class="option-content" *ngIf="cartaoOpen">
-          <form (ngSubmit)="pagarCartao()" #formCartao="ngForm">
+          <form id="form-checkout" (ngSubmit)="pagarCartao()">
+            <div id="form-checkout__cardNumber" class="container"></div>
+            <div id="form-checkout__expirationDate" class="container"></div>
+            <div id="form-checkout__securityCode" class="container"></div>
+
+            <h3>Nome no Cartão</h3>
+            <input
+              type="text"
+              id="form-checkout__cardholderName"
+              placeholder="Nome como está no cartão"
+              required
+            />
+
+            <h3>Banco emissor</h3>
+            <select id="form-checkout__issuer" required></select>
+
+            <h3>Parcelas</h3>
+            <select id="form-checkout__installments" required></select>
+
+            <h3>Tipo de documento</h3>
+            <select id="form-checkout__identificationType" required></select>
+
             <h3>CPF</h3>
             <input
-              name="identificationNumber"
-              [(ngModel)]="cardData.identificationNumber"
               type="text"
-              placeholder="Ex: 999.999.999-99"
+              id="form-checkout__identificationNumber"
+              placeholder="Ex: 99999999999"
               required
             />
 
             <h3>Email</h3>
             <input
-              name="email"
-              [(ngModel)]="cardData.email"
               type="email"
+              id="form-checkout__cardholderEmail"
               placeholder="seuemail@exemplo.com"
-              required
-            />
-
-            <h3>Nome no Cartão</h3>
-            <input
-              name="cardholderName"
-              [(ngModel)]="cardData.cardholderName"
-              type="text"
-              placeholder="Nome como está no cartão"
-              required
-            />
-
-            <h3>Número do cartão</h3>
-            <input
-              name="cardNumber"
-              [(ngModel)]="cardData.cardNumber"
-              type="text"
-              placeholder="0000 0000 0000 0000"
-              required
-            />
-
-            <h3>Validade (MM/AA)</h3>
-            <input
-              name="validade"
-              [(ngModel)]="cardData.validade"
-              type="text"
-              placeholder="MM/AA"
-              required
-            />
-
-            <h3>CVV</h3>
-            <input
-              name="securityCode"
-              [(ngModel)]="cardData.securityCode"
-              type="text"
-              placeholder="Ex: 123"
               required
             />
 
             <button
               class="confirm-button"
               type="submit"
-              [disabled]="formCartao.invalid || carregandoRegistro"
+              [disabled]="carregandoRegistro"
             >
-              <span *ngIf="!carregandoRegistro" style="color: white">
-                <i class="fas fa-lock"></i> Confirmar Pagamento
-              </span>
-              <span *ngIf="carregandoRegistro">
-                <span class="spinner"></span> Enviando...
-              </span>
+              <span *ngIf="!carregandoRegistro">Confirmar Pagamento</span>
+              <span *ngIf="carregandoRegistro"><span class="spinner"></span> Enviando...</span>
             </button>
+
+            <progress value="0" class="progress-bar">Carregando...</progress>
           </form>
         </div>
       </div>
