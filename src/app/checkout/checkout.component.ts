@@ -20,7 +20,9 @@ declare var MercadoPago: any;
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent implements OnInit, AfterViewInit {
+export class CheckoutComponent implements AfterViewInit,OnInit {
+  private bricksBuilder: any;
+  private cardPaymentBrickController: any;
   formData: any;
   pixOpen = false;
   cartaoOpen = false;
@@ -31,75 +33,59 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   carregandoRegistro = false;
   planoSelecionado: string | null = null;
   valorPlanoSelecionado: number | null = null;
-  mp: any;
-  cardForm: any;
 
   constructor(private checkoutService: CheckoutServiceService, private router: Router, private paginaService: PaginaServiceService, private http: HttpClient ,private mpService: MercadoPagoServiceService) {}
-  ngAfterViewInit() {
-  this.mp = new MercadoPago('TEST-CHAVE_PUBLICA', {
-    locale: 'pt-BR',
-  });
 
-  this.mp.cardForm({
-    amount: '100.00',
-    iframe: true,
-    form: {
-      id: 'form-checkout',
-      cardNumber: {
-        id: 'form-checkout__cardNumber',
-        placeholder: 'Número do cartão',
-      },
-      expirationDate: {
-        id: 'form-checkout__expirationDate',
-        placeholder: 'MM/AA',
-      },
-      securityCode: {
-        id: 'form-checkout__securityCode',
-        placeholder: 'CVV',
-      },
-      cardholderName: {
-        id: 'form-checkout__cardholderName',
-        placeholder: 'Nome do titular',
-      },
-      issuer: {
-        id: 'form-checkout__issuer',
-        placeholder: 'Banco emissor',
-      },
-      installments: {
-        id: 'form-checkout__installments',
-        placeholder: 'Parcelas',
-      },
-      identificationType: {
-        id: 'form-checkout__identificationType',
-        placeholder: 'Tipo de documento',
-      },
-      identificationNumber: {
-        id: 'form-checkout__identificationNumber',
-        placeholder: 'Número do documento',
-      },
-      cardholderEmail: {
-        id: 'form-checkout__cardholderEmail',
-        placeholder: 'Email',
-      },
-    },
-    callbacks: {
-      onFormMounted: (error: any) => {
-        if (error) return console.warn('Erro ao montar o form:', error);
-        console.log('Formulário do Mercado Pago montado!');
-      },
-      onSubmit: (event:any) => {
-        event.preventDefault();
-        const data = this.cardForm.getCardFormData();
-        console.log(data); // aqui você pode chamar seu backend
-      },
-    },
-  });
-}
-  ngOnInit(): void {
-    this.mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
+   async ngAfterViewInit() {
+    const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
       locale: 'pt-BR',
     });
-    this.renderCardForm();
+
+    this.bricksBuilder = mp.bricks();
+
+    const settings = {
+      initialization: {
+        amount: 100, // valor da compra
+      },
+      callbacks: {
+        onReady: () => {
+          console.log('Brick pronto!');
+        },
+        onSubmit: (formData: any) => {
+          return new Promise((resolve, reject) => {
+            fetch('http://localhost:8080/process_payment', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+            })
+              .then((response) => response.json())
+              .then((response) => {
+                console.log('Resposta do pagamento:', response);
+                resolve(response);
+              })
+              .catch((error) => {
+                console.error('Erro ao processar pagamento:', error);
+                reject(error);
+              });
+          });
+        },
+        onError: (error: any) => {
+          console.error('Erro no Brick:', error);
+        },
+      },
+    };
+
+    this.cardPaymentBrickController = await this.bricksBuilder.create(
+      'cardPayment',
+      'cardPaymentBrick_container',
+      settings
+    );
+  }
+
+  ngOnInit(): void {
+    
     this.formData = this.paginaService.getDadosPagina();
     if (!this.formData) {
       // redirecionar ou tratar erro
@@ -107,62 +93,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.loadValoresPlanos();
     this.primeiroNome = this.getPrimeiroNome(this.formData.autor);
   }
-  renderCardForm() {
-  this.cardForm = this.mpService.mp.cardForm({
-    amount: 20,
-    autoMount: true,
-    form: {
-      id: 'form-checkout',
-      cardholderName: {
-        id: 'form-checkout__cardholderName',
-        placeholder: 'Nome como está no cartão'
-      },
-      cardholderEmail: {
-        id: 'form-checkout__cardholderEmail',
-        placeholder: 'seuemail@exemplo.com'
-      },
-      cardNumber: {
-        id: 'form-checkout__cardNumber',
-        placeholder: '0000 0000 0000 0000'
-      },
-      expirationDate: {
-        id: 'form-checkout__expirationDate',
-        placeholder: 'MM/AA'
-      },
-      securityCode: {
-        id: 'form-checkout__securityCode',
-        placeholder: 'CVV'
-      },
-      installments: {
-        id: 'form-checkout__installments',
-        placeholder: 'Parcelas'
-      },
-      identificationType: {
-        id: 'form-checkout__identificationType',
-        placeholder: 'Tipo de documento'
-      },
-      identificationNumber: {
-        id: 'form-checkout__identificationNumber',
-        placeholder: '999.999.999-99'
-      },
-      issuer: {
-        id: 'form-checkout__issuer',
-        placeholder: 'Banco emissor'
-      }
-    },
-    callbacks: {
-      onFormMounted: (error:any) => {
-        if (error) return console.warn('Form mount error:', error);
-      },
-      onSubmit: (event:any) => {
-        event.preventDefault(); // Evita envio automático
-      },
-      onFetching: (resource:any) => {
-        console.log('Fetching resource:', resource);
-      }
-    }
-  });
-}
   
  loadValoresPlanos(){
  
@@ -204,55 +134,67 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     })
 }
 cardData = {
-  email: '',
-  identificationNumber: ''
-};
+    cardNumber: '',
+    cardholderName: '',
+    expirationMonth: '',
+    expirationYear: '',
+    securityCode: '',
+    identificationType: 'CPF',
+    identificationNumber: '',
+    email: '',
+    validade: '',
+  };
 
-async pagarCartao() {
-  this.carregandoRegistro = true;
-  try {
-    const {
-      token,
-      paymentMethodId,
-      issuerId,
-      email,
-      amount,
-      installments,
-      identificationNumber,
-      identificationType
-    } = this.cardForm.getCardFormData();
-
+pagarCartao() {
+    this.carregandoRegistro = true;
     const cardPaymentDTO = {
       transactionAmount: this.valorPlanoSelecionado,
       description: "Página Personalizada LoveLink",
-      installments: Number(installments),
-      paymentMethodId,
-      issuerId,
+      installments: 1,
+      paymentMethodId: 'visa', // ajuste conforme o método identificado
       payer: {
-        email,
+        email: this.cardData.email,
         identification: {
-          type: identificationType,
-          number: identificationNumber
-        }
+          type: this.cardData.identificationType,
+          number: this.cardData.identificationNumber,
+        },
       },
-      token
-    };
+      token: '',
 
-    this.mpService.payWithCard(cardPaymentDTO).subscribe(
-      res => {
-        this.carregandoRegistro = false;
-        alert('Pagamento aprovado! ID: ' );
+    };
+    const [month, year] = this.cardData.validade.split('/');
+     this.cardData.expirationMonth = month;
+      this.cardData.expirationYear = '20' + year; 
+     const cardTokenData = {
+      cardNumber: this.cardData.cardNumber,
+      cardholderName: this.cardData.cardholderName,
+      expirationMonth: this.cardData.expirationMonth,
+      expirationYear: this.cardData.expirationYear,
+      securityCode: this.cardData.securityCode,
+      identificationType: this.cardData.identificationType,
+      identificationNumber: this.cardData.identificationNumber,
+      email: this.cardData.email,
+    };
+    this.mpService.generateCardToken(cardTokenData).then(
+      (tokenResponse: any) => {
+        cardPaymentDTO.token = tokenResponse.id;
+        this.mpService.payWithCard(cardPaymentDTO).subscribe(
+          (res) => {
+            this.carregandoRegistro = false;
+            alert('Pagamento aprovado! ID: ');
+          },
+          (err) => {
+            this.carregandoRegistro = false;
+            alert('Erro no pagamento: ' + err.message);
+          }
+        );
       },
-      err => {
+      (err) => {
         this.carregandoRegistro = false;
-        alert('Erro no pagamento: ' + err.message);
+        alert('Erro ao gerar token do cartão: ' + err.message);
       }
     );
-  } catch (err: any) {
-    this.carregandoRegistro = false;
-    alert('Erro ao gerar token do cartão: ' + err.message);
   }
-}
     
 }
 
