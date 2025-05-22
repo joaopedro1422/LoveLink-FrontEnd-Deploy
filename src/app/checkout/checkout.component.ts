@@ -43,7 +43,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
    
   }
  async renderCardPaymentBrick() {
-    const mp = new MercadoPago('TEST-7941953569846694-052011-1ba4faf7f680549172d7b1747ba9babc-2093661193', {
+    const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
       locale: 'pt-BR',
     });
 
