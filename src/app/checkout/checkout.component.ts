@@ -102,6 +102,8 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
                 .then((response) => response.json())
                 .then((result) => {
                   console.log('Pagamento enviado com sucesso', result);
+                  this.registrarPagina(result.id)
+                  
                  if(result.status === 'approved'){
                    this.pagamentoAprovado = true;
                     this.registroCompleto = true;
@@ -172,7 +174,11 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
   revisar(){
     this.router.navigate(['/criarCarta'])
   }
-  registrarPagina(){
+
+ 
+  registrarPagina(id :number){
+    this.formData.pagamentoId = id;
+    this.formData.status = "pendente";
     console.log(this.formData)
   this.carregandoRegistro = true;
   this.http.post<Pagina>(apiUrl+ '/paginas', this.formData)
@@ -272,9 +278,14 @@ pagarCartao() {
       (tokenResponse: any) => {
         cardPaymentDTO.token = tokenResponse.id;
         this.mpService.payWithCard(cardPaymentDTO).subscribe(
-          (res) => {
+          (res:any) => {
             this.carregandoRegistro = false;
-            alert('Pagamento aprovado! ID: ');
+            if(res.id){
+               this.registrarPagina(res.id)
+               console.log("id da transaçao:", res.id);
+              alert('Pagamento aprovado! ID: ');
+            }
+           
           },
           (err) => {
             this.carregandoRegistro = false;
