@@ -102,8 +102,11 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
                 .then((response) => response.json())
                 .then((result) => {
                   console.log('Pagamento enviado com sucesso', result);
-                  this.registrarPagina(result.id)
-                  
+                  console.log('ID do pagamento:', result.id); 
+                   if (result.id) {
+                    this.registrarPagina(result.id);
+                  } 
+
                  if(result.status === 'approved'){
                    this.pagamentoAprovado = true;
                     this.registroCompleto = true;
@@ -180,8 +183,8 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
     this.formData.pagamentoId = id;
     this.formData.status = "pendente";
     console.log(this.formData)
-  this.carregandoRegistro = true;
-  this.http.post<Pagina>(apiUrl+ '/paginas', this.formData)
+      this.carregandoRegistro = true;
+     this.http.post<Pagina>(apiUrl+ '/paginas', this.formData)
     .subscribe((res) => {
       console.log("pagina registrada com sucesso"+res)
       this.registroCompleto = true;
