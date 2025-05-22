@@ -77,12 +77,18 @@
       </div>
     </div>
   </div>
-  <div class="confirmacao" *ngIf="registroCompleto">
+  <div class="confirmacao" *ngIf="pagamentoAprovado">
+  <h2>Parabéns, {{primeiroNome}} ❤️</h2>
+  <h3>Sua página está pronta e o seu pagamento foi aprovado com sucesso!</h3>
+  <p>Você receberá em seu email a confirmação da compra junto com o link e QrCode de acesso da sua nova página personalizada!</p>
+  <!-- Exibir link personalizado + QR -->
+</div>
+  <div class="confirmacao" *ngIf="registroCompleto && !pagamentoAprovado">
     <h2>Parabéns, {{primeiroNome}} ❤️</h2>
-    <h3>Sua página personalizada está pronta e foi enviada para o seu Email.</h3>
-    <p>Agradecemos pela preferência e desejamos boa sorte com a sua surpresa!</p>
+    <h3>Sua página personalizada está pronta e o pagamento está em andamento.</h3>
+    <p>Você poderá acompanhar o status do seu pagamento através do seu email e assim que for aprovado, receberá o link e o QrCode de acesso para a sua página!</p>
     <i class="fa fa-check-circle" style="color: #4CAF50; font-size: 80px;"></i>
-    <p>Mais instruções foram enviadas também ao seu Email</p>
+    <p>Mais instruções foram enviadas também ao seu Email.</p>
   </div>
 </div>
 

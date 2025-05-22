@@ -27,6 +27,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
   pixOpen = false;
   cartaoOpen = false;
   registroCompleto = false;
+  pagamentoAprovado = false;
   parcelas = [1, 2, 3, 4, 5, 6];
   parcelaSelecionada = 1;
   primeiroNome = '';
@@ -84,7 +85,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
             return new Promise((resolve, reject) => {
                const payload = {
                 ...cardFormData,
-                transactionAmount: 100, // valor em reais
+                transactionAmount: this.valorPlanoSelecionado, // valor em reais
               };
               fetch('https://lovelink-backend-deploy.onrender.com/api/payment/card', {
                 method: 'POST',
@@ -96,6 +97,12 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
                 .then((response) => response.json())
                 .then((result) => {
                   console.log('Pagamento enviado com sucesso', result);
+                 if(result.status === 'approved'){
+                   this.pagamentoAprovado = true;
+                 }
+                 else{
+                   this.registroCompleto = true;
+                 }
                   resolve(result);
                 })
                 .catch((error) => {
@@ -149,7 +156,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
       this.pixOpen = false;
         setTimeout(() => {
       this.renderCardPaymentBrick();
-    }, 100);
+    }, 50);
     } else {
     if (this.cardPaymentBrickController) {
       this.cardPaymentBrickController.unmount();
