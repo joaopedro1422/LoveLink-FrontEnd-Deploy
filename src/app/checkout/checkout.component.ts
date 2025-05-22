@@ -195,6 +195,28 @@ cardData = {
     email: '',
     validade: '',
   };
+cpf: string = '';
+nome: string = '';
+qrCodeBase64: string | null = null;
+qrCode: string | null = null;
+
+gerarPix() {
+  const body = {
+    cpf: this.cpf.replace(/\D/g, ''), // remove máscara
+    nome: this.nome,
+    valor: 100.00 // ou o valor do carrinho
+  };
+
+  this.http.post<any>('https://lovelink-backend-deploy.onrender.com/api/pagamentos/pix', body)
+    .subscribe((res) => {
+      console.log("Pix gerado com sucesso")
+      console.log(res.status);
+      this.qrCodeBase64 = res.qrCodeBase64;
+      this.qrCode = res.qrCode;
+    }, err => {
+      console.error('Erro ao gerar PIX', err);
+    });
+}
 
 pagarCartao() {
     this.carregandoRegistro = true;
