@@ -201,11 +201,19 @@ qrCodeBase64: string | null = null;
 qrCode: string | null = null;
 
 gerarPix() {
-  const body = {
-    cpf: this.cpf.replace(/\D/g, ''), // remove máscara
-    nome: this.nome,
-    valor: 100.00 // ou o valor do carrinho
+    const body = {
+    transactionAmount: this.valorPlanoSelecionado, // ou o valor do carrinho
+    description: 'Pagamento via Pix',
+    paymentMethodId: 'pix',
+    payer: {
+      email: this.cardData.email, // insira o email do usuário aqui
+      identification: {
+        type: 'CPF',
+        number: this.cpf.replace(/\D/g, '')
+      }
+    }
   };
+
 
   this.http.post<any>('https://lovelink-backend-deploy.onrender.com/api/payment/pix', body)
     .subscribe((res) => {
