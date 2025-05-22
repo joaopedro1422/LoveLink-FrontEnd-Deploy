@@ -37,52 +37,36 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
   constructor(private checkoutService: CheckoutServiceService, private router: Router, private paginaService: PaginaServiceService, private http: HttpClient ,private mpService: MercadoPagoServiceService) {}
 
    async ngAfterViewInit() {
-    const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
-      locale: 'pt-BR',
-    });
+     setTimeout(() => {
+        this.renderBrick();
+      }, 3000); 
+   
+  }
+  async renderBrick() {
+  const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', { locale: 'pt-BR' });
+  this.bricksBuilder = mp.bricks();
 
-    this.bricksBuilder = mp.bricks();
-
-    const settings = {
+  this.cardPaymentBrickController = await this.bricksBuilder.create(
+    'cardPayment',
+    'cardPaymentBrick_container',
+    {
       initialization: {
-        amount: 100, // valor da compra
+        amount: 100,
       },
       callbacks: {
-        onReady: () => {
-          console.log('Brick pronto!');
-        },
+        onReady: () => console.log('Brick pronto'),
         onSubmit: (formData: any) => {
-          return new Promise((resolve, reject) => {
-            fetch('http://localhost:8080/process_payment', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData),
-            })
-              .then((response) => response.json())
-              .then((response) => {
-                console.log('Resposta do pagamento:', response);
-                resolve(response);
-              })
-              .catch((error) => {
-                console.error('Erro ao processar pagamento:', error);
-                reject(error);
-              });
-          });
+          return fetch('http://localhost:8080/process_payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          }).then((res) => res.json());
         },
-        onError: (error: any) => {
-          console.error('Erro no Brick:', error);
-        },
+        onError: (error: any) => console.error('Erro no Brick:', error),
       },
-    };
-
-    this.cardPaymentBrickController = await this.bricksBuilder.create(
-      'cardPayment',
-      'cardPaymentBrick_container',
-      settings
-    );
-  }
+    }
+  );
+}
 
   ngOnInit(): void {
     
