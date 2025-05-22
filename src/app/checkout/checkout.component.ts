@@ -10,13 +10,15 @@ import { Pagina } from '../models/pagina';
 import { HttpClient } from '@angular/common/http';
 import { MercadoPagoServiceService } from '../services/mercado-pago-service.service';
 import { environment } from '../../environments/api';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 const apiUrl = `${environment.apiUrl}`;
 declare var MercadoPago: any;
 @Component({
   selector: 'app-checkout',
   standalone: true,
   imports: [CommonModule,
-    FormsModule],
+    FormsModule, HeaderComponent, FooterComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })

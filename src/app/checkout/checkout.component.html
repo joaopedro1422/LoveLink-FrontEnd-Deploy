@@ -1,24 +1,4 @@
-<div class="top-alert">
-   
-    ❤️ 40% OFF para o Dia dos Namorados ❤️
-  </div>
-  <header>
-    <!-- Ícone do menu hambúrguer -->
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  
-    <!-- Logo central -->
-    <div class="logo">
-      <img src="logoLoveLink.png" alt="Logo" />
-    </div>
-  
-    <!-- Menu de navegação -->
-    <nav class="nav-links" id="navLinks">
-      <a href="#">Início</a>
-      <a href="#">Suporte</a>
-      <a href="#">Trabalhe Conosco</a>
-    </nav>
-  </header>
-
+<app-header></app-header>
 <div class="checkout-container">
 
   <div class="checkout-content" *ngIf="!registroCompleto && valorPlanoSelecionado" >
@@ -28,7 +8,7 @@
         <h2>Resumo do Pedido</h2>
         <p>Revise a sua página antes do pagamento</p>
           <div class="resumo">
-            <h4> <i class="fas fa-shopping-cart"></i> Página LoveLink personalizada | Plano {{planoSelecionado}}</h4>
+            <h4> <i class="fas fa-shopping-cart"></i> Página LoveLink | Plano {{planoSelecionado}}</h4>
             <h4>R$ {{valorPlanoSelecionado}}0</h4>
           </div>
           <div class="total">
@@ -70,6 +50,7 @@
         </div>
         <div class="option-content" *ngIf="cartaoOpen">
           <div id="cardPaymentBrick_container"></div>
+          <p style="color: rgb(124, 124, 124);"><i class="fas fa-lock"></i> Pagamento seguro com Mercado Pago</p>
         </div>
       </div>
       <div class="message">
@@ -100,28 +81,6 @@
 <div class="espaco"></div>
 <div class="espaco"></div>
 <div class="espaco"></div>
-<footer class="footer">
-    <div class="content-footer">
-        <img src="logoLoveLink.png" class="image-logo" alt="Logo" />
-        <p>Com a LoveLink você demonstra amor em forma de página personalizada :)</p>
-        <div class="paginas">
-            <a href="">Política de privacidade</a>
-            <a href="">Termos de uso</a>
-            <a href="">Fale conosco</a>
-
-        </div>
-        <div class="redes-sociais">
-            <img src="instagram.png" alt="">
-            <a href="">Confira o nosso instagram</a>
-        </div>
-    </div>
-    <div class="copyright">
-        <span> CopyRight © 2025 - LoveLink.com</span>
-    </div>
-    
-</footer>
-<div class="rodape">
-<span>Todos os direitos reservados</span>
-</div>
+<app-footer></app-footer>
 
  
