@@ -207,7 +207,7 @@ gerarPix() {
     valor: 100.00 // ou o valor do carrinho
   };
 
-  this.http.post<any>('https://lovelink-backend-deploy.onrender.com/api/pagamentos/pix', body)
+  this.http.post<any>('https://lovelink-backend-deploy.onrender.com/api/payment/pix', body)
     .subscribe((res) => {
       console.log("Pix gerado com sucesso")
       console.log(res.status);
