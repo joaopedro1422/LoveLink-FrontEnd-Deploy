@@ -25,21 +25,27 @@
       <p>Escolha a melhor forma de realizar o pagamento</p>
 
     <!-- PIX Option -->
-    <div class="option-content" *ngIf="pixOpen">
-      <form (ngSubmit)="gerarPix()" #pixForm="ngForm">
-        <h3>CPF</h3>
-        <input type="text" [(ngModel)]="cpf" name="cpf" placeholder="Ex: 999.999.999-99" required />
-        <h3>Nome</h3>
-        <input type="text" [(ngModel)]="nome" name="nome" placeholder="Ex: Matheus Ribeiro" required />
-        <button class="confirm-button" type="submit">Gerar QRcode PIX</button>
-      </form>
+      <div class="payment-option">
+        <div class="option-header"  (click)="togglePix()">
+          <span><i class="fas fa-qrcode"></i> Pix</span>
+          <span [class.rotated]="pixOpen">▼</span>
+        </div>
+       <div class="option-content" *ngIf="pixOpen">
+          <form (ngSubmit)="gerarPix()" #pixForm="ngForm">
+            <h3>CPF</h3>
+            <input type="text" [(ngModel)]="cpf" name="cpf" placeholder="Ex: 999.999.999-99" required />
+            <h3>Nome</h3>
+            <input type="text" [(ngModel)]="nome" name="nome" placeholder="Ex: Matheus Ribeiro" required />
+            <button class="confirm-button" type="submit">Gerar QRcode PIX</button>
+          </form>
 
-      <div *ngIf="qrCodeBase64">
-        <h4>Escaneie com o app do banco:</h4>
-        <img [src]="'data:image/png;base64,' + qrCodeBase64" alt="QR Code PIX" />
-        <p><strong>Copia e Cola:</strong> {{ qrCode }}</p>
+          <div *ngIf="qrCodeBase64">
+            <h4>Escaneie com o app do banco:</h4>
+            <img [src]="'data:image/png;base64,' + qrCodeBase64" alt="QR Code PIX" />
+            <p><strong>Copia e Cola:</strong> {{ qrCode }}</p>
+          </div>
+        </div>
       </div>
-    </div>
 
       <!-- Cartão Option -->
       <div class="payment-option" >
