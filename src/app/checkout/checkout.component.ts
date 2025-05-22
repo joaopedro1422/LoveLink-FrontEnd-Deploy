@@ -207,12 +207,13 @@ gerarPix() {
     description: 'Pagamento via Pix',
     paymentMethodId: 'pix',
     payer: {
-      email: 'jpcros40414@gmail.com', // insira o email do usuário aqui
+      email: this.formData.email, // insira o email do usuário aqui
       identification: {
         type: 'CPF',
         number: this.cpf.replace(/\D/g, '')
       }
-    }
+    },
+    pagina: this.formData
   };
 
 
