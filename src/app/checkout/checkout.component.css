@@ -356,9 +356,9 @@ input, form select {
     min-height: 100vh; 
     display: flex;
     flex-direction: column;
-    padding-left: 4%;
+    padding-left: 2%;
    
-    padding-right: 1%;
+    padding-right: 2%;
    }
    .container-resumo{
     width: 90%;

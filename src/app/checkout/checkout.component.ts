@@ -83,6 +83,9 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
           },
           onSubmit: (cardFormData: any) => {
             return new Promise((resolve, reject) => {
+              if(!this.valorPlanoSelecionado){
+                return;
+              }
                const payload = {
                 ...cardFormData,
                 transactionAmount: this.valorPlanoSelecionado, // valor em reais
@@ -99,6 +102,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
                   console.log('Pagamento enviado com sucesso', result);
                  if(result.status === 'approved'){
                    this.pagamentoAprovado = true;
+                    this.registroCompleto = true;
                  }
                  else{
                    this.registroCompleto = true;

@@ -21,7 +21,7 @@
 
 <div class="checkout-container">
 
-  <div class="checkout-content" *ngIf="!registroCompleto" >
+  <div class="checkout-content" *ngIf="!registroCompleto && valorPlanoSelecionado" >
     <div class="container-left">
       <div class="container-resumo">
         <button (click)="revisar()" class="btn-editar"><i class="fas fa-arrow-left"></i> Editar página</button>
