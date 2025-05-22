@@ -40,32 +40,7 @@ export class CheckoutComponent implements OnInit {
     this.mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
       locale: 'pt-BR',
     });
-    this.cardForm = this.mp.cardForm({
-      amount: String(this.valorPlanoSelecionado),
-      iframe: true,
-      form: {
-        id: "form-checkout",
-        cardNumber: { id: "form-checkout__cardNumber", placeholder: "Número do cartão" },
-        expirationDate: { id: "form-checkout__expirationDate", placeholder: "MM/AA" },
-        securityCode: { id: "form-checkout__securityCode", placeholder: "CVV" },
-        cardholderName: { id: "form-checkout__cardholderName", placeholder: "Nome no cartão" },
-        issuer: { id: "form-checkout__issuer", placeholder: "Banco emissor" },
-        installments: { id: "form-checkout__installments", placeholder: "Parcelas" },
-        identificationType: { id: "form-checkout__identificationType", placeholder: "Tipo de documento" },
-        identificationNumber: { id: "form-checkout__identificationNumber", placeholder: "Número do documento" },
-        cardholderEmail: { id: "form-checkout__cardholderEmail", placeholder: "E-mail" },
-      },
-      callbacks: {
-        onFormMounted: (error: any) => {
-          if (error) console.warn("Form Mounted error: ", error);
-        },
-        onFetching: (resource: any) => {
-          const progressBar = document.querySelector(".progress-bar") as HTMLProgressElement;
-          progressBar.removeAttribute("value");
-          return () => progressBar.setAttribute("value", "0");
-        }
-      }
-    });
+    this.renderCardForm();
     this.formData = this.paginaService.getDadosPagina();
     if (!this.formData) {
       // redirecionar ou tratar erro
@@ -73,6 +48,62 @@ export class CheckoutComponent implements OnInit {
     this.loadValoresPlanos();
     this.primeiroNome = this.getPrimeiroNome(this.formData.autor);
   }
+  renderCardForm() {
+  this.cardForm = this.mpService.mp.cardForm({
+    amount: 20,
+    autoMount: true,
+    form: {
+      id: 'form-checkout',
+      cardholderName: {
+        id: 'form-checkout__cardholderName',
+        placeholder: 'Nome como está no cartão'
+      },
+      cardholderEmail: {
+        id: 'form-checkout__cardholderEmail',
+        placeholder: 'seuemail@exemplo.com'
+      },
+      cardNumber: {
+        id: 'form-checkout__cardNumber',
+        placeholder: '0000 0000 0000 0000'
+      },
+      expirationDate: {
+        id: 'form-checkout__expirationDate',
+        placeholder: 'MM/AA'
+      },
+      securityCode: {
+        id: 'form-checkout__securityCode',
+        placeholder: 'CVV'
+      },
+      installments: {
+        id: 'form-checkout__installments',
+        placeholder: 'Parcelas'
+      },
+      identificationType: {
+        id: 'form-checkout__identificationType',
+        placeholder: 'Tipo de documento'
+      },
+      identificationNumber: {
+        id: 'form-checkout__identificationNumber',
+        placeholder: '999.999.999-99'
+      },
+      issuer: {
+        id: 'form-checkout__issuer',
+        placeholder: 'Banco emissor'
+      }
+    },
+    callbacks: {
+      onFormMounted: (error:any) => {
+        if (error) return console.warn('Form mount error:', error);
+      },
+      onSubmit: (event:any) => {
+        event.preventDefault(); // Evita envio automático
+      },
+      onFetching: (resource:any) => {
+        console.log('Fetching resource:', resource);
+      }
+    }
+  });
+}
   
  loadValoresPlanos(){
  
@@ -114,58 +145,55 @@ export class CheckoutComponent implements OnInit {
     })
 }
 cardData = {
-    cardNumber: '',
-    cardholderName: '',
-    expirationMonth: '',
-    expirationYear: '',
-    securityCode: '',
-    identificationType: 'CPF',
-    identificationNumber: '',
-    email: '',
-    validade: '',
-  };
+  email: '',
+  identificationNumber: ''
+};
 
-pagarCartao() {
+async pagarCartao() {
   this.carregandoRegistro = true;
-
+  try {
     const {
+      token,
       paymentMethodId,
       issuerId,
-      cardholderEmail,
+      email,
       amount,
-      token,
       installments,
       identificationNumber,
-      identificationType,
+      identificationType
     } = this.cardForm.getCardFormData();
 
-    const dto = {
-      transactionAmount: Number(amount),
+    const cardPaymentDTO = {
+      transactionAmount: this.valorPlanoSelecionado,
       description: "Página Personalizada LoveLink",
-      paymentMethodId,
-      issuer_id: issuerId,
-      token,
       installments: Number(installments),
+      paymentMethodId,
+      issuerId,
       payer: {
-        email: cardholderEmail,
+        email,
         identification: {
           type: identificationType,
-          number: identificationNumber,
+          number: identificationNumber
         }
-      }
+      },
+      token
     };
 
-    this.mpService.payWithCard(dto).subscribe(
-      (res) => {
+    this.mpService.payWithCard(cardPaymentDTO).subscribe(
+      res => {
         this.carregandoRegistro = false;
-        alert('Pagamento aprovado!');
+        alert('Pagamento aprovado! ID: ' );
       },
-      (err) => {
+      err => {
         this.carregandoRegistro = false;
         alert('Erro no pagamento: ' + err.message);
       }
     );
+  } catch (err: any) {
+    this.carregandoRegistro = false;
+    alert('Erro ao gerar token do cartão: ' + err.message);
   }
+}
     
 }
 
