@@ -38,35 +38,70 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
 
    async ngAfterViewInit() {
      setTimeout(() => {
-        this.renderBrick();
+        this.renderCardPaymentBrick();
       }, 3000); 
    
   }
-  async renderBrick() {
-  const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', { locale: 'pt-BR' });
-  this.bricksBuilder = mp.bricks();
+ async renderCardPaymentBrick() {
+    const mp = new MercadoPago('TEST-7941953569846694-052011-1ba4faf7f680549172d7b1747ba9babc-2093661193', {
+      locale: 'pt-BR',
+    });
 
-  this.cardPaymentBrickController = await this.bricksBuilder.create(
-    'cardPayment',
-    'cardPaymentBrick_container',
-    {
-      initialization: {
-        amount: 100,
-      },
-      callbacks: {
-        onReady: () => console.log('Brick pronto'),
-        onSubmit: (formData: any) => {
-          return fetch('http://localhost:8080/process_payment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
-          }).then((res) => res.json());
+    const bricksBuilder = mp.bricks();
+
+    this.cardPaymentBrickController = await bricksBuilder.create(
+      'cardPayment',
+      'cardPaymentBrick_container',
+      {
+        initialization: {
+          amount: 100,
+          payer: {
+            email: '',
+          },
         },
-        onError: (error: any) => console.error('Erro no Brick:', error),
-      },
-    }
-  );
-}
+        customization: {
+          visual: {
+            style: {
+              theme: 'default',
+              customVariables: {},
+            },
+          },
+          paymentMethods: {
+            maxInstallments: 1,
+          },
+        },
+        callbacks: {
+          onReady: () => {
+            console.log('Brick pronto!');
+          },
+          onSubmit: (cardFormData: any) => {
+            return new Promise((resolve, reject) => {
+              fetch('http://localhost:8080/process_payment', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(cardFormData),
+              })
+                .then((response) => response.json())
+                .then((result) => {
+                  console.log('Pagamento enviado com sucesso', result);
+                  resolve(result);
+                })
+                .catch((error) => {
+                  console.error('Erro ao processar o pagamento', error);
+                  reject(error);
+                });
+            });
+          },
+          onError: (error: any) => {
+            console.error('Erro do Brick:', error);
+          },
+        },
+      }
+    );
+  }
+
 
   ngOnInit(): void {
     
