@@ -1,4 +1,4 @@
-import { Component, OnInit , AfterViewInit} from '@angular/core';
+import { Component, OnInit , AfterViewInit, OnDestroy} from '@angular/core';
 import { CheckoutServiceService } from '../checkout-service.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -20,7 +20,7 @@ declare var MercadoPago: any;
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent implements AfterViewInit,OnInit {
+export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
   private bricksBuilder: any;
   private cardPaymentBrickController: any;
   formData: any;
@@ -37,10 +37,13 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
   constructor(private checkoutService: CheckoutServiceService, private router: Router, private paginaService: PaginaServiceService, private http: HttpClient ,private mpService: MercadoPagoServiceService) {}
 
    async ngAfterViewInit() {
-     setTimeout(() => {
-        this.renderCardPaymentBrick();
-      }, 3000); 
+     
    
+  }
+   ngOnDestroy(): void {
+    if (this.cardPaymentBrickController) {
+      this.cardPaymentBrickController.unmount();
+    }
   }
  async renderCardPaymentBrick() {
     const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
@@ -62,7 +65,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
         customization: {
           visual: {
             style: {
-              theme: 'default',
+              theme: 'dark',
               customVariables: {},
             },
           },
@@ -76,7 +79,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
           },
           onSubmit: (cardFormData: any) => {
             return new Promise((resolve, reject) => {
-              fetch('http://localhost:8080/process_payment', {
+              fetch('https://lovelink-backend-deploy.onrender.com/api/payment/card', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -135,7 +138,16 @@ export class CheckoutComponent implements AfterViewInit,OnInit {
 
   toggleCartao() {
     this.cartaoOpen = !this.cartaoOpen;
-    if (this.cartaoOpen) this.pixOpen = false;
+    if (this.cartaoOpen){
+      this.pixOpen = false;
+        setTimeout(() => {
+      this.renderCardPaymentBrick();
+    }, 100);
+    } else {
+    if (this.cardPaymentBrickController) {
+      this.cardPaymentBrickController.unmount();
+    }
+  }
   }
   revisar(){
     this.router.navigate(['/criarCarta'])
