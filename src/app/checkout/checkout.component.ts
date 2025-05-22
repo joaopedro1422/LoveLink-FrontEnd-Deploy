@@ -200,6 +200,7 @@ nome: string = '';
 qrCodeBase64: string | null = null;
 qrCode: string | null = null;
 
+
 gerarPix() {
     const body = {
     transactionAmount: this.valorPlanoSelecionado, // ou o valor do carrinho
@@ -224,6 +225,16 @@ gerarPix() {
     }, err => {
       console.error('Erro ao gerar PIX', err);
     });
+}
+
+copiarCodigoPix() {
+  if(this.qrCode)
+  navigator.clipboard.writeText(this.qrCode).then(() => {
+    
+  }).catch(err => {
+    console.error('Erro ao copiar:', err);
+    alert('Não foi possível copiar o código Pix.');
+  });
 }
 
 pagarCartao() {

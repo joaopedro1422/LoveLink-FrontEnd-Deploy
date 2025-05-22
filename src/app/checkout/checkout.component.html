@@ -30,7 +30,7 @@
           <span><i class="fas fa-qrcode"></i> Pix</span>
           <span [class.rotated]="pixOpen">▼</span>
         </div>
-       <div class="option-content" *ngIf="pixOpen">
+       <div class="option-content" *ngIf="pixOpen && !qrCodeBase64">
           <form (ngSubmit)="gerarPix()" #pixForm="ngForm">
             <h3>CPF</h3>
             <input type="text" [(ngModel)]="cpf" name="cpf" placeholder="Ex: 999.999.999-99" required />
@@ -42,7 +42,9 @@
           <div *ngIf="qrCodeBase64">
             <h4>Escaneie com o app do banco:</h4>
             <img [src]="'data:image/png;base64,' + qrCodeBase64" alt="QR Code PIX" />
-            <p><strong>Copia e Cola:</strong> {{ qrCode }}</p>
+            <p><strong></strong> {{ qrCode }}</p>
+            <button class="btn-copiar" (click)="copiarCodigoPix()">Copiar</button>
+            
           </div>
         </div>
       </div>

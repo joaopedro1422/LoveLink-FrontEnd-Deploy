@@ -441,3 +441,17 @@ input, form select {
 .svelte-11b9rht.primary-1pmA6_.linear-1LoS9f.loaded-sPZNzz{
   width: 100% !important;
 }
+
+.ng-star-inserted img{
+  height: 200px;
+  width: 195px;
+  border-radius: 4px;
+}
+
+.btn-copiar{
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid gray;
+}
