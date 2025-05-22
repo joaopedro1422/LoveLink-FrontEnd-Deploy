@@ -220,7 +220,6 @@
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid #333;
-  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -241,10 +240,10 @@ input, form select {
   max-width: 100%;
   
   padding: 10px;
-  background-color: #313742;
+   background-color: #313742;
   border: 1px solid rgb(117, 117, 117);
   border-radius: 4px;
-  height: 25px;
+  height: 26px;
   color: #fff;
 }
 
@@ -450,10 +449,9 @@ input, form select {
 }
 .ng-star-inserted{
   display: flex;
-  flex-direction: column;
+
   align-items: center;
   justify-content: center;
-  max-width: 100%;
 }
 
 .btn-copiar{
@@ -462,5 +460,5 @@ input, form select {
   background-color: transparent;
   color: white;
   border: 1px solid gray;
-  border-radius: 7px;
+  border-radius: 6px;
 }
