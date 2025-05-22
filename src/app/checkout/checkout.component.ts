@@ -206,7 +206,7 @@ gerarPix() {
     description: 'Pagamento via Pix',
     paymentMethodId: 'pix',
     payer: {
-      email: this.cardData.email, // insira o email do usuário aqui
+      email: 'jpcros40414@gmail.com', // insira o email do usuário aqui
       identification: {
         type: 'CPF',
         number: this.cpf.replace(/\D/g, '')
