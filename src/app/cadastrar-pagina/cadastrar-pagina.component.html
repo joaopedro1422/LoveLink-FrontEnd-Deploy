@@ -196,7 +196,7 @@
                 <ul>
                   <li *ngFor="let track of musicsPreview; let i = index">
                     {{ track.name }} 
-                    <button class="remove-button" (click)="removeFromPlaylist(i)">✖</button>
+                    <button class="remove-button" (click)="removeFromPlaylist(track)">✖</button>
                   </li>
                 </ul>
               </div>

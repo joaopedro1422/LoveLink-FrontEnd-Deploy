@@ -132,14 +132,11 @@ export class CadastrarPaginaComponent implements OnInit {
     console.log(this.form)
     this.musicsPreview.push(track);
   }
-  removeFromPlaylist(index: number) {
+  removeFromPlaylist(music: string) {
     console.log(this.musicsPreview)
-  this.musicsPreview.splice(index, 1);
+  this.musicsPreview = this.musicsPreview.filter((track) => track !== music)
       console.log(this.musicsPreview)
-   this.form = {
-    ...this.form,
-    playlist: [...this.musicsPreview],
-  };
+   this.form.playlist = this.form.playlist.filter((track) => track !== music)
       console.log(this.form.playlist)
  
 }
