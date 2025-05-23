@@ -325,12 +325,22 @@ export class CadastrarPaginaComponent implements OnInit {
         this.searchYoutube();
       }, 400); // espera 500ms após parar de digitar
 }
+    onSearchChangeSpotify(){
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = setTimeout(()=>{
+        this.searchMusic();
+      }, 400)
+    }
    playVideo(videoId: string): void {
     // Cria o URL de embed sem autoplay
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
     const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
 
     this.activeVideos.set(videoId, safeUrl);
+  }
+
+  setEmoji(emoji: string){
+    this.form.titulo += emoji
   }
   
   selecionarPlano(plano: string) {

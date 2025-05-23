@@ -46,6 +46,12 @@
             <h3 style="margin-top: 20px">Título da mensagem</h3>
              
             <input class="campo" type="text" [(ngModel)]="form.titulo" placeholder="Ex: 'Para o amor da minha vida'" />
+            <div class="container-emojis">
+              <div class="celula-emoji" (click)="setEmoji('💕')">💕</div>
+              <div class="celula-emoji" (click)="setEmoji('❤️')">❤️</div>
+              <div class="celula-emoji" (click)="setEmoji('😍')">😍</div>
+              <div class="celula-emoji" (click)="setEmoji('🌹')">🌹</div>
+            </div>
           </div>
       
           <div *ngSwitchCase="1" style="width: 100%;">
@@ -59,7 +65,7 @@
               Clique para adicionar fotos <br>
               <span style="color: rgb(107, 107, 107); font-size: 0.8rem">.png / .jpg</span>
             </label>
-            <div style="display: flex; border: 1px solid rgb(88, 88, 88); margin-top: 6px; border-radius: 6px">
+            <div *ngIf="form.imagens.length > 0"  style="display: flex; border: 1px solid rgb(88, 88, 88); margin-top: 6px; border-radius: 6px">
               <div *ngFor="let img of form.imagens; let i = index" style="position: relative; margin: 10px;">
                 <img [src]="img" style="width: 50px; border-radius: 5px;" />
                 <button 
@@ -199,6 +205,7 @@
                 type="text"
                 class="campo spotify"
                 [(ngModel)]="searchSpotify"
+                (ngModelChange)="onSearchChangeSpotify()"
                 (keyup.enter)="searchMusic()"
                 placeholder="Ex: Jorge e Mateus - Duas metades"
               />
@@ -208,7 +215,7 @@
             </div>
             <div >
               <div class="search-results">
-                <div *ngFor="let track of searchResults" class="track-card">
+                <div *ngFor="let track of searchResults" class="track-card" (click)="addToPlaylist(track)">
                   <div class="card-left">
                     <img [src]="track.album.images[0]?.url" alt="Capa do álbum" class="track-image" />
                     <div class="track-info">
@@ -218,7 +225,7 @@
                   </div>
                   <div class="card-right">
                         <img src="spotify.png"  alt="Selecionar" />
-                        <button class="select-button" (click)="addToPlaylist(track)" > <img src="botao-play-ponta-de-seta.png" alt="Selecionar" /></button>
+                        <button class="select-button"  > <img src="botao-play-ponta-de-seta.png" alt="Selecionar" /></button>
                   </div>
                   
               

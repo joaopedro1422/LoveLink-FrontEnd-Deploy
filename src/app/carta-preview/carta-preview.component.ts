@@ -130,7 +130,7 @@ export class CartaPreviewComponent implements OnInit, OnChanges, OnDestroy {
   iniciarCarrossel() {
     this.intervalId = setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.cartaData.imagens.length;
-    }, 11000);
+    }, 10000);
   }
   
   
