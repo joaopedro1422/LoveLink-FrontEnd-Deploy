@@ -134,6 +134,8 @@ export class CadastrarPaginaComponent implements OnInit {
   }
   removeFromPlaylist(index: number) {
   this.musicsPreview.splice(index, 1);
+  this.form.playlist = this.form.playlist.filter((_,i) => i !== index);
+ 
 }
    acaoPrimaria() {
     console.log('Ação primária disparada');
