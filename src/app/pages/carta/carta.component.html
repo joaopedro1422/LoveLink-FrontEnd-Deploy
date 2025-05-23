@@ -7,7 +7,7 @@
               <dialog #modal>
                 <div class="container-modal-adc">
                     <div class="header-adc">
-                        <h1 style =" font-weight: 500; color: white; text-align: center; font-size: 1.6rem">Nova Lembrança</h1>
+                        <h1 style =" font-weight: 600; color: white; text-align: center; font-size: 1.3rem">Nova Lembrança</h1>
                     </div>
                 
                     <div class="container-input" *ngIf="!fileSelected">
@@ -24,9 +24,9 @@
                         <span>Data</span>
                         <input type="date" [(ngModel)]="novaFoto.data" name="" id="">
                     </div>
-                    <div class="container-input" [(ngModel)]="novaFoto.descricao" style="margin-top: 5px;">
+                    <div class="container-input"  style="margin-top: 5px;">
                         <span>Descriçao</span>
-                        <textarea name="" id=""></textarea>
+                        <textarea [(ngModel)]="novaFoto.descricao" name="" id=""></textarea>
                     </div>    
                     <button
                     (click)="adicionarFotoAlbum();"

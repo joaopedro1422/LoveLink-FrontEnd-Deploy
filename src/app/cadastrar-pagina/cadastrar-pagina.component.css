@@ -782,7 +782,7 @@ margin-top: 15px;
     text-align: center;
     background-color: #4e46e500;
     color: white;
-    border: 1px solid white;
+    border: 1px dashed white;
     border-radius: 8px;
     cursor: pointer;
  
