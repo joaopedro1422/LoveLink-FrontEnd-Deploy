@@ -32,7 +32,7 @@
           <span [class.rotated]="pixOpen">▼</span>
         </div>
        <div class="option-content" *ngIf="pixOpen">
-          <form (ngSubmit)="gerarPix()" #pixForm="ngForm" *ngIf="!qrCodeBase64">
+          <form (ngSubmit)="gerarPix()" class="form-pix" #pixForm="ngForm" *ngIf="!qrCodeBase64">
             <h3>CPF</h3>
             <input type="text" [(ngModel)]="cpf" name="cpf" placeholder="Ex: 999.999.999-99" required />
             <h3>Nome</h3>
