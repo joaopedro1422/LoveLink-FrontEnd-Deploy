@@ -38,13 +38,14 @@
             <h3>Nome</h3>
             <input type="text" [(ngModel)]="nome" name="nome" placeholder="Ex: Matheus Ribeiro" required />
             <button class="confirm-button" type="submit">Gerar QrCode <i class="fas fa-qrcode"></i></button>
-            <p style="color: rgb(124, 124, 124);"><i class="fas fa-lock"></i> Pagamento seguro com Mercado Pago</p>
+           
           </form>
+           <p style="color: rgb(124, 124, 124);"><i class="fas fa-lock"></i> Pagamento seguro com Mercado Pago</p>
 
           <div *ngIf="qrCodeBase64" class="container-pix-qrcode">
             <h4>Escaneie com o app do banco:</h4>
             <img [src]="'data:image/png;base64,' + qrCodeBase64" alt="QR Code PIX" />
-            <p style="text-align: center;"><strong></strong> {{ qrCode }}</p>
+            <p style="text-align: center; font-size: 12px"><strong></strong> {{ qrCode }}</p>
             <button class="btn-copiar" (click)="copiarCodigoPix()">Copiar</button>
             
           </div>

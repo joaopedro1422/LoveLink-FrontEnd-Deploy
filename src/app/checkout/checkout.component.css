@@ -471,8 +471,3 @@ input, form select {
   max-width: 100%;
 }
 
-.form-pix{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
