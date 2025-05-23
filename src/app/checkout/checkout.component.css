@@ -360,9 +360,9 @@ input, form select {
     min-height: 100vh; 
     display: flex;
     flex-direction: column;
-    padding-left: 2%;
+    padding-left: 0;
    
-    padding-right: 3%;
+    padding-right: 0;
    }
    .container-resumo{
     
@@ -379,8 +379,8 @@ input, form select {
      
     max-width: 100%;
     border: none;
-    padding-left: 4px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
    }
    .payment-option{
     
