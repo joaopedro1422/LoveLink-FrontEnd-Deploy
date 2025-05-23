@@ -365,7 +365,7 @@ input, form select {
     padding-right: 3%;
    }
    .container-resumo{
-    width: 90%;
+    width: 99%;
     padding: 10px;
    }
    .container-left{
@@ -471,3 +471,7 @@ input, form select {
   max-width: 100%;
 }
 
+.container-pix-qrcode h4{
+  font-weight: 600;
+  text-align: center;
+}

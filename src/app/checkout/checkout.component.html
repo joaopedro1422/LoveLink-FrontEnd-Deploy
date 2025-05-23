@@ -43,9 +43,9 @@
            <p style="color: rgb(124, 124, 124);"><i class="fas fa-lock"></i> Pagamento seguro com Mercado Pago</p>
 
           <div *ngIf="qrCodeBase64" class="container-pix-qrcode">
-            <h4>Escaneie com o app do banco:</h4>
+            <h4>Escaneie ou copie o código e realize o pagamento com o aplicativo do seu banco</h4>
             <img [src]="'data:image/png;base64,' + qrCodeBase64" alt="QR Code PIX" />
-            <p style="text-align: center; font-size: 12px"><strong></strong> {{ qrCode }}</p>
+            <p style="text-align: center; font-size: 9px"><strong></strong> {{ qrCode }}</p>
             <button class="btn-copiar" (click)="copiarCodigoPix()">Copiar</button>
             
           </div>
