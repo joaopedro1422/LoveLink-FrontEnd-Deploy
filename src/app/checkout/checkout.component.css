@@ -459,3 +459,10 @@ input, form select {
   border: 1px solid gray;
   border-radius: 6px;
 }
+
+.container-pix-qrcode{
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
