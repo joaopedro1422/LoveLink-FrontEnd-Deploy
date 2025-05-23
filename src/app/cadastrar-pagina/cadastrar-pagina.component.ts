@@ -136,8 +136,10 @@ export class CadastrarPaginaComponent implements OnInit {
     console.log(this.musicsPreview)
   this.musicsPreview = this.musicsPreview.filter((track) => track !== music)
       console.log(this.musicsPreview)
-   this.form.playlist = this.form.playlist.filter((track) => track !== music)
-      console.log(this.form.playlist)
+   this.form = {
+    ...this.form,
+    playlist: [...this.musicsPreview],
+  };
  
 }
    acaoPrimaria() {
