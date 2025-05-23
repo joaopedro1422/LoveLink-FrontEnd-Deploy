@@ -133,11 +133,14 @@ export class CadastrarPaginaComponent implements OnInit {
     this.musicsPreview.push(track);
   }
   removeFromPlaylist(index: number) {
+    console.log(this.musicsPreview)
   this.musicsPreview.splice(index, 1);
+      console.log(this.musicsPreview)
    this.form = {
     ...this.form,
     playlist: [...this.musicsPreview],
   };
+      console.log(this.form.playlist)
  
 }
    acaoPrimaria() {
@@ -169,9 +172,9 @@ export class CadastrarPaginaComponent implements OnInit {
       }
     });
   if(dadosSalvos){   
-    console.log(dadosSalvos + "entrou aqui em")
+
    if(!this.novaPagina) {
-     console.log(this.novaPagina + "entrou aqui no novapagina em")
+       console.log("aqui no init:",this.musicsPreview)
       const formStorage = JSON.parse(dadosSalvos);
       this.form.nomeCasal = formStorage.nomeCasal;
       this.form.email = formStorage.email;
@@ -182,6 +185,7 @@ export class CadastrarPaginaComponent implements OnInit {
       this.form.titulo = formStorage.titulo;
       this.form.videoId = formStorage.videoId;
       this.form.playlist = formStorage.playlist;
+      this.musicsPreview = formStorage.playlist;
       this.form.imagens = formStorage.imagens;
       this.form.album = formStorage.album;
     this.form = {
