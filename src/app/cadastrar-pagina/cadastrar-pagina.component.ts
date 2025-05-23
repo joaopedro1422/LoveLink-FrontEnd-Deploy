@@ -132,16 +132,14 @@ export class CadastrarPaginaComponent implements OnInit {
     console.log(this.form)
     this.musicsPreview.push(track);
   }
-  removeFromPlaylist(music: string) {
+  removeFromPlaylist(music: any) {
     console.log(this.musicsPreview)
-  this.musicsPreview = this.musicsPreview.filter((track) => track !== music)
+    this.musicsPreview = this.musicsPreview.filter((track) => track.id !== music.id)
       console.log(this.musicsPreview)
-   this.form = {
-    ...this.form,
-    playlist: [...this.musicsPreview],
+   this.form.playlist = this.form.playlist.filter((track) => track !== music.id);
   };
  
-}
+
    acaoPrimaria() {
     console.log('Ação primária disparada');
   }
