@@ -360,9 +360,9 @@ input, form select {
     min-height: 100vh; 
     display: flex;
     flex-direction: column;
-    padding-left: 0;
+    padding-left: 7px;
    
-    padding-right: 0;
+    padding-right: 7px;
    }
    .container-resumo{
     
