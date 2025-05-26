@@ -74,7 +74,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       disableClose: false,
       backdropClass: 'dark-backdrop', // Escurece o fundo
       hasBackdrop: true, // Garante o fundo escuro
-      position: { top: `${169}%`, left: '16%' },
+      position: { top: `${170}%`, left: '16%' },
     });
   
     dialogRef.afterOpened().subscribe(() => {
@@ -261,10 +261,10 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     const agora = new Date();
     let delta = Math.floor((agora.getTime() - inicio.getTime()) / 1000); // em segundos
   
-    const anos = Math.floor(delta / (365.25 * 24 * 3600));
+    const anos = Math.floor(delta / (365 * 24 * 3600));
     delta -= anos * 365.25 * 24 * 3600;
   
-    const meses = Math.floor(delta / (30.44 * 24 * 3600));
+    const meses = Math.floor(delta / (30 * 24 * 3600));
     delta -= meses * 30.44 * 24 * 3600;
   
     const dias = Math.floor(delta / (24 * 3600));
