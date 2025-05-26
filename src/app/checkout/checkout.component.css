@@ -70,6 +70,11 @@
     .menu-icon {
       display: none;
     }
+
+    .division-hero{
+      display: flex;
+      flex-direction: column;
+    }
     
 
     .nav-links {

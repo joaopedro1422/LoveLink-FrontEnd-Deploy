@@ -74,7 +74,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       disableClose: false,
       backdropClass: 'dark-backdrop', // Escurece o fundo
       hasBackdrop: true, // Garante o fundo escuro
-      position: { top: `${163}%`, left: '16%' },
+      position: { top: `${167}%`, left: '16%' },
     });
   
     dialogRef.afterOpened().subscribe(() => {

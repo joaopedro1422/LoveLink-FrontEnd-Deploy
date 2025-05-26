@@ -8,71 +8,6 @@
     flex-direction: column;
   }
 
-
-  .top-alert {
-    background: linear-gradient(to right,#ed3232, #82080f, #ff6b00);
-    color: #ffffff;
-    text-align: center;
-    padding: 0.3rem;
-    
-    font-size: 0.8rem;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem;
-    background-color: rgb(0, 0, 0);
-    border-bottom: 1px solid rgb(44, 44, 44);
-    color: white;
-    position: relative;
-  }
-
-  .logo {
-    text-align: center;
-    flex: 1;
-  }
-
-  .logo img {
-    height: 45px;
-  }
-
-  .menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 250px;
-    height: 100vh;
-    background-color: #333;
-    padding-top: 4rem;
-    transition: left 0.3s ease;
-  }
-
-  .nav-links.active {
-    left: 0;
-  }
-
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 1rem;
-    border-bottom: 1px solid #313131;
-    transition: background 0.2s;
-  }
-
-  .nav-links a:hover {
-    background-color: #444;
-  }
-
   /* Menu desktop */
   @media(min-width: 768px) {
     .menu-icon {
@@ -88,6 +23,7 @@
       width: auto;
       padding: 0;
     }
+   
 
     .nav-links a {
       border: none;
@@ -95,24 +31,27 @@
     }
   }
   .container-hero {
-    height: 60vh;
-    background: radial-gradient(circle, 
-    rgba(88, 0, 0, 0.856) 0%,     /* Vermelho escuro no centro */
-    rgba(0, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
-  );
+  
+    
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem;
+    background-color: black;
     color: white;
   }
   
 
   .hero-content {
     max-width: 600px;
+    background: radial-gradient(circle, 
+    rgba(88, 0, 0, 0.856) 0%,     /* Vermelho escuro no centro */
+    rgba(8, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
+  );
     width: 100%;
+    padding: 1rem;
+
     
   }
   
@@ -241,7 +180,7 @@
   
   .btn-secondary {
     background-color: transparent;
-    border: 1px solid white;
+    border: 1px solid rgb(211, 211, 211);
     color: white;
     font-size: 0.8rem;
   }
@@ -280,14 +219,14 @@
     justify-content: flex-start;
   }
   .container-primeiraParte .btnA{
-    padding: 5px;
+    padding: 5px 20px;
     font-size: 10px;
     text-decoration: none;
     color: white;
     background-color: black;
     border-radius: 20px;
     border: 1px solid gray;
-    width: 150px;
+    max-width: 200px;
   }
   .apresentacao-carta{
     background-color: black;
@@ -336,10 +275,10 @@
     width: 320px;
     height: 580px;
     background: #0c0c0c;
-    border: 1px solid rgb(51, 51, 51);
+    border: 1px solid rgb(36, 36, 36);
     border-radius: 40px;
     padding: 8px;
-    box-shadow: 0 10px 30px rgba(36, 36, 36, 0.5);
+    box-shadow: 0 10px 30px rgba(29, 29, 29, 0.39);
     margin: auto;
   }
   
@@ -350,10 +289,22 @@
     top: 80px;
     width: 4px;
     height: 50px;
-    background: #333;
+    background: #2b2b2b;
     border-radius: 4px;
-    box-shadow: 0 60px 0 #333;
+    box-shadow: 0 60px 0 #252525;
   }
+  .camera-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 12px;
+  background-color: rgb(10, 10, 10);
+  border-radius: 40px;
+  z-index: 10;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.1);
+}
   
   /* Moldura interna onde o vídeo está encaixado */
   .phone-video-inner {
@@ -371,7 +322,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 1px solid rgb(51, 51, 51);
+    border: 1px solid rgb(39, 39, 39);
     border-radius: 40px;
   }
 
@@ -769,80 +720,72 @@
     background-color: #fa0000; /* ou qualquer cor que combine com seu tema */
   }
 
-  .footer {
-    border-top: 1px solid rgb(105, 105, 105);
-    padding-left: 40px;
-    padding-right: 40px;
-    width: 100%;
-    background-color: black;
-    padding-top: 30px;
+  @media (min-width: 1024px) {
+    .division-hero{
+      display: flex;
+      gap: 20vh;
+    }
+    
+  .hero-content h1 {
+    text-align: left;
+    font-size: 2.9rem;
+    margin-bottom: 1.5rem;
   }
-  .content-footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
+  .container-video{
+    padding-top: 20px;
   }
-  .content-footer p{
-    color: rgb(207, 207, 207);
-    font-size: 12px;
-  }
-  .image-logo{
-    height: 46px ;
-    width: 145px;
-  }
-  .footer .paginas{
-    display: flex;
-    flex-direction: column;
-    margin-top: 45px;
-    justify-content: start;
-  }
-  .footer .paginas a{
-    color: rgb(214, 214, 214);
-    text-decoration: none;
-    margin-bottom: 5px;
-    font-size: 16px;
-  }
-  .footer .redes-sociais{
-    display: flex;
-   align-items: center;
-    margin-top: 25px;
-    justify-content: start;
-  }
-   .footer .redes-sociais img{
-    height: 18px;
-    width: 18px;
-  }
-  .footer .redes-sociais a {
-    color: white;
-    text-decoration: underline;
-    margin-left: 6px;
-  }
-  .copyright{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    margin-top: 38px;
-  }
-  .copyright span{
-    color: rgb(207, 207, 207);
-    text-align: center;
-    font-size: 11px;
+  .hero-content h2 {
+    text-align: left;
+    font-size: 2.2rem;
+    margin-top: -39px;
+    font-family: "Montserrat", sans-serif;
   }
 
-  .rodape{
-    background-color: rgb(223, 0, 0);
-    height: 35px;
-    margin-top: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .hero-content p{
+    margin-top: 17px;
+    text-align: left;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #e2e2e2;
   }
-  .rodape span{
-    color: white;
-    font-size: 12px;
+    .container-video .title{
+      display: none;
+    }
+    .hero-buttons{
+      display: flex;
+      flex-direction: column;
+    }
+     .phone-frame {
+       width: 340px;
+       height: 600px;
+     }
+    .hero-content{
+      background: radial-gradient(circle, 
+      rgba(34, 0, 0, 0.856) 0%,     /* Vermelho escuro no centro */
+      rgba(0, 0, 0, 0.95) 80%,
+      rgba(0, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
+    );
+      padding-top: 60px;
+    }
+    .btnA{
+      font-size: 12px;
+    }
+      .container-hero {
+        width: 100%;
+       
+        background-repeat: no-repeat;
+        background-size: cover;
+  
+
   }
+}
+@media (max-width: 768px) {
+  .hero-content{
+    padding-bottom: 90px;
+  }
+}
+
+  
 
   
   

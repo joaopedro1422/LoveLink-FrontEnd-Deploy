@@ -104,9 +104,12 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
                   console.log('Pagamento enviado com sucesso', result);
                   console.log('ID do pagamento:', result.id); 
                    if (result.id) {
+                     console.log('registrou a pagina')
+                     console.log('status:', result.status)
                     this.registrarPagina(result.id);
+               
                   } 
-
+                  console.log("status:", result.status)
                  if(result.status === 'approved'){
                    this.pagamentoAprovado = true;
                     this.registroCompleto = true;
