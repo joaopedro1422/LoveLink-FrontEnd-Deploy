@@ -276,7 +276,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     const minutos = Math.floor(delta / 60);
     const segundos = delta % 60;
   
-    this.tempoDecorrido = `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos e 25 segundos`;
+    this.tempoDecorrido = `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos        e 25 segundos`;
   }
   async ngOnChanges(changes: SimpleChanges): Promise<void> {
      
