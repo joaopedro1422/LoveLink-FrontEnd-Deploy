@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+<div class="body-edit">
+    <div class="content">
+        <form (ngSubmit)="atualizaPagina()" novalidate>
+                <h2>{{paginaData.nomeCasal}}</h2>
+               <input class="campo" type="text" [(ngModel)]="paginaData.titulo" name="titulo" placeholder="Titulo" />
+               <textarea class="campo msg" [(ngModel)]="paginaData.mensagem" name="mensagem" id=""></textarea>
+               <input class="campo" type="text" name="autor" [(ngModel)]="paginaData.autor">
+               <input class="campo"  type="date" name="data" [(ngModel)]="paginaData.data">
+                <h3 >Fotos iniciais</h3>
+            
+           
+                <label class="custom-file-upload">
+                <input type="file" multiple (change)="onFileSelected($event)" />
+                <i class="fa fa-image" style="margin-right: 8px;"></i>
+                Clique para adicionar fotos <br>
+                <span style="color: rgb(107, 107, 107); font-size: 0.8rem">.png / .jpg</span>
+                </label>
+                <div *ngIf="paginaData.imagens.length > 0"  style="display: flex; border: 1px solid rgb(88, 88, 88); margin-top: 6px; border-radius: 6px">
+                <div *ngFor="let img of paginaData.imagens; let i = index" style="position: relative; margin: 10px;">
+                    <img [src]="img" style="width: 50px; border-radius: 5px;" />
+                    <button 
+                    (click)="removeImage(i)" 
+                    style="
+                        position: absolute;
+                        top: -5px;
+                        right: -5px;
+                        background: red;
+                        color: white;
+                        border: none;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        cursor: pointer;
+                        font-size: 12px;
+                    ">
+                    ×
+                    </button>
+                </div>
+                </div>          
+               <h3>Id da música principal:</h3>
+               <input class="campo" type="text" name="videoId" [(ngModel)]="paginaData.videoId">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        class="campo"
+                        name="queryes"
+                        [(ngModel)]="searchQuery"
+                        (ngModelChange)="onSearchChange()"
+                        (keyup.enter)="searchYoutube()"
+                        placeholder="Ex: Jorge e Mateus - Duas metades"
+                    />
+                    <button class="search-button" (click)="searchYoutube()">
+                        <img src="busca.png" alt="Buscar" />
+                    </button>
+                </div>
+                <div *ngIf="youtubeResults.length > 0">
+                <div *ngFor="let video of youtubeResults" class="video-card" (click)="selectVideo(video.id.videoId)"   [ngClass]="{ 'selected': paginaData.videoId === video.id.videoId }">  
+                    <div class="video-info"  >
+                        <img
+                            [src]="video.snippet.thumbnails.medium.url"
+                            [alt]="video.snippet.title"
+                            class="video-thumbnail"
+                        />
+                    
+                        <div class="video-details">
+                            <p class="video-title">{{ video.snippet.title }}</p>
+                            <button class="play-button" >
+                            <img src="botao-play.png" alt="Selecionar" />
+                            </button>
+                        </div>
+                    </div>
+   
+                </div>
+            </div>
+
+            <button class="btn-salvar" type="submit" >Salvar</button>
+
+
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

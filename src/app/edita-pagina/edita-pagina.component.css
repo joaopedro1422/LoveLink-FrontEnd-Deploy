@@ -1,0 +1,151 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+.body-edit{
+    background-color: black;
+    width: 100%;
+    padding: 40px 150px;
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+form h3{
+    margin: 0;
+    color: white
+}
+.content{
+    min-width: 500px;
+}
+ .campo{
+    background-color: rgb(24, 24, 24);
+    border: 1px solid gray;
+    width: 100%;
+    transition: border-color 0.4s, box-shadow 0.4s;
+    height: 44px;
+    color: rgb(202, 202, 202);
+    border-radius: 5px;
+    margin-top: 10px;
+    padding-left: 8px;
+    font-size: 15px;
+  }
+  .campo.msg{
+    height: 80px;
+  }
+  .search-button {
+   background-color: transparent;
+   border: none;
+   max-height: 20px;
+   max-width: 20px;
+   
+  }
+    .search-button img{
+        margin-top: 11px;
+           height: 35px;
+             width: 35px;
+    }
+  .search-container {
+    position: relative;
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+     /* ou o tamanho desejado */
+    margin-bottom: 12px;
+  }
+   .video-card {
+    border: 1px solid #6d6d6d;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #363636;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #0f0f0f;
+  }
+  .video-card:hover{
+    border-color: red;
+  }
+  
+  .video-info img{
+    height: 30px ;
+    width: auto;
+  }
+  
+  .video-thumbnail {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .video-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin-left: 15px;
+  }
+  
+  .video-title {
+    font-weight: bold;
+    margin: 0;
+    flex: 1;
+    font-size: 12px;
+    color: white;
+  }
+  
+  .play-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+  
+  .video-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  h2{
+    color: white;
+    margin: 0;
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    background-color: #4e46e500;
+    color: white;
+    border: 1px dashed white;
+    border-radius: 8px;
+    cursor: pointer;
+ 
+  }
+  .btn-salvar{
+    background-color: rgb(0, 150, 0);
+    border: none;
+    color: white;
+    width: 100%;
+    height: 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+
+input{
+ height: 38px;
+}
+
+ @media screen and (max-width: 768px){
+ 
+    .content{
+      
+        min-width: 240px !important;
+    }
+}

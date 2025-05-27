@@ -94,7 +94,11 @@
     grid-template-columns: 1fr 1fr; /* 1 coluna no celular */
   }
 }
-
+@media (min-width: 2250px) {
+    .area-content{
+        max-width: 1700px;
+    }
+}
 @media (max-width: 768px) {
   
     .grid-paginas {

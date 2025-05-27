@@ -11,6 +11,7 @@ import { ContatoComponent } from './contato/contato.component';
 import { QrcodeComponent } from './qrcode/qrcode.component';
 import { LoginParceiroComponent } from './login-parceiro/login-parceiro.component';
 import { AreaParceiroComponent } from './area-parceiro/area-parceiro.component';
+import { EditaPaginaComponent } from './edita-pagina/edita-pagina.component';
 export const routes: Routes = [
 
     { path: 'inicio', component: PaginaInicialComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
       {path: 'privacidade', component: PrivacidadeComponent},
       {path: 'contato', component: ContatoComponent},
       {path:'qrCode/:slug/:id', component: QrcodeComponent},
+      {path:'editaPagina/:slug/:id', component: EditaPaginaComponent},
       {path:'loginParceiro', component: LoginParceiroComponent},
       {path:'areaParceiro', component: AreaParceiroComponent},
       { path: ':slug/:id', component: CartaComponent }, 

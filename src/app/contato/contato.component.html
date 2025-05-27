@@ -1,7 +1,43 @@
 <app-header></app-header>
 <div class="body-contato">
     <div class="content-contato">
-        
+        <h3>Suporte LoveLink</h3>
+        <p>Envie a sua dúvida, FeedBack ou solicitação de assistência utilizando o formulário abaixo ou através das nossas redes sociais</p>
+         <div class="lineRow"></div>
+         <form (ngSubmit)="enviarMensagem()" novalidate>
+            <div class="form-group">
+                <label for="email">Seu nome completo</label>
+                <input id="email" type="email" name="nome" [(ngModel)]="bodyMensagem.nome" placeholder="Digite o seu nome" />           
+            </div>
+            <div class="form-group">
+                <label for="senha">Seu E-mail</label>
+                <input id="senha" type="text"  name="senha" [(ngModel)]="bodyMensagem.email" placeholder="Digite um email acessível" />
+            </div>
+            <div class="form-group">
+                <label for="senha">Sua dúvida ou FeedBack</label>
+                <textarea name="mensagem" [(ngModel)]="bodyMensagem.mensagem" id="" placeholder="Escreva Aqui"></textarea>
+            </div>
+            <button class="btn-enviar">Enviar Mensagem</button>
+            <p>{{errorMessage}}</p>
+            
+            
+         </form>
+         <div class="redes">
+            <h3>Ou</h3>
+            <div class="btn-whatsapp">
+                 <a href="https://wa.me/5583988919553" target="_blank">
+                <i class="fab fa-whatsapp"></i> Entre em contato pelo WhatsApp
+                </a> 
+            </div>
+            <div class="btn-instagram">
+                 <a href="https://www.instagram.com/shopinovapet/" target="_blank">
+                <i class="fab fa-instagram"></i> Entre em contato pelo Instagram
+                </a>
+            </div>
+           
+
+           
+         </div>
     </div>
 </div>
 <app-footer></app-footer>

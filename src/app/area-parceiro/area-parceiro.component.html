@@ -17,7 +17,7 @@
                       <h2>{{pagina.nomeCasal}}</h2>
                     <a href="https://lovelink-frontenddeploy.vercel.app/{{pagina.slug}}/{{pagina.id}}">https://lovelink-frontenddeploy.vercel.app/{{pagina.slug}}/{{pagina.id}}</a>
                     <div class="division">
-                        <button><i class="fas fa-pen"></i></button>
+                        <button (click)="redirectToEdit(pagina.slug, pagina.id)"><i class="fas fa-pen"></i></button>
                         <p>{{pagina.dataCriacao | date:'dd/MM/yyyy' }}</p>
                     </div>
                 </div>             

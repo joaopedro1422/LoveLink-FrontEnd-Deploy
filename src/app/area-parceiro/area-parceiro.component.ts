@@ -52,6 +52,10 @@ export class AreaParceiroComponent implements OnInit{
       this.router.navigate(['/loginParceiro']);
     }
 
+    redirectToEdit(slug : string, id : number){
+       this.router.navigate([`/editaPagina/${slug}/${id}`]);
+    }
+
     carregaPaginas(){
       try{
         this.http.get<Pagina[]>(`${apiUrl}/paginas/${this.parceiroId}/paginasParceiro`).subscribe((res)=> {
