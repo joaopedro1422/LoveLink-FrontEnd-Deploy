@@ -37,7 +37,7 @@
   }
 
   .nav-links {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: fixed;
     justify-content: end;
@@ -45,8 +45,9 @@
     left: -100%;
     width: 250px;
     height: 100vh;
-    background-color: #333;
+    background-color: #111111;
     padding-top: 4rem;
+    z-index: 1000;
     transition: left 0.3s ease;
   }
 
@@ -71,7 +72,22 @@
     width: 24px;
     background-color: white;
 }
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  display: block;
+  z-index: 10001;
+}
+@media(max-width: 768px) {
 
+ .nav-links{
+  justify-content: start;
+ }
+}
 
   /* Menu desktop */
   @media(min-width: 768px) {
@@ -89,6 +105,7 @@
       width: auto;
       padding: 0;
     }
+    
    
     .nav-links a {
       border: none;

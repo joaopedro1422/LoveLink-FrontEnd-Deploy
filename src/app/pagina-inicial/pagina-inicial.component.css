@@ -532,6 +532,8 @@
     padding-bottom: 15px;
     background-image: url('../../../public/back-card.png');
     background-repeat: no-repeat;
+    background-position: right top !important;
+
   }
   .card-planos h5{
     font-size: 24px;
@@ -934,6 +936,7 @@
     padding-bottom: 15px;
     background-image: url('../../../public/back-card.png');
     background-repeat: no-repeat;
+
   }
   .title.planos,.depoimentos{
     padding: 0;
@@ -1042,6 +1045,9 @@
       border-radius: 10px;
       padding: 30px 20px;
       min-height: 190px;
+  }
+  .container-video{
+    padding-top: 36px;
   }
   
 }
