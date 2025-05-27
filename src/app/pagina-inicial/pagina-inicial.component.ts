@@ -19,7 +19,7 @@ export class PaginaInicialComponent {
   depoimentos = [
     {
       nome: 'José lucas',
-      mensagem: 'Minha namorada curtiu bastante, acho que acertei nas musicas da playlist kkkkkkk Fizemos a meta de continuarmos adicionando fotos no album em ocasioes especiais.',
+      mensagem: 'Minha namorada curtiu bastante, acho que acertei nas musicas da playlist kkkkkk vamos continuar adicionando fotos no album em ocasioes especiais.',
       foto: 'https://randomuser.me/api/portraits/women/44.jpg'
     },
     {

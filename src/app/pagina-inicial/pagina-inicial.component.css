@@ -230,6 +230,10 @@
   }
   .apresentacao-carta{
     background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
   }
 
   .content-apresentacao{
@@ -257,6 +261,7 @@
     align-items: center;
     margin-top: -20px;
     padding-left: 1rem;
+    background-color: #000000;
   }
   .title h3{
     font-size: 19px;
@@ -372,7 +377,7 @@
   }
 
   .title-middle{
-
+    background-color: black;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -421,7 +426,7 @@
 
   .imagem-playlist img{
     width: 290px;  /* Ajuste para o tamanho de celular que você preferir */
-    height: 520px;
+    height: 470px;
     border: 1px solid rgba(39, 39, 39, 0.678);
     border-radius: 8px;
   }
@@ -447,10 +452,7 @@
     justify-content: center;
     align-items: center;
     justify-items: center;
-    background: radial-gradient(circle, 
-    rgba(105, 0, 0, 0.945) 0%,     /* Vermelho escuro no centro */
-    rgba(0, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
-  );
+    
   }
   .imagem-qr img{
     max-width: 200px;
@@ -522,7 +524,7 @@
   }
 
   .card-planos{
-    border: 1px solid rgb(141, 141, 141);
+    border: 1px solid rgb(80, 80, 80);
     border-radius: 12px;
     padding-left: 20px;
     padding-right: 20px;
@@ -663,8 +665,9 @@
     flex-direction: column;
     align-items: center;
     padding: 40px;
+    
     border-radius: 0px;
-    background: rgb(131, 0, 0);
+    background: rgb(59, 0, 0);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     min-height: 160px;
@@ -696,6 +699,12 @@
   .seta-esquerda {
     left: 10px;
   }
+   .title.planos p
+   {
+    font-size: 0.9rem;
+    color:  gray;
+    text-align: center;
+   }
   
   .seta-direita {
     right: 10px;
@@ -719,16 +728,59 @@
   .bolinha.ativa {
     background-color: #fa0000; /* ou qualquer cor que combine com seu tema */
   }
+  .imagem-qr h3{
+        display: none;
+      }
 
   @media (min-width: 1024px) {
     .division-hero{
       display: flex;
       gap: 20vh;
     }
+    .content-apresentacao{
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      padding: 0 50px;
+    }
+    .box-recursos{
+ 
+     border: 1px solid rgb(43, 43, 43);
+    }
+    .box-recursos.box-album{
+     
+      border-right: none;
+      border-radius: 8px 0px 0px 8px;
+    }
+    .box-recursos.box-youtube{
+      border-left: none;
+      border-radius: 0px 8px 8px 0px;
+    }
+      .imagens-album img{
+        width: 220px;  
+        height: 310px;
+        margin: 6px;
+        margin-top: 38px;
+        border-radius: 5px;
+      }
+    .imagem-playlist img{
+    width: 315px;  /* Ajuste para o tamanho de celular que você preferir */
+    height: 430px;
+    border: 1px solid rgba(0, 0, 0, 0.678);
+    border-radius: 8px;
+  }
+  .imagem-yt img{
+    width: 315px;  /* Ajuste para o tamanho de celular que você preferir */
+    height: 435px;
+    border: 1px solid rgba(39, 39, 39, 0);
+    border-radius: 8px;
+    margin-top: 12px;
     
-  .hero-content h1 {
+  }
+    
+  .hero-content h1 span {
     text-align: left;
-    font-size: 2.9rem;
+    font-size: 4rem !important;
     margin-bottom: 1.5rem;
   }
   .container-video{
@@ -736,9 +788,15 @@
   }
   .hero-content h2 {
     text-align: left;
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     margin-top: -39px;
     font-family: "Montserrat", sans-serif;
+  }
+  .title-middle{
+    padding-top: 70px;
+  }
+  .comoFunciona{
+    padding-bottom: 50px;
   }
 
   .hero-content p{
@@ -751,6 +809,14 @@
     .container-video .title{
       display: none;
     }
+     .title{
+      background-color: #000000;
+      padding-left: 53px;
+      padding-top: 40px;
+     }
+     .title h3{
+      font-size: 1.7rem;
+     }
     .hero-buttons{
       display: flex;
       flex-direction: column;
@@ -766,23 +832,218 @@
       rgba(0, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
     );
       padding-top: 60px;
+      min-width: 680px;
     }
+      .imagem-qr{
+        width: 900px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        background: black;
+        padding-top: 50px;
+        gap: 50px;
+      }
+      .imagem-qr img{
+        max-width: 220px;
+        max-height: 220px;
+      }
+
+      .imagem-qr h3{
+        color: white;
+        font-size: 2.4rem;
+        display: block;
+      }
+      .container-cards{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+      }
+      .title.passo-passo{
+        display: none;
+      }
+      .division-codigoQr{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     .btnA{
       font-size: 12px;
     }
+     .cardFuncionamento{
+        max-width: 300px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #070707;
+        border: 1px solid rgb(39, 39, 39);
+        margin-top: 15px;
+        border-radius: 8px;
+        padding-bottom: 12px;
+        padding-top: 12px;
+      }
+      .cardFuncionamento:hover{
+        border-color: red;
+        scale: 1.02;
+      }
+      .tracinho2{
+        min-width: 4px;
+        height: 20px;
+        background-color: red;
+        margin-right: 7px;
+        border-radius: 0px 8px 8px 0px;
+      }
+       .cardFuncionamento img{
+          min-height: 90px;
+          min-width: 90px;
+        }
+        
+        .titulo-card{
+          color: white;
+          font-weight: 500;
+        }
+
+        .texto-card{
+          color: rgb(199, 199, 199);
+          font-size: 12px;
+        }
       .container-hero {
-        width: 100%;
-       
+        width: 100%;     
         background-repeat: no-repeat;
         background-size: cover;
-  
+  }
+  .content-container{
+    display: flex;
+    width: 100%;
+    padding-top: 32px;
+    justify-content: center;
+    gap: 25px;
+  }
+  .imagem-yt button{
+    margin-top: 30px;
+  }
+   .card-planos{
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background-image: url('../../../public/back-card.png');
+    background-repeat: no-repeat;
+  }
+  .title.planos,.depoimentos{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .title.planos p,.depoimentos p
+   {
+    font-size: 0.9rem;
+    color:  gray;
+    text-align: center;
+   }
+  .title.planos .tracinho,.depoimentos .tracinho{
+    display: none;
+  }
+  .title.planos h3,.depoimentos h3{
+    font-size: 1.9rem;
+  }
+  .card-planos h5{
+    font-size: 26px;
+    font-family: 'Poppins', sans-serif;
+    color: white
+  }
+    .depoimento{
+      width: 60%;
+      border-radius: 10px;
+  }
+  .faq-section {
+    max-width:100%;
+    width: 100%;
+    margin: 0px auto;
+    padding: 50px 90px;
 
+    font-family: 'Arial', sans-serif;
+    background-color: rgb(0, 0, 0);
   }
 }
 @media (max-width: 768px) {
   .hero-content{
     padding-bottom: 90px;
   }
+  .title.planos p{
+    display: none;
+  }
+    .title{
+      padding-top: 30px;
+      padding-bottom: 10px;
+    }
+   .division-codigoQr{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: radial-gradient(circle, 
+        rgba(80, 0, 0, 0.945) 0%,     /* Vermelho escuro no centro */
+         rgba(0, 0, 0, 0.95) 90%,
+        rgba(0, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
+      );
+      }
+    .tracinho2{
+        min-width: 4px;
+        height: 20px;
+        background-color: red;
+        margin-right: 7px;
+        border-radius: 0px 8px 8px 0px;
+      }
+      .imagem-qr{
+        padding-top: 50px;
+      }
+      .title.planos{
+        padding-bottom: 0px;
+      }
+      .title-middle{
+        padding-top: 40px;
+      }
+      .box-recursos.box-youtube{
+        border-bottom: 1px solid rgb(68, 68, 68);
+      }
+    .hero-content {
+      max-width: 600px;
+      background: radial-gradient(circle, 
+      rgba(88, 0, 0, 0.856) 0%,     /* Vermelho escuro no centro */
+      rgba(8, 0, 0, 0.95) 80% ,
+      rgba(8, 0, 0, 0.95) 100%    /* Mais escuro nas bordas */
+    );
+      width: 100%;
+      padding: 1rem;
+
+    
+  }
+  .division-depoimentosTitle{
+    display: flex;
+  }
+  .title.depoimentos p{
+    text-align: start;
+    color: rgb(119, 119, 119);
+    font-size: 0.9rem;
+  }
+  .title.depoimentos{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+   .depoimento{
+      width: 80%;
+      border-radius: 10px;
+      padding: 30px 20px;
+      min-height: 200px;
+  }
+  
 }
 
   

@@ -18,7 +18,7 @@ export const routes: Routes = [
       {path: 'privacidade', component: PrivacidadeComponent},
       {path: 'contato', component: ContatoComponent},
       {path:'qrCode/:slug/:id', component: QrcodeComponent},
-    { path: '**', component: CartaComponent , pathMatch: 'full' },
+    { path: '**', component: PaginaInicialComponent , pathMatch: 'full' },
    
 ];
 

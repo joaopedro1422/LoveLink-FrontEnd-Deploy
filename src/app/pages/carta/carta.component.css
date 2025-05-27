@@ -213,37 +213,34 @@ span{
         scale: 0;
     }
 }
-.heart{
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    filter: drop-shadow(5px 5px 10px black) drop-shadow(0px 0px 2px red);
-    animation: animate 8s linear forwards;
+.heart {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  transform: rotate(-45deg);
+  background: #c50000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 2px red;
+  animation: animate 8s linear forwards;
 }
-.heart::before{
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 25px;
-    background: #c50000;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    transform-origin: bottom center;
-    rotate: -45deg;
-    z-index: 1000;
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #c50000;
+  border-radius: 50%;
 }
-.heart::after{
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 15px;
-    bottom: 0;
-    background: #c50000;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    transform-origin: bottom center;
-    rotate: 315deg;
-    z-index: 100000;
+
+.heart::before {
+  top: -12.5px;
+  left: 0;
+}
+
+.heart::after {
+  left: 12.5px;
+  top: 0;
 }
 .container-titulo1{
     width: 100%;
