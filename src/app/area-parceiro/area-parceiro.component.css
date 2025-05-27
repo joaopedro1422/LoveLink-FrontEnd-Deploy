@@ -1,3 +1,7 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .container-user h2,i{
     color: white;
     margin: 0;
@@ -17,6 +21,9 @@
     color: white;
     font-size: 1.2rem;
 }
+.area-content{
+    max-width: 1768px;
+}
 .container-user{
    
     display: flex;
@@ -27,8 +34,76 @@
 .container-criar button{
     background-color: red;
     border: none;
-    padding: 10px 60px;
+    padding: 10px 40px;
     border-radius: 5px;
     color: white;
     font-size: 1rem;
 }
+
+.grid-paginas{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    padding-top: 50px;
+}
+.card-pagina{
+    border: 1px solid rgb(90, 90, 90);
+    border-radius: 8px;
+    display: flex;
+    max-height: 190px;
+    align-items: center;
+    padding: 0 0px;
+}
+.card-pagina button{
+    background-color: transparent;
+    border: none;
+}
+.left{
+    height: 100%;
+    width: 70%;
+}
+.right{
+    padding: 0 15px;
+}
+.left img{
+    height: 100%;
+    width: 100%;
+    border-radius: 8px 0px 0px 8px;
+}
+.right h2, p{
+    color: white;
+    text-align: center;
+}
+.right p{
+    font-size: 0.8rem;
+}
+.right a{
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgb(110, 110, 110);
+}
+
+.division{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+@media (max-width: 1080px) {
+  
+    .grid-paginas {
+    grid-template-columns: 1fr 1fr; /* 1 coluna no celular */
+  }
+}
+
+@media (max-width: 768px) {
+  
+    .grid-paginas {
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+  }
+
+.body-area{
+
+    background-color: black;
+    padding: 10px 20px;
+}
+ }

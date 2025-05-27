@@ -2,15 +2,25 @@
 <div class="body-area">
     <div class="area-content">
         <div class="container-user">
-            <h2><i class="fa-solid fa-user"></i> {{parceiro.nome}}</h2>
+            <h2><i class="fa-solid fa-user"></i>   <span style="font-size: 1.2rem !important;">      {{parceiro.nome}}</span></h2>
             <button (click)="logout()"><i class="fas fa-sign-out-alt"></i> Sair</button>
         </div>
         <div class="container-criar">
-            <button>+ Criar Página</button>
+            <button>+ Criar nova Página</button>
         </div>
         <div class="grid-paginas">
-            <div class="card-pagina">
-                
+            <div class="card-pagina" *ngFor="let pagina of listaPaginas">
+                <div class="left">
+                    <img [src]="pagina.imagens[0]" alt="">
+                </div>
+                <div class="right">
+                      <h2>{{pagina.nomeCasal}}</h2>
+                    <a href="https://lovelink-frontenddeploy.vercel.app/{{pagina.slug}}/{{pagina.id}}">https://lovelink-frontenddeploy.vercel.app/{{pagina.slug}}/{{pagina.id}}</a>
+                    <div class="division">
+                        <button><i class="fas fa-pen"></i></button>
+                        <p>{{pagina.dataCriacao | date:'dd/MM/yyyy' }}</p>
+                    </div>
+                </div>             
             </div>
         </div>
     </div>
