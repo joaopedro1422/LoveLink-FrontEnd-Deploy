@@ -1,1 +1,10 @@
 <div [id]="playerId"></div>
+ <div class="controles">
+    <div class="content-controler">
+            <button (click)="togglePlayPause()">
+                <i [ngClass]="isPlaying ? 'fa fa-pause' : 'fa fa-play'"></i>
+        </button>
+    </div>
+
+
+</div>

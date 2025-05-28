@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges , AfterViewInit} from '@angular/core';
+import { NgClass } from '@angular/common';
 declare var YT: any;
 declare global {
   interface Window {
@@ -9,7 +10,7 @@ declare global {
 @Component({
   selector: 'app-youtube-player',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './youtube-player.component.html',
   styleUrl: './youtube-player.component.css'
 })
@@ -17,10 +18,11 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges{
      @Input() videoId!: string;
   player: any;
   playerId = 'youtube-player-' + Math.floor(Math.random() * 100000);
-
+  isPlaying = false;
   ngAfterViewInit() {
     if (window.YT && window.YT.Player) {
       this.initPlayer();
+      
     } else {
       window.onYouTubeIframeAPIReady = () => this.initPlayer();
     }
@@ -42,6 +44,14 @@ export class YoutubePlayerComponent implements AfterViewInit, OnChanges{
       },
     });
   }
+  togglePlayPause() {
+  if (this.isPlaying) {
+    this.player.pauseVideo();
+  } else {
+    this.player.playVideo();
+  }
+  this.isPlaying = !this.isPlaying;
+}
 
   playVideo() {
     this.player?.playVideo();

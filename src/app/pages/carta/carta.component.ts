@@ -53,6 +53,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     descricao: '',
     data: ''
   };
+  
   constructor(private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog , private sanitizer: DomSanitizer, private cdRef: ChangeDetectorRef) {
     initializeApp(firebaseConfig.firebase);
     
