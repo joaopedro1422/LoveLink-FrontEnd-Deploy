@@ -261,7 +261,7 @@
       height: 42px;
     width: 100%;
   }
-  .container-btn-finalizar{
+  .container-btn-finalizar,.button-finalizar{
     width: 100%;
    
     margin-top: 5px;

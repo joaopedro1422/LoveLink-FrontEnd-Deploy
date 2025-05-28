@@ -12,7 +12,9 @@ import { MercadoPagoServiceService } from '../services/mercado-pago-service.serv
 import { environment } from '../../environments/api';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { precos} from '../../environments/precos';
 const apiUrl = `${environment.apiUrl}`;
+
 declare var MercadoPago: any;
 @Component({
   selector: 'app-checkout',
@@ -138,19 +140,19 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
     
     this.formData = this.paginaService.getDadosPagina();
     if (!this.formData) {
-      // redirecionar ou tratar erro
+      this.router.navigate(['/inicio']);
     }
+    console.log(this.formData);
     this.loadValoresPlanos();
     this.primeiroNome = this.getPrimeiroNome(this.formData.autor);
   }
   
  loadValoresPlanos(){
- 
-  this.http.get<any>(apiUrl+ `/planos/${this.formData.planoSelecionado}`).subscribe((res)=> {
-    this.valorPlanoSelecionado = res.preco;
-    this.planoSelecionado = res.nome;
-
-  })
+   
+      this.valorPlanoSelecionado = this.formData.valor;
+      this.planoSelecionado = this.formData.planoSelecionado;
+    
+   
  }
   confirmaCompra(){
     this.registroCompleto = true;

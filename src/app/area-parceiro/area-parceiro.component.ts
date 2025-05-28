@@ -46,6 +46,9 @@ export class AreaParceiroComponent implements OnInit{
         console.log()
       }
     }
+    goToCadastroParceiro(){
+      this.router.navigate(['cadastraPaginaParceiro']);
+    }
 
     logout(){
       localStorage.removeItem('uuidParceiro');

@@ -23,6 +23,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { environment } from '../../environments/api';
 import { mensagensCupido } from '../../environments/mensagensCupido';
+import { precos } from '../../environments/precos';
 {FooterComponent}
 
 declare var MercadoPago: any;
@@ -231,20 +232,10 @@ export class CadastrarPaginaComponent implements OnInit {
  }
 
  loadValoresPlanos(){
-  this.http.get<any[]>(apiUrl+ '/planos').subscribe((res)=> {
-    this.planos = res
-    for(let i=0; i < this.planos.length; i++){
-      if(this.planos[i].nome === "Anual"){
-        this.valorAntigoPlanoAnual = this.planos[i].precoAntigo
-        this.valorAtualPlanoAnual = this.planos[i].preco
-      }
-      else if(this.planos[i].nome === "Acesso-vitalicio"){
-        this.valorAntigoPlanoVitalicio = this.planos[i].precoAntigo
-        this.valorAtualPlanoVitalicio = this.planos[i].preco
-      }
-    }
-
-  })
+    this.valorAntigoPlanoAnual = precos.precoAnualAntigo
+    this.valorAtualPlanoAnual = precos.precoAnualAtual
+    this.valorAntigoPlanoVitalicio = precos.precoVitalicioAntigo
+    this.valorAtualPlanoVitalicio = precos.precoVitalicioAtual
  }
 
  setContinuarPagina(){
@@ -291,6 +282,14 @@ export class CadastrarPaginaComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+  getValorPagina(){
+    if(this.planoSelecionado === 'Anual'){
+      return precos.precoAnualAtual
+    }
+    else{
+      return precos.precoVitalicioAtual
+    }
+  }
   goToCheckout(){
      const formStorage = {
     nomeCasal: this.form.nomeCasal,
@@ -304,6 +303,8 @@ export class CadastrarPaginaComponent implements OnInit {
     playlist: this.form.playlist,
     imagens: this.form.imagens,
     planoSelecionado: this.planoSelecionado,
+    idParceiro: '',
+    valor: this.getValorPagina(),
     album: []
   } ;
     this.paginaService.setDadosPagina(formStorage);

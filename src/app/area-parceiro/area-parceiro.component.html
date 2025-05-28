@@ -6,7 +6,7 @@
             <button (click)="logout()"><i class="fas fa-sign-out-alt"></i> Sair</button>
         </div>
         <div class="container-criar">
-            <button>+ Criar nova Página</button>
+            <button (click)="goToCadastroParceiro()">+ Criar nova Página</button>
         </div>
         <div class="grid-paginas">
             <div class="card-pagina" *ngFor="let pagina of listaPaginas">
