@@ -84,13 +84,7 @@
                 <div class="controles">
                     <button (click)="ytPlayer.playVideo()">▶️ Play</button>
                     <button (click)="ytPlayer.pauseVideo()">⏸️ Pause</button>
-                    <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="50"
-                    (input)="ytPlayer.setVolume($event.target.value)"
-                    />
+                    
                 </div>
         </div>
         <div class="espaco"></div>
