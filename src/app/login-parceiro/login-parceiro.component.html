@@ -37,12 +37,12 @@
             <h1>Ainda não é um parceiro LoveLink?</h1>
             <p>Aumente o seu faturamento incorporando as nossas páginas personalizadas aos seus produtos. <br>Você paga aqui um valor reduzido exclusivo para parceiros e oferece aos seus clientes o QrCode pelo preço que julgar ideal!</p>
             <p><br>Preencha o seu Email abaixo para que possamos entrar em contato, tirar dúvidas e cadastrarmos as suas credenciais de acesso.</p>
-             <form (ngSubmit)="onSubmit()" novalidate>
+             <form (ngSubmit)="enviaSolicitacao()" novalidate>
                 <div class="form-group">
                 
                 <input id="email" *ngIf="!mensagemEnviada" type="email" [(ngModel)]="emailNovo" placeholder="Informe seu e-mail" />
                 
-                <button type="submit" (click)="enviaSolicitacao()" *ngIf="!mensagemEnviada" class="btn-msg" [disabled]="email!=='' && senha !== ''">Enviar Mensagem</button>
+                <button type="submit"  *ngIf="!mensagemEnviada" class="btn-msg" [disabled]="email!=='' && senha !== ''">Enviar Mensagem</button>
                 <p *ngIf="mensagemEnviada" style="color: gray">Sua solicitação foi enviada com sucesso, em breve entraremos em contato via <b>{{emailNovo}}</b></p>
 
           
