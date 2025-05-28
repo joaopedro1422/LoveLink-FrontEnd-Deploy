@@ -1,7 +1,4 @@
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 h2 {
     margin: 0;
     color: #f5dcdc;
@@ -51,6 +48,11 @@ p {
 span{
      font-family: "Roboto Slab", serif;
     color: #e1b3b3;
+}
+@media screen and (max-width: 800px) {
+    *, *::before, *::after {
+  box-sizing: border-box;
+}
 }
 @media screen and (min-width: 1024px) {
     .body-carta {
