@@ -6,6 +6,7 @@ import { initializeApp } from 'firebase/app';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // ✅ Importação necessária
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 @Component({
@@ -33,7 +34,7 @@ export class PaginaInicialComponent {
       foto: 'https://randomuser.me/api/portraits/women/12.jpg'
     }
   ];
-  constructor(private router: Router) {}
+  constructor(private router: Router,  private sanitizer: DomSanitizer) {}
   ngOnInit() {
     this.iniciarCarrossel();
   }
@@ -42,6 +43,9 @@ export class PaginaInicialComponent {
       this.currentIndex = (this.currentIndex + 1) % this.depoimentos.length;
     }, 5000); // troca a cada 5 segundos
   }
+  getSafeUrl(videoId: string): SafeResourceUrl {
+  return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
+}
   irParaCriarCarta() {
     this.router.navigate(['/criarCarta']);
   }
