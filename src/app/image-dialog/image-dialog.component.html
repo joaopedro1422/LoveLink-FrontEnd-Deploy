@@ -1,23 +1,25 @@
    
-<div class="dialog-container" >
+<ng-container *ngIf="mostrar">
+  <div class="modal">
+     <div class="overlay" (click)="fecharModal()"></div>
+    <div class="modal-container">
+      <ng-container *ngIf="imageUrl; else loading">
+        <img [src]="imageUrl" alt="Imagem detalhada" (click)="fecharModal()" />
+      </ng-container>
 
-        <ng-container *ngIf="imageUrl; else loading">
-            <img [src]="imageUrl" alt="Imagem detalhada" (click)="close()"/>
-          </ng-container>
-          <p>{{descricao}}.</p>
-          <span>{{data_const | date:'dd/MM/yyyy'}}</span>
-           <div class="btn-wrapper">
-            <button (click)="removerFoto()" class="btn-remover-outro">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-          <ng-template #loading>
-            <p>Carregando imagem...</p>
-          </ng-template>
-        
-        
-         
-  
-    <!-- Enquanto a URL não estiver definida, pode mostrar um spinner ou mensagem -->
-   
+      <p>{{ descricao }}</p>
+      <span>{{ data_const | date: 'dd/MM/yyyy' }}</span>
+
+      <div class="btn-wrapper">
+        <button (click)="removerFoto()" class="btn-remover-outro">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+
+      <ng-template #loading>
+        <p>Carregando imagem...</p>
+      </ng-template>
+    </div>
   </div>
+ 
+</ng-container>

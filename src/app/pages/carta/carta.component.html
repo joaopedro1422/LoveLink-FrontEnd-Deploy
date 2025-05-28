@@ -3,7 +3,16 @@
    
     <div class="body-desktop">
      
-        <div class="container-animation">     </div>           
+        <div class="container-animation">     </div>
+            <app-image-dialog
+                *ngIf="modalAberto"
+                [mostrar]="modalAberto"
+                [imageUrl]="imagemAtual"
+                [descricao]="descricaoAtual"
+                [data_const]="dataAtual"
+                (fechar)="fecharImagem()"
+                (remover)="removerImagem(imagemAtual)">
+            </app-image-dialog>           
               <dialog #modal>
                 <div class="container-modal-adc">
                     <div class="header-adc">

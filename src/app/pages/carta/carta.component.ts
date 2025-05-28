@@ -19,6 +19,7 @@ import { ModalAdcAlbumComponent } from '../../modal-adc-album/modal-adc-album.co
 import { ControlContainer, FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/api';
 import { YoutubePlayerComponent } from '../../youtube-player/youtube-player.component';
+
 const apiUrl = `${environment.apiUrl}`;
 interface FotoAlbum {
   url: string;
@@ -28,7 +29,7 @@ interface FotoAlbum {
 @Component({
   selector: 'app-carta',
   standalone: true,
-  imports: [CommonModule, NgIf, FormsModule, NgFor, NgForOf,MatDialogModule, ModalAdcAlbumComponent, YoutubePlayerComponent],
+  imports: [CommonModule, NgIf, FormsModule, NgFor, NgForOf,MatDialogModule,ImageDialogComponent, ModalAdcAlbumComponent, YoutubePlayerComponent],
   templateUrl: './carta.component.html',
   styleUrl: './carta.component.css',
   encapsulation: ViewEncapsulation.None
@@ -58,47 +59,26 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     initializeApp(firebaseConfig.firebase);
     
   }
+  modalAberto = false;
+  imagemAtual = '';
+  descricaoAtual = '';
+  dataAtual: Date | null = null;
  
-  @ViewChild('albumContainer', { static: true }) albumContainer!: ElementRef;
   openImageDialog(event: MouseEvent,image: string, descricao: string, data: Date): void {
-    const container = document.querySelector('.body-carta') as HTMLElement;
-    if (container) {
-      container.style.opacity = '0.2'; // Deixa o fundo mais escuro
-      container.style.pointerEvents = 'none'; // Opcional: impede interação com o conteúdo
-    }
-   
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const viewportHeight = window.innerHeight;
-    const dialogRef = this.dialog.open(ImageDialogComponent, {
-      data: { imagePath: image, descricao: descricao, data: data },
-      panelClass: 'custom-fullscreen-dialog',
-      width: '65vw',
-      disableClose: false,
-      backdropClass: 'dark-backdrop', // Escurece o fundo
-      hasBackdrop: true, // Garante o fundo escuro
-      position: { top: `${170}%`, left: '16%' },
-    });
-  
-    dialogRef.afterOpened().subscribe(() => {
-      const backdrop = document.querySelector('.cdk-overlay-backdrop') as HTMLElement;
-      backdrop.addEventListener('click', () => {
-        dialogRef.close();
-      });
-    });
-    // Restaura a opacidade do container quando o Dialog for fechado
-    dialogRef.afterClosed().subscribe((result) => {
-      if (container) {
-        container.style.opacity = '1'; 
-        container.style.pointerEvents = 'auto'; 
-      }
-    
-      if (result?.remover && result.imagePath) {    
-        console.log("Aquiiiii emininii")
-        this.removeFotoAlbum(result.imagePath)
-        
-      }
-    });
+    this.imagemAtual = image;
+    this.descricaoAtual = descricao;
+    this.dataAtual = data;
+    this.modalAberto = true;
   }
+  removerImagem(imageUrl: string) {
+    this.removeFotoAlbum(imageUrl); // Usa sua função já existente
+    this.modalAberto = false;
+  }
+  fecharImagem() {
+  this.modalAberto = false;
+}
+  
+
   
   async ngOnInit(): Promise<void> {
 

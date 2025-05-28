@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 import { CommonModule , NgFor, NgForOf, NgIf} from '@angular/common'; 
@@ -10,37 +10,18 @@ import { CommonModule , NgFor, NgForOf, NgIf} from '@angular/common';
   templateUrl: './image-dialog.component.html',
   styleUrl: './image-dialog.component.css'
 })
-export class ImageDialogComponent implements OnInit {
-  imageUrl: string = '';
-  descricao: string ='';
-  data_const: Date | null = null;
-  constructor(
-    public dialogRef: MatDialogRef<ImageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {  imagePath?: string, descricao?: string, data?: Date}
-  ) {}
-  ngOnInit(): void {
-    
-    this.getImage();
-    if(this.data.descricao)
-    this.descricao = this.data.descricao
+export class ImageDialogComponent{
+  @Input() imageUrl: string = '';
+  @Input() descricao: string = '';
+ @Input() data_const!: any; // use 'Date' se for uma data, ou o tipo correto
+  @Input() mostrar = false;
 
-    if(this.data.data)
-      this.data_const = this.data.data;
-  }
-  getImage() {
-    const storage = getStorage();
-    if(this.data.imagePath){
-      this.imageUrl = this.data.imagePath;
-    }
-  
-  
-  
+  @Output() fechar = new EventEmitter<void>();
+  @Output() remover = new EventEmitter<string>();
+  fecharModal() {
+    this.fechar.emit();
 }
-
-  close(): void {
-    this.dialogRef.close();
+    removerFoto() {
+    this.remover.emit(this.imageUrl);
   }
-  removerFoto() {
-  this.dialogRef.close({ remover: true, imagePath: this.imageUrl });
-}
 }

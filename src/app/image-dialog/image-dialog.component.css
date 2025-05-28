@@ -1,6 +1,6 @@
 img{
     height: 315px;
-    width: 245px;
+    width: 100%;
 }
 button{
     width: 15px;
@@ -49,6 +49,30 @@ p{
   .mat-mdc-dialog-inner-container .mdc-dialog__container{
 
     background-color: red;
+  }
+  .modal {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  min-width: 320px;
+  position: fixed;
+  border: 1px solid rgb(92, 92, 92);
+  left: 50%;
+  padding: 24px;
+  width: 90vh;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+.modal-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ @media screen and (max-width: 768px){
+    .modal{
+        max-width: 80%;
+    }
   }
 
   .btn-remover-outro{
