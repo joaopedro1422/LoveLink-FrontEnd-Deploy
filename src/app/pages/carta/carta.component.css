@@ -1,3 +1,7 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 h2 {
     margin: 0;
     color: #f5dcdc;
