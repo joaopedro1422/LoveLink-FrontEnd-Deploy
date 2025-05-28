@@ -18,16 +18,32 @@ const apiUrl = `${environment.apiUrl}`;
 })
 export class LoginParceiroComponent {
    errorMessage = '';
+   mensagemEnviada : boolean = false;
+   carregandoLogin : boolean = false
   email = '';
+  emailNovo = '';
   senha = '';
   constructor( private http: HttpClient, private router: Router) {}
-  
+  enviaSolicitacao() {
+    const mensagem = {email: this.emailNovo, nome: 'Novo parceiro', mensagem: 'Olá, solicito maiores informações sobre o sistema de Parceria da LoveLink'}
+    this.http.post(`${apiUrl}/api/confirmacao-email/enviaMensagemSuporte`, mensagem).subscribe({
+      next: (response:any) => {
+        this.errorMessage = '';
+        this.mensagemEnviada = true;
+      
+      },
+      error: (err) => {
+        this.errorMessage = 'Email ou senha incorretos.';
+      }
+    });
+  }
   onSubmit() {
     const loginData = {email: this.email, senha: this.senha};
-
+    this.carregandoLogin = true;
     this.http.post(`${apiUrl}/parceiros/loginParceiro`, loginData).subscribe({
       next: (response:any) => {
         this.errorMessage = '';
+        this.carregandoLogin = false;
         localStorage.setItem('uuidParceiro', response.id);
         this.router.navigate([`/areaParceiro`])
       

@@ -20,7 +20,12 @@
                 </div>
                 </div>
 
-                <button type="submit" [disabled]="email==='' && senha === ''">Entrar</button>
+                <button type="submit" [disabled]="email==='' && senha === ''">
+                      <span *ngIf="!carregandoLogin" style="color: white"> Entrar</span>
+                        <span *ngIf="carregandoLogin">
+                        <span class="spinner"></span> 
+                        </span>
+                   </button>
 
                 <div class="form-footer">
                 <a href="#">Esqueceu a senha?</a>
@@ -34,10 +39,11 @@
             <p><br>Preencha o seu Email abaixo para que possamos entrar em contato, tirar dúvidas e cadastrarmos as suas credenciais de acesso.</p>
              <form (ngSubmit)="onSubmit()" novalidate>
                 <div class="form-group">
-              
-                <input id="email" type="email" [(ngModel)]="email" placeholder="Informe seu e-mail" />
                 
-                <button type="submit" class="btn-msg" [disabled]="email!=='' && senha !== ''">Enviar Mensagem</button>
+                <input id="email" *ngIf="!mensagemEnviada" type="email" [(ngModel)]="emailNovo" placeholder="Informe seu e-mail" />
+                
+                <button type="submit" (click)="enviaSolicitacao()" *ngIf="!mensagemEnviada" class="btn-msg" [disabled]="email!=='' && senha !== ''">Enviar Mensagem</button>
+                <p *ngIf="mensagemEnviada" style="color: gray">Sua solicitação foi enviada com sucesso, em breve entraremos em contato via <b>{{emailNovo}}</b></p>
 
           
                 </div>

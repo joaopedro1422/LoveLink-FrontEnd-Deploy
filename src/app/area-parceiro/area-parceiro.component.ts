@@ -23,14 +23,14 @@ export class AreaParceiroComponent implements OnInit{
    constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     }
   async ngOnInit(): Promise<void> { 
+    this.parceiroId =  localStorage.getItem('uuidParceiro');
     this.route.paramMap.subscribe((params) => {
       this.handleRouteParams2(params);
     });
   }
    private async handleRouteParams2(params: ParamMap): Promise<void> {
-      try {
-        this.parceiroId =  localStorage.getItem('uuidParceiro');
-        if(!this.parceiroId){
+      try {   
+        if(this.parceiroId===''){
           this.router.navigate(['/loginParceiro'])
         }
         this.http.get<any>(`${apiUrl}/parceiros/getParceiro/${this.parceiroId}`).subscribe((res) => {
