@@ -427,7 +427,7 @@
   .imagem-playlist img{
     width: 290px;  /* Ajuste para o tamanho de celular que você preferir */
     height: 470px;
-    border: 1px solid rgba(39, 39, 39, 0.678);
+    border: 1px solid rgba(0, 0, 0, 0.678);
     border-radius: 8px;
   }
   .imagem-yt{
@@ -442,7 +442,7 @@
   .imagem-yt img{
     width: 290px;  /* Ajuste para o tamanho de celular que você preferir */
     height: 400px;
-    border: 1px solid rgba(39, 39, 39, 0);
+    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 8px;
   }
   .imagem-qr{

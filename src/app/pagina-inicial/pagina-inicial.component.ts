@@ -52,7 +52,12 @@ export class PaginaInicialComponent {
   mudarDepoimento(index: number) {
     this.currentIndex = index;
   }
-
+  goToPaginaExemplo(){
+    this.router.navigate(['/daniel-e-rafaela/6']);
+  }
+  goToCriarCarta(){
+    this.router.navigate(['/criarCarta']);
+  }
   prev() {
     this.currentIndex = (this.currentIndex - 1 + this.depoimentos.length) % this.depoimentos.length;
   }
