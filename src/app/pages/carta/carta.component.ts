@@ -18,6 +18,7 @@ import { SimpleChanges } from '@angular/core';
 import { ModalAdcAlbumComponent } from '../../modal-adc-album/modal-adc-album.component';
 import { ControlContainer, FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/api';
+import { YoutubePlayerComponent } from '../../youtube-player/youtube-player.component';
 const apiUrl = `${environment.apiUrl}`;
 interface FotoAlbum {
   url: string;
@@ -27,7 +28,7 @@ interface FotoAlbum {
 @Component({
   selector: 'app-carta',
   standalone: true,
-  imports: [CommonModule, NgIf, FormsModule, NgFor, NgForOf,MatDialogModule, ModalAdcAlbumComponent],
+  imports: [CommonModule, NgIf, FormsModule, NgFor, NgForOf,MatDialogModule, ModalAdcAlbumComponent, YoutubePlayerComponent],
   templateUrl: './carta.component.html',
   styleUrl: './carta.component.css',
   encapsulation: ViewEncapsulation.None

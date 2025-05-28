@@ -76,14 +76,22 @@
             <h3>Nossa música</h3>
         </div>
         <div class="video" *ngIf="cartaData.videoId">
-             <iframe
-                width="560"
-                height="315"
-                [src]="safeMusicaUrl"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+             <app-youtube-player
+                    [videoId]="cartaData.videoId"
+                    #ytPlayer
+                ></app-youtube-player>
+
+                <div class="controles">
+                    <button (click)="ytPlayer.playVideo()">▶️ Play</button>
+                    <button (click)="ytPlayer.pauseVideo()">⏸️ Pause</button>
+                    <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="50"
+                    (input)="ytPlayer.setVolume($event.target.value)"
+                    />
+                </div>
         </div>
         <div class="espaco"></div>
         <div class="container-contador" *ngIf="cartaData.data">
