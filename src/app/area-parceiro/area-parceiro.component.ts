@@ -30,8 +30,9 @@ export class AreaParceiroComponent implements OnInit{
   }
    private async handleRouteParams2(params: ParamMap): Promise<void> {
       try {   
-        if(this.parceiroId===''){
+        if(this.parceiroId===null){
           this.router.navigate(['/loginParceiro'])
+          return 
         }
         this.http.get<any>(`${apiUrl}/parceiros/getParceiro/${this.parceiroId}`).subscribe((res) => {
           this.parceiro = res;
