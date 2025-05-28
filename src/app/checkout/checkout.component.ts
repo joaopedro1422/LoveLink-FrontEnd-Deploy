@@ -62,7 +62,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
       'cardPaymentBrick_container',
       {
         initialization: {
-          amount: 100,
+          amount: this.valorPlanoSelecionado,
           payer: {
             email: '',
           },
