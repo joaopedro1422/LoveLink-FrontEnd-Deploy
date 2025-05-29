@@ -162,7 +162,10 @@ export class CadastrarPaginaComponent implements OnInit {
    if (!Array.isArray(this.form.playlist)) {
     this.form.playlist = [];
   }
-
+  this.spotifyCode = localStorage.getItem('spotifyCode');
+  console.log('passada:', this.spotifyCode)
+  if(!this.spotifyCode){
+    console.log('entrou aqui emmmmmmmm');
     this.route.queryParams.subscribe(params => {
       this.spotifyCode = params['code'] || null;
 
@@ -170,11 +173,13 @@ export class CadastrarPaginaComponent implements OnInit {
         localStorage.setItem('spotifyCode', this.spotifyCode)
         this.currentStep = 5;
         this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
+          console.log('passada2:', this.spotifyCode)
         this.router.navigate(['/criarCarta']);
       
       }
     });
-
+  }
+  this.router.navigate(['/criarCarta']);
   if(dadosSalvos){   
 
    if(!this.novaPagina) {
