@@ -495,6 +495,14 @@ startReenviarTimer() {
 }
 
   nextStep() {
+ //   for (let i = 0; i < localStorage.length; i++) {
+//    const key = localStorage.key(i);
+   // if (key && key.startsWith('dadosCadastro_')) {
+ //     localStorage.removeItem(key);
+      // como estamos modificando o localStorage durante o loop, reinicia a contagem
+  //    i = -1;
+ //   }
+ //remover os registros no checkout }
     const formStorage = {
     nomeCasal: this.form.nomeCasal,
     mensagem: this.form.mensagem,
