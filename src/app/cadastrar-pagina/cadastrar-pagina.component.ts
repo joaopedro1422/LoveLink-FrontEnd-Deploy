@@ -178,12 +178,7 @@ export class CadastrarPaginaComponent implements OnInit {
     
     // Limpa a URL e redireciona (sem o code na URL)
     this.router.navigate(['/criarCarta']);
-  } else if (this.spotifyCode) {
-    // Já tinha code salvo
-    this.currentStep = 5;
-    this.router.navigate(['/criarCarta']);
-  }
- 
+  } 
   if(dadosSalvos){   
 
    if(!this.novaPagina) {
