@@ -174,8 +174,8 @@ export class CadastrarPaginaComponent implements OnInit {
         this.currentStep = 5;
         this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
           console.log('passada2:', this.spotifyCode)
-        this.router.navigate(['/criarCarta']);
-        this.spotifyCode = localStorage.getItem('spotifyCode');
+       
+       
       
       }
     });
@@ -183,7 +183,7 @@ export class CadastrarPaginaComponent implements OnInit {
     this.router.navigate(['/criarCarta']);
      this.currentStep = 5;
   }
- 
+  this.router.navigate(['/criarCarta']);
   if(dadosSalvos){   
 
    if(!this.novaPagina) {
