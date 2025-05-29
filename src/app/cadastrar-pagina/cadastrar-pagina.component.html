@@ -99,7 +99,7 @@
             </div>                     
           </div>      
           <div *ngSwitchCase="2" style="width: 100%;">
-              <div class="mensagem-animada" *ngIf="!form.videoId && form.mensagem">
+              <div class="mensagem-animada" *ngIf="!form.videoId && form.data && form.mensagem">
                 <div class="card-lindo">
                   Que mensagem linda!
                 </div>
@@ -206,7 +206,7 @@
           <div *ngSwitchCase="5" class="container-email">
              <div class="mensagem-animada" *ngIf="!form.email && form.playlist.length !== 0 ">
                 <div class="card-lindo">
-                  Só música Top
+                  Uma aula de playlist!
                 </div>
             </div>
              <h3> <img style="height: 30px; width: auto" src="spotify-white.png" alt="Buscar" /> Playlist Spotify</h3>

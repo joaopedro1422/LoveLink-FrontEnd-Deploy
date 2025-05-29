@@ -164,6 +164,7 @@ export class CadastrarPaginaComponent implements OnInit {
   }
   this.spotifyCode = localStorage.getItem('spotifyCode');
   if(!this.spotifyCode){
+    console.log('entrou aqui emmmmmmmm');
     this.route.queryParams.subscribe(params => {
       this.spotifyCode = params['code'] || null;
 
