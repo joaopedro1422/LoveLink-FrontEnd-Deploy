@@ -1,7 +1,7 @@
 
 <div class="body-carta" >
     <div class="apresentacao">
-            <div class="content-apresentacao" *ngIf="apresentacao">
+            <div class="content-apresentacao" *ngIf="apresentacao ">
                 <img src="caixa2.png" alt="">
                 <h3 style="font-size: 4rem !important;">Supresa pra você!</h3>
                 <button (click)="abrePagina()">Clique para abrir</button>
@@ -43,9 +43,14 @@
                         <span>Descriçao</span>
                         <textarea [(ngModel)]="novaFoto.descricao" name="" id=""></textarea>
                     </div>    
+                    <div class="container-input"  style="margin-top: 5px;">
+                        <span>Seu email cadastrado</span>
+                        <input [(ngModel)]="novaFoto.email" name="" id="">
+                    </div>    
                     <button
                     (click)="adicionarFotoAlbum();"
                     class="btn-adicionar">Adicionar</button>
+                    <span style="color: red; font-family: Arial, Helvetica, sans-serif; font-size: 11px">{{errorAdc}}</span>
                 </div>
                 <button (click)="closeModal()"  class="btn-fechar">
                     Fechar
@@ -102,7 +107,7 @@
         <div class="container-contador" *ngIf="cartaData.data">
             <p><i class="fa-solid fa-hourglass-half" style="color: #f8caca"></i>  <span style= "color: rgb(255, 240, 240); font-size: 16px; font-family: 'Nunito Sans', sans-serif;"> Compartilhando momentos há: </span> <br> {{ tempoDecorrido }}</p>
             <div class="container-data">
-                <span class="data-base">❤️ Desde {{cartaData.data | date:'dd/MM/yyyy'}} ❤️</span>
+                <span class="data-base"><i class="far fa-heart"></i> Desde {{cartaData.data | date:'dd/MM/yyyy'}} <i class="far fa-heart"></i></span>
             </div> 
         </div>
         <div class="espaco"></div>

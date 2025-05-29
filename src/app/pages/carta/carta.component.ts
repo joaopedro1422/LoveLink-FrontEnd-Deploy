@@ -53,7 +53,8 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   novaFoto = {
     imagem: '',
     descricao: '',
-    data: ''
+    data: '',
+    email: ''
   };
   
   constructor(private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog , private sanitizer: DomSanitizer, private cdRef: ChangeDetectorRef) {
@@ -81,11 +82,14 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
 @ViewChild(YoutubePlayerComponent) youtubePlayer!: YoutubePlayerComponent;
 
   abrePagina(){
-    this.apresentacao = false;
-    this.startHeartsAnimation();
-      setTimeout(() => {
-    this.youtubePlayer?.playVideo();
-     }, 3500); // ajuste esse tempo se necessário
+    if(this.cartaData){
+        this.apresentacao = false;
+        this.startHeartsAnimation();
+          setTimeout(() => {
+        this.youtubePlayer?.playVideo();
+        }, 3500); // ajuste esse tempo se necessário
+    }
+  
     
   }
 
@@ -105,6 +109,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       this.slug = params.get('slug');
       this.http.get<Pagina>(`${apiUrl}/paginas/${this.slug}/${this.cartaId}`).subscribe((res) => {
         this.cartaData = res;
+       
         this.safeMusicaUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.cartaData.videoId}?autoplay=1`);
         this.inicializaPlaylist();
         this.cdRef.detectChanges();
@@ -193,7 +198,12 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     }
   }
   }
+  errorAdc = ''
   adicionarFotoAlbum(){
+    if(this.novaFoto.email !== this.cartaData.email){
+      this.errorAdc = 'Email não corresponde';
+      return;
+    }
     this.http.post<Pagina>(`${apiUrl}/paginas/${this.slug}/${this.cartaId}/adc-album`, this.novaFoto).subscribe((res)=>
     {
       this.fileSelected = '';

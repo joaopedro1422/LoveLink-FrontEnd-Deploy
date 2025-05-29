@@ -1,7 +1,7 @@
    
 <ng-container *ngIf="mostrar">
   <div class="modal">
-     <div class="overlay" (click)="fecharModal()"></div>
+    
     <div class="modal-container">
       <ng-container *ngIf="imageUrl; else loading">
         <img [src]="imageUrl" alt="Imagem detalhada" (click)="fecharModal()" />
@@ -15,11 +15,12 @@
           <i class="fas fa-trash"></i>
         </button>
       </div>
+   
 
       <ng-template #loading>
         <p>Carregando imagem...</p>
       </ng-template>
     </div>
   </div>
- 
+  <div class="overlay" (click)="fecharModal()"></div>
 </ng-container>

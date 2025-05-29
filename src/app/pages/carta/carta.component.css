@@ -12,8 +12,23 @@ h3 {
     font-weight: 400;
     font-size:  44px;
     margin: 0;
-    color: rgb(255, 20, 20); 
+    color: rgb(255, 28, 28); 
     margin-top: 20px;
+}
+dialog{
+  background-color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+}
+.overlay {
+  background: #0c0000;
+  height: 100vh;
+  left: 0;
+  opacity: 0.8;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+   z-index: 10;
 }
 .btn-remover {
   position: absolute;
@@ -29,11 +44,12 @@ h3 {
   position: relative;
 }
 p {
- font-family: "Roboto Slab", serif;
+  font-family: "Lora", serif;
     white-space: normal;
-    font-weight: 200;
+    font-style: italic;
+    font-weight: 400;
     padding: 0 22px;
-    color: rgb(255, 242, 242);
+    color: rgb(226, 226, 226);
     font-size: 15px
 }
 .item {
@@ -252,6 +268,22 @@ span{
   left: 12.5px;
   top: 0;
 }
+.container-data{
+  border-radius: 9999px;
+  background: linear-gradient(to right, rgb(212, 16, 16), rgb(230, 42, 42), rgb(220, 38, 38));
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 44, 44, 0.945) 0px 0px 0px 1px, rgba(225, 29, 72, 0.4) 0px 0px 15px 0px;
+  animation: flutuar 3s ease-in-out infinite;
+}
+.container-data span{
+  color: white;
+  
+  font-family: 'poppins';
+  font-size: 17px;
+}
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-1px); scale: 1.03 }
+}
 .container-titulo1{
     width: 100%;
 
@@ -453,12 +485,12 @@ dialog{
 }
 .container-modal-adc{
   top: 0;
-  width: 255px;;
+  width: 270px;;
 
 }
 .header-adc{
       
-  background-color: rgb(233, 0, 0);
+  background-color: rgb(0, 0, 0);
   border-radius: 8px;
   top: 0;
 }
@@ -477,7 +509,7 @@ dialog{
 }
 
 .container-input span{
-  color: black;
+  color: rgb(255, 255, 255);
   font-family: Arial, Helvetica, sans-serif;
 }
 .container-input input{
@@ -489,16 +521,18 @@ dialog{
 .container-input input,textarea{
   border-radius: 5px;
   border: 1px solid gray;
+  background-color: #1f1f1f;
+  border: 1px solid rgb(70, 70, 70);
 }
 .custom-file-upload {
     display: inline-block;
     padding: 10px 20px;
 
     text-align: center;
-    background-color: #4e46e500;
-    color: rgb(0, 0, 0);
-    border: 1px solid rgb(170, 170, 170);
-    border-radius: 8px;
+    background-color: #1f1f1f;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(70, 70, 70);
+    border-radius: 6px;
     cursor: pointer;
  
   }
@@ -519,6 +553,7 @@ dialog{
   }
   .btn-fechar{
     border: none;
+    color: white;
     background-color: transparent;
     text-decoration: underline;
   }
