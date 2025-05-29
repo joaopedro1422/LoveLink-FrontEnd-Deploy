@@ -178,6 +178,8 @@ export class CadastrarPaginaComponent implements OnInit {
       
       }
     });
+  }else{
+    this.router.navigate(['/criarCarta']);
   }
  
   if(dadosSalvos){   
