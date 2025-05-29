@@ -60,7 +60,11 @@
           </div>
       
           <div *ngSwitchCase="1" style="width: 100%;">
-         
+             <div class="mensagem-animada" *ngIf="!form.mensagem && form.imagens.length !== 0 ">
+                <div class="card-lindo">
+                  Ficou ótimo!
+                </div>
+            </div>
             <!-- Etapa 2: Fotos -->
             <h3 ><img style="height: 30px; width: auto" src="camerastep.png" alt="Buscar" />Fotos iniciais</h3>
             <p>Escolha as fotos que serão destaque na sua página. Você pode adicionar até 4 fotos</p>
@@ -95,9 +99,9 @@
             </div>                     
           </div>      
           <div *ngSwitchCase="2" style="width: 100%;">
-              <div class="mensagem-animada" *ngIf="!form.mensagem && form.imagens.length !== 0 ">
+              <div class="mensagem-animada" *ngIf="!form.videoId && form.mensagem">
                 <div class="card-lindo">
-                  Ótimas fotos!
+                  Que mensagem linda!
                 </div>
             </div>
             <!-- Etapa 3: Música -->
@@ -132,9 +136,9 @@
           </div>
       
           <div *ngSwitchCase="3" style="width: 100%;">
-            <div class="mensagem-animada" *ngIf="!form.videoId && form.mensagem">
+           <div class="mensagem-animada" *ngIf="!form.email && form.videoId">
                 <div class="card-lindo">
-                  Que mensagem linda!
+                  Essa vai emocionar!
                 </div>
             </div>
             <h3><img style="height: 30px; width: auto" src="musicastep.png" alt="Buscar" />Música</h3>
@@ -180,11 +184,7 @@
           </div>
       
           <div *ngSwitchCase="4">
-            <div class="mensagem-animada" *ngIf="!form.email && form.videoId">
-                <div class="card-lindo">
-                  Essa vai emocionar!
-                </div>
-            </div>
+            
             <h3><img style="height: 30px; width: auto" src="albumstep.png" alt="Buscar" />Álbum personalizado</h3>
             <p style="font-size: 15px; color: rgb(255, 230, 230); font-family: 'Nunito Sans', sans-serif;">
               Registre memórias com imagens, descrições e Datas.
@@ -204,6 +204,11 @@
          
           </div>
           <div *ngSwitchCase="5" class="container-email">
+             <div class="mensagem-animada" *ngIf="!form.email && form.playlist.length !== 0 ">
+                <div class="card-lindo">
+                  Só música Top
+                </div>
+            </div>
              <h3> <img style="height: 30px; width: auto" src="spotify-white.png" alt="Buscar" /> Playlist Spotify</h3>
             <p>Dedique uma playlist de músicas que te fazem lembrar da pessoa especial. Você poderá adicionar até 5 músicas</p>
             <p *ngIf="!spotifyCode" style="margin-top: 10px; font-size: 13px; font-style: italic; color: rgb(218, 216, 216); font-family: 'Nunito Sans', sans-serif;">
@@ -257,6 +262,11 @@
            
           </div>
            <div *ngSwitchCase="6" class="container-email">
+             <div class="mensagem-animada" *ngIf="!form.email ">
+                <div class="card-lindo">
+                  Tá ficando muito bom!
+                </div>
+            </div>
             <h3><img style="height: 34px; width: auto" src="email.png" alt="Buscar" />Quase lá...</h3>
             <p>Confirme o email que será utilizado para receber o link da página e o QrCode de acesso.</p>
 
