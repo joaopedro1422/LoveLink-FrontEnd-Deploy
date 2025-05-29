@@ -74,6 +74,14 @@
                 height="1"
                 style="opacity: 0; position: fixed"
                 />
+            </div>
+             <div class="indicadores">
+                <span
+                *ngFor="let d of cartaData.imagens; let i = index"
+                class="bolinha"
+                [class.ativa]="i === indexImagemAtiva"
+                >
+                </span>
             </div>        
             <div class="container-titulo1">
                 <h3>{{cartaData.titulo}}</h3>         
@@ -89,7 +97,7 @@
         <div class="espaco" *ngIf="cartaData.mensagem"> 
             <div class="line-container">
               <div class="line2"></div>
-              <div class="heart-dois">❤</div>
+              <div class="heart-dois"><i class="far fa-heart"></i></div>
             </div>
           </div>
         <div class="container-titulo1">

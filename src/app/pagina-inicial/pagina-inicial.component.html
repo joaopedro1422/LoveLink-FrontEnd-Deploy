@@ -287,21 +287,22 @@
           <div class="seta seta-esquerda" (click)="prev()">&#10094;</div>
       
           <div class="depoimento" *ngFor="let d of depoimentos; let i = index" [class.ativo]="i === currentIndex">
+            <img [src]="d.foto" alt="">
             <h3>{{ d.nome }}</h3>
             <p>"{{ d.mensagem }}"</p>
+            <div class="containerEstrelas">
+                <img src="estrela.png" />
+                <img src="estrela.png" />
+                <img src="estrela.png" />
+                <img src="estrela.png" />
+                <img src="estrela.png" />
+            </div>
           </div>
          
       
           <div class="seta seta-direita" (click)="next()">&#10095;</div>
         </div>
-        <div class="indicadores">
-            <span
-              *ngFor="let d of depoimentos; let i = index"
-              class="bolinha"
-              [class.ativa]="i === currentIndex"
-              (click)="mudarDepoimento(i)">
-            </span>
-          </div>
+       
       </div>
     <section class="faq-section">
         <h2 class="faq-title">Perguntas Frequentes</h2>
