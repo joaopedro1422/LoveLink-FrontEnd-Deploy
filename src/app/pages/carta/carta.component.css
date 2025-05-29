@@ -203,9 +203,13 @@ span{
         opacity: 0.3;
         scale: 1;
     }
+    30% {
+   transform: scale(0.96);
+  }
     70%{
         top: 600px;
         opacity: 0.3;
+
     
     }
     80%{
@@ -221,8 +225,8 @@ span{
 }
 .heart {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   transform: rotate(-45deg);
   background: #c50000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 2px red;
@@ -233,8 +237,8 @@ span{
 .heart::after {
   content: '';
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   background: #c50000;
   border-radius: 50%;
 }

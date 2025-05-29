@@ -37,7 +37,12 @@
                   </div>           
             </app-modal>         
             <!-- Etapa 1: Nome do casal -->
-             <h3>Nome do Casal</h3>
+              <div class="mensagem-animada" *ngIf="form.titulo">
+                <div class="card-lindo">
+                  Vamos lá {{form.autor}}!
+                </div>
+            </div>
+             <h3><i class="far fa-heart"></i> Nome do Casal</h3>
              
             <input class="campo" type="text" [(ngModel)]="form.nomeCasal" placeholder="Ex: 'Daniel e Karina'" />
             <h3 style="margin-top: 20px">Seu nome Completo</h3>
@@ -55,6 +60,7 @@
           </div>
       
           <div *ngSwitchCase="1" style="width: 100%;">
+         
             <!-- Etapa 2: Fotos -->
             <h3 ><img style="height: 30px; width: auto" src="camerastep.png" alt="Buscar" />Fotos iniciais</h3>
             <p>Escolha as fotos que serão destaque na sua página. Você pode adicionar até 4 fotos</p>
@@ -89,6 +95,11 @@
             </div>                     
           </div>      
           <div *ngSwitchCase="2" style="width: 100%;">
+              <div class="mensagem-animada" *ngIf="!form.mensagem && form.imagens.length !== 0 ">
+                <div class="card-lindo">
+                  Ótimas fotos!
+                </div>
+            </div>
             <!-- Etapa 3: Música -->
             <h3><img style="height: 30px; width: auto" src="mensagemstep.png" alt="Buscar" /> Mensagem especial</h3>
              <p>Demonstre o seu amor em forma de palavras.</p>
@@ -121,6 +132,11 @@
           </div>
       
           <div *ngSwitchCase="3" style="width: 100%;">
+            <div class="mensagem-animada" *ngIf="!form.videoId && form.mensagem">
+                <div class="card-lindo">
+                  Que mensagem linda!
+                </div>
+            </div>
             <h3><img style="height: 30px; width: auto" src="musicastep.png" alt="Buscar" />Música</h3>
             <p>Escolha uma música para deixar o presente ainda mais especial </p>
           
@@ -164,6 +180,11 @@
           </div>
       
           <div *ngSwitchCase="4">
+            <div class="mensagem-animada" *ngIf="!form.email && form.videoId">
+                <div class="card-lindo">
+                  Essa vai emocionar!
+                </div>
+            </div>
             <h3><img style="height: 30px; width: auto" src="albumstep.png" alt="Buscar" />Álbum personalizado</h3>
             <p style="font-size: 15px; color: rgb(255, 230, 230); font-family: 'Nunito Sans', sans-serif;">
               Registre memórias com imagens, descrições e Datas.
@@ -288,7 +309,12 @@
        
             </div>            
           </div>
-          <div *ngSwitchCase="7" class="container-section">              
+          <div *ngSwitchCase="7" class="container-section">  
+            <div class="mensagem-animada">
+              <div class="card-lindo">
+                Agora é so finalizar!
+              </div>
+            </div>            
               <h3 style="font-size: 26px">Plano de pagamento</h3>
               <p style="margin-top: -12px">Escolha o plano ideal para a sua página!</p>
               <div class="container-cards">              

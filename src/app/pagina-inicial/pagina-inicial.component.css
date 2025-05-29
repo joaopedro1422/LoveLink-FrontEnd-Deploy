@@ -54,6 +54,9 @@
 
     
   }
+  .division-codigoQr img{
+        border-radius: 8px;
+      }
   
   .hero-content h1 {
     text-align: left;
@@ -145,7 +148,7 @@
     background-image: 
     linear-gradient(to right, #ed3232, #82080f,#ed3232),
     /* Camada da borda: gradiente giratório */
-    conic-gradient(from var(--angle), red, rgb(253, 25, 25), rgb(253, 44, 44), rgb(250, 51, 51), rgb(255, 255, 255), rgb(255, 86, 86), red);
+    conic-gradient(from var(--angle), rgba(255, 36, 36, 0), rgba(255, 38, 38, 0), rgba(253, 44, 44, 0), rgba(250, 51, 51, 0), rgb(255, 218, 218), rgba(255, 86, 86, 0), rgba(255, 0, 0, 0));
   
   background-origin: border-box;
   background-clip: padding-box, border-box;
@@ -740,6 +743,15 @@
       display: flex;
       gap: 20vh;
     }
+    .title-middle .h3-personalizado{
+      font-size: 40px !important;
+    }
+    .title.planos h3{
+        font-size: 40px !important;
+    }
+      .btn-primary, .btn-secondary{
+        max-width: 96%;
+      }
     .content-apresentacao{
       display: flex;
       gap: 0;
@@ -871,6 +883,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+      }
+      .division-codigoQr img{
+        border-radius: 8px;
       }
     .btnA{
       font-size: 12px;
