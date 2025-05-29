@@ -89,6 +89,10 @@ span{
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(255, 44, 44, 0.945) 0px 0px 0px 1px, rgba(225, 29, 72, 0.4) 0px 0px 15px 0px;
   animation: flutuar 3s ease-in-out infinite;
 }
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-1px); scale: 1.03 }
+}
 .container-data span{
   color: white;
   
@@ -177,7 +181,7 @@ span{
     background-color: #1a0000; /* Cor do fundo da página, para "apagar" a linha atrás do coração */
     z-index: 2;
     padding: 0 10px;
-    color: #e2c3c3;
+    color: #e1b3b3;
     font-size: 18px;
   }
 
