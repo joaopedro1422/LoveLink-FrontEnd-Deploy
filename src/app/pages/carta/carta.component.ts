@@ -41,6 +41,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   slug: string | null = null;
   cartaData: any = {};
   album: string[] | null = null;
+  apresentacao: boolean = true;
   private _indexImagemAtiva: number = 0;
   timerSubs!: Subscription;
   intervalId: any;
@@ -77,12 +78,21 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   fecharImagem() {
   this.modalAberto = false;
 }
-  
+@ViewChild(YoutubePlayerComponent) youtubePlayer!: YoutubePlayerComponent;
+
+  abrePagina(){
+    this.apresentacao = false;
+    this.startHeartsAnimation();
+      setTimeout(() => {
+    this.youtubePlayer?.playVideo();
+     }, 3500); // ajuste esse tempo se necessário
+    
+  }
 
   
   async ngOnInit(): Promise<void> {
 
-    this.startHeartsAnimation();
+    
   
     this.route.paramMap.subscribe((params) => {
       this.handleRouteParams(params);

@@ -1,8 +1,13 @@
 
 <div class="body-carta" >
-   
-    <div class="body-desktop">
-     
+    <div class="apresentacao">
+            <div class="content-apresentacao" *ngIf="apresentacao">
+                <h3 style="font-size: 4rem !important;">Supresa pra você!</h3>
+                <button (click)="abrePagina()">Clique para abrir</button>
+            </div>
+        </div>
+    <div class="body-desktop" *ngIf="!apresentacao">
+       
         <div class="container-animation">     </div>
             <app-image-dialog
                 *ngIf="modalAberto"

@@ -524,3 +524,53 @@ dialog{
     justify-content: center;
     align-items: center;
   }
+
+  .content-apresentacao button{
+     background: linear-gradient(to right,#ed3232, #f10f1a, #ff6b00);
+      color: white;
+      border: none;
+      padding: 16px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 230px;
+      gap: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+  }
+  
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-12px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-8px);
+  }
+}
+.content-apresentacao{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 300px;
+  gap: 20px;
+}
+.apresentacao{
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
