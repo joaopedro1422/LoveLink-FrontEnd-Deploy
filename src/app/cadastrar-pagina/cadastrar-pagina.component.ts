@@ -162,15 +162,20 @@ export class CadastrarPaginaComponent implements OnInit {
    if (!Array.isArray(this.form.playlist)) {
     this.form.playlist = [];
   }
+  this.spotifyCode = localStorage.getItem('spotifyCode');
+  if(!this.spotifyCode){
     this.route.queryParams.subscribe(params => {
       this.spotifyCode = params['code'] || null;
 
       if (this.spotifyCode) {
+        localStorage.setItem('spotifyCode', this.spotifyCode)
         this.currentStep = 5;
         this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
+        this.router.navigate(['/criarCarta']);
       
       }
     });
+  }
   if(dadosSalvos){   
 
    if(!this.novaPagina) {
