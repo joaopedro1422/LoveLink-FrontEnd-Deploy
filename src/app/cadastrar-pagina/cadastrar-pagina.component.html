@@ -186,7 +186,7 @@
              <h3> <img style="height: 30px; width: auto" src="spotify-white.png" alt="Buscar" /> Playlist Spotify</h3>
             <p>Dedique uma playlist de músicas que te fazem lembrar da pessoa especial. Você poderá adicionar até 5 músicas</p>
             <p *ngIf="!spotifyCode" style="margin-top: 10px; font-size: 13px; font-style: italic; color: rgb(218, 216, 216); font-family: 'Nunito Sans', sans-serif;">
-              💡 Clique no botão abaixo para permitir a busca de músicas utilizando o próprio Spotify.
+              💡 Clique no botão abaixo para permitir a busca de músicas utilizando o próprio Spotify. Não requer conta Premium. Caso ainda não tenha cadastro no spotify você pode fazer agora mesmo via Gmail.
             </p>
           <div>
             <button *ngIf="!spotifyCode" class="spotify-btn" (click)="loginWithSpotify()">  <img src="spotify-black.png" alt="Buscar" />Conectar ao Spotify</button>

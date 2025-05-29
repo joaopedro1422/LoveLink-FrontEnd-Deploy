@@ -565,6 +565,14 @@ dialog{
   margin-top: 300px;
   gap: 20px;
 }
+.content-apresentacao img{
+  max-height: 130px;
+
+}
+
+.content-apresentacao h3{
+  margin-top: 0;
+}
 .apresentacao{
   width: 100%;
   background-color: rgba(0, 0, 0, 0);
