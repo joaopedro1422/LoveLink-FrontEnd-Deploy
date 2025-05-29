@@ -162,23 +162,15 @@ export class CadastrarPaginaComponent implements OnInit {
    if (!Array.isArray(this.form.playlist)) {
     this.form.playlist = [];
   }
-   this.spotifyCode = localStorage.getItem('spotifyCode');
-  console.log('spotifyCode inicial:', this.spotifyCode);
+    this.route.queryParams.subscribe(params => {
+      this.spotifyCode = params['code'] || null;
 
-  // Tenta pegar o código da URL imediatamente (caso já esteja lá)
-  const queryCode = this.route.snapshot.queryParamMap.get('code');
-
-  if (!this.spotifyCode && queryCode) {
-    // Primeiro acesso: código vindo do Spotify
-    this.spotifyCode = queryCode;
-    localStorage.setItem('spotifyCode', this.spotifyCode);
-    this.currentStep = 5;
-    this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
-    console.log('pegou code da URL:', this.spotifyCode);
-    
-    // Limpa a URL e redireciona (sem o code na URL)
-    this.router.navigate(['/criarCarta']);
-  } 
+      if (this.spotifyCode) {
+        this.currentStep = 5;
+        this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
+      
+      }
+    });
   if(dadosSalvos){   
 
    if(!this.novaPagina) {
