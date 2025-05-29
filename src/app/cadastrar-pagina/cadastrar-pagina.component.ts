@@ -162,28 +162,28 @@ export class CadastrarPaginaComponent implements OnInit {
    if (!Array.isArray(this.form.playlist)) {
     this.form.playlist = [];
   }
-  this.spotifyCode = localStorage.getItem('spotifyCode');
-  console.log('passada:', this.spotifyCode)
-  if(!this.spotifyCode){
-    console.log('entrou aqui emmmmmmmm');
-    this.route.queryParams.subscribe(params => {
-      this.spotifyCode = params['code'] || null;
+   this.spotifyCode = localStorage.getItem('spotifyCode');
+  console.log('spotifyCode inicial:', this.spotifyCode);
 
-      if (this.spotifyCode) {
-        localStorage.setItem('spotifyCode', this.spotifyCode)
-        this.currentStep = 5;
-        this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
-          console.log('passada2:', this.spotifyCode)
-       
-       
-      
-      }
-    });
-  }else{
+  // Tenta pegar o código da URL imediatamente (caso já esteja lá)
+  const queryCode = this.route.snapshot.queryParamMap.get('code');
+
+  if (!this.spotifyCode && queryCode) {
+    // Primeiro acesso: código vindo do Spotify
+    this.spotifyCode = queryCode;
+    localStorage.setItem('spotifyCode', this.spotifyCode);
+    this.currentStep = 5;
+    this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
+    console.log('pegou code da URL:', this.spotifyCode);
+    
+    // Limpa a URL e redireciona (sem o code na URL)
     this.router.navigate(['/criarCarta']);
-     this.currentStep = 5;
+  } else if (this.spotifyCode) {
+    // Já tinha code salvo
+    this.currentStep = 5;
+    this.router.navigate(['/criarCarta']);
   }
-  this.router.navigate(['/criarCarta']);
+ 
   if(dadosSalvos){   
 
    if(!this.novaPagina) {
