@@ -486,7 +486,7 @@ h5 {
 .body-desktop{
   
    background-image: url('/fundo1.png');
-  background-size: 54vh;
+  
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: center;
