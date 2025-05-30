@@ -1,7 +1,7 @@
 
 <div class="header-preview">
     <i class="fas fa-globe"></i>
-    <p>https://lovelink.com/</p>
+    <p>https://lovelink.com/{{getSlug()}}</p>
     <i class="fas fa-home"></i>
   </div>
 <div class="body-carta" >
@@ -26,7 +26,14 @@
                 style="opacity: 0; position: fixed"
                 />
                 
-            
+             <div class="indicadores">
+                <span
+                *ngFor="let d of cartaData.imagens; let i = index"
+                class="bolinha"
+                [class.ativa]="i === indexImagemAtiva"
+                >
+                </span>
+            </div>   
             
             <div class="container-titulo1" *ngIf="cartaData.titulo">
                 <h3>{{cartaData.titulo}}</h3>

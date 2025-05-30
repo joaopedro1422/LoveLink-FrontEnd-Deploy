@@ -4,10 +4,10 @@
             <div class="content-apresentacao" *ngIf="apresentacao ">
                 <img src="caixa2.png" alt="">
                 <h3 style="font-size: 4rem !important;">Supresa pra você!</h3>
-                <button (click)="abrePagina()">Clique para abrir</button>
+                <button (click)="abrePagina()">🎉 Clique para abrir 🎉</button>
             </div>
         </div>
-    <div class="body-desktop" *ngIf="!apresentacao">
+    <div class="body-desktop" *ngIf="!apresentacao && cartaData.autor">
        
         <div class="container-animation">     </div>
             <app-image-dialog

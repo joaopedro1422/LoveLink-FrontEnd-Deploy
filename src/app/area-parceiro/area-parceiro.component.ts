@@ -20,6 +20,8 @@ export class AreaParceiroComponent implements OnInit{
   parceiro : any | null = null
   parceiroId : string | null = '';
   listaPaginas: any[] = []
+  faturamentoTotal: number = 0;
+  qntPaginas: number = 0;
    constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     }
   async ngOnInit(): Promise<void> { 
@@ -65,7 +67,10 @@ export class AreaParceiroComponent implements OnInit{
         this.http.get<Pagina[]>(`${apiUrl}/paginas/${this.parceiroId}/paginasParceiro`).subscribe((res)=> {
           console.log(res)
           this.listaPaginas = res;
-        
+          for(let i = 0; i<this.listaPaginas.length; i++){
+            this.faturamentoTotal += this.listaPaginas[i].valor;
+          }
+          this.qntPaginas = this.listaPaginas.length
         })
       }catch (error ){
         console.log(error)

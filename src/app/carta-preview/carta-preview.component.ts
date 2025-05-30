@@ -49,6 +49,16 @@ export class CartaPreviewComponent implements OnInit, OnChanges, OnDestroy {
     }, 1000);
     this.iniciarTimer();
   }
+  getSlug(): string{
+     return this.cartaData.nomeCasal
+    .toLowerCase()
+    .normalize("NFD")                   // Remove acentos
+    .replace(/[\u0300-\u036f]/g, "")   // Remove caracteres diacríticos
+    .replace(/[^a-z0-9\s]/g, "")       // Remove caracteres especiais
+    .trim()                            // Remove espaços nas extremidades
+    .replace(/\s+/g, "-");             // Substitui espaços por hífen
+  
+  }
   atualizarContador() {
     if (!this.cartaData?.data) return;
   
@@ -130,7 +140,7 @@ export class CartaPreviewComponent implements OnInit, OnChanges, OnDestroy {
   iniciarCarrossel() {
     this.intervalId = setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.cartaData.imagens.length;
-    }, 10000);
+    }, 9000);
   }
   
   

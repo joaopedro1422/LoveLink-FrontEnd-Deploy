@@ -69,7 +69,8 @@
     </div>
   </div>
   <div class="confirmacao" *ngIf="pagamentoAprovado">
-  <h2>Parabéns, {{primeiroNome}} ❤️</h2>
+  <h2 *ngIf="!formData.idParceiro">Parabéns, {{primeiroNome}} ❤️</h2>
+   <h2 *ngIf="formData.idParceiro">Parabéns, {{parceiro.nome}} ❤️</h2>
   <h3>Sua página está pronta e o seu pagamento foi aprovado com sucesso!</h3>
   <p>Você receberá em seu email a confirmação da compra junto com o link e QrCode de acesso da sua nova página personalizada!</p>
    <i class="fa fa-check-circle" style="color: #4CAF50; font-size: 80px;"></i>
@@ -77,7 +78,8 @@
   <!-- Exibir link personalizado + QR -->
 </div>
   <div class="confirmacao" *ngIf="registroCompleto && !pagamentoAprovado">
-    <h2>Pronto, {{primeiroNome}} ❤️</h2>
+    <h2 *ngIf="!formData.idParceiro">Pronto, {{primeiroNome}} ❤️</h2>
+      <h2 *ngIf="formData.idParceiro">Pronto, {{parceiro.nome}} ❤️</h2>
     <h3>Sua página personalizada está pronta e o pagamento está em andamento.</h3>
     <p>Você poderá acompanhar o status do seu pagamento através do seu email e assim que for aprovado, receberá o link e o QrCode de acesso para a sua página!</p>
     <i class="fas fa-hourglass-half" style="color: #ac9200; font-size: 80px;"></i>

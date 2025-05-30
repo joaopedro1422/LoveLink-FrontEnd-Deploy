@@ -60,9 +60,14 @@
           </div>
       
           <div *ngSwitchCase="1" style="width: 100%;">
-             <div class="mensagem-animada" *ngIf="!form.mensagem && form.imagens.length !== 0 ">
+             <div class="mensagem-animada" *ngIf="!form.mensagem && form.imagens.length !== 0 && form.imagens.length === 1">
                 <div class="card-lindo">
-                  Ficou ótimo!
+                  Ótima Foto!
+                </div>
+            </div>
+            <div class="mensagem-animada" *ngIf="!form.mensagem && form.imagens.length !== 0 && form.imagens.length > 1">
+                <div class="card-lindo">
+                  Ótimas Fotos!
                 </div>
             </div>
             <!-- Etapa 2: Fotos -->
@@ -262,11 +267,7 @@
            
           </div>
            <div *ngSwitchCase="6" class="container-email">
-             <div class="mensagem-animada" *ngIf="!form.email ">
-                <div class="card-lindo">
-                  Tá ficando muito bom!
-                </div>
-            </div>
+        
             <h3><img style="height: 34px; width: auto" src="email.png" alt="Buscar" />Quase lá...</h3>
             <p>Confirme o email que será utilizado para receber o link da página e o QrCode de acesso.</p>
 

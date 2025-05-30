@@ -9,7 +9,7 @@ button:hover{
   cursor: pointer;
 }
 html, body { height: 100%; 
-  background: linear-gradient(to bottom, #440404, #1d0202, #120101, #120101, #0f0101, #0f0101, #0f0101, #0f0101);
+  background: linear-gradient(to bottom, #440404, #1d0202, #120101, #0f0101, #0a0101, #0a0101, #0a0101, #0a0101);
   background-attachment: fixed;
   background-size: cover;
   

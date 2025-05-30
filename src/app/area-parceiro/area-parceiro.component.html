@@ -2,12 +2,31 @@
 <div class="body-area">
     <div class="area-content">
         <div class="container-user">
-            <h2><i class="fa-solid fa-user"></i>   <span style="font-size: 1.2rem !important;">      {{parceiro.nome}}</span></h2>
-            <button (click)="logout()"><i class="fas fa-sign-out-alt"></i> Sair</button>
+            <div class="leftPainel">
+                  <div class="container-criar">
+                    <button (click)="goToCadastroParceiro()">+ Criar nova Página</button>
+                </div>
+            </div>
+            <div class="middlePainel">
+                <div class="container-dados">
+                    <div class="division2">
+                          <h4>Faturamento Total:</h4>
+                             <span>R$ {{faturamentoTotal}}</span>
+                    </div>
+                     <div class="division2">
+                          <h4>Quantidade de páginas criadas:</h4>
+                             <span>{{qntPaginas}}</span>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="rightPainel">
+                    <h2><i class="fa-solid fa-user"></i>   <span style="font-size: 1.2rem !important;">      Cestas Mazul</span></h2>
+                    <button (click)="logout()"><i class="fas fa-sign-out-alt"></i> </button>
+            </div>
+            
         </div>
-        <div class="container-criar">
-            <button (click)="goToCadastroParceiro()">+ Criar nova Página</button>
-        </div>
+        
         <div class="grid-paginas">
             <div class="card-pagina" *ngFor="let pagina of listaPaginas">
                 <div class="left">

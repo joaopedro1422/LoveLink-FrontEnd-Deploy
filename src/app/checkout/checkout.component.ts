@@ -28,6 +28,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
   private bricksBuilder: any;
   private cardPaymentBrickController: any;
   formData: any;
+  parceiro: any;
   pixOpen = false;
   cartaoOpen = false;
   registroCompleto = false;
@@ -142,6 +143,9 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
     if (!this.formData) {
       this.router.navigate(['/inicio']);
     }
+    if(this.formData.idParceiro){
+      this.getParceiro();
+    }
     console.log(this.formData);
     this.loadValoresPlanos();
     this.primeiroNome = this.getPrimeiroNome(this.formData.autor);
@@ -159,6 +163,21 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
   }
   getPrimeiroNome(nome: string){
     return nome.trim().split(' ')[0]
+  }
+
+  getParceiro(){
+       try {   
+        this.http.get<any>(`${apiUrl}/parceiros/getParceiro/${this.formData.idParceiro}`).subscribe((res) => {
+          this.parceiro = res;
+          console.log(res);
+        }, (err)=> {
+          alert("Erro ao buscar parceiro");
+        })
+        
+      }
+      catch (error ){
+        console.log()
+      }
   }
 
   togglePix() {
