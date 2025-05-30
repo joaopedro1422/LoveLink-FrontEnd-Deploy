@@ -483,15 +483,15 @@ h5 {
   
   
 }
-.body-desktop {
-  position: relative;
-  overflow-x: hidden;
+.body-desktop{
+  
+   position: relative;
+  z-index: 1;
   min-height: 100vh;
-  z-index: 0;
+
 }
 
-.body-desktop::before {
-  content: "";
+.background {
   position: fixed;
   top: 0;
   left: 0;
@@ -500,6 +500,7 @@ h5 {
   background-image: url('/fundo1.png');
   background-repeat: repeat;
   background-position: center;
+  background-size: cover;
   z-index: -1;
 }
 @media screen and (min-width: 1024px) {
