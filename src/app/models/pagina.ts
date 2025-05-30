@@ -8,6 +8,7 @@ export interface Pagina {
   email: string;
   mensagem: string;
   autor: string;
+  status: string,
   data: Date;
   titulo: string;
   videoId: string;

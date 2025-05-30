@@ -66,7 +66,7 @@ export class AreaParceiroComponent implements OnInit{
       try{
         this.http.get<Pagina[]>(`${apiUrl}/paginas/${this.parceiroId}/paginasParceiro`).subscribe((res)=> {
           console.log(res)
-          this.listaPaginas = res;
+          this.listaPaginas = res.filter(pagina => pagina.status === 'aprovado');
           for(let i = 0; i<this.listaPaginas.length; i++){
             this.faturamentoTotal += this.listaPaginas[i].valor;
           }
