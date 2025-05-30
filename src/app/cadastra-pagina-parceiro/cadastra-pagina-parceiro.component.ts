@@ -291,7 +291,7 @@ export class CadastraPaginaParceiroComponent {
        this.http.get<any>(`${apiUrl}/parceiros/getParceiro/${this.parceiroId}`).subscribe((res) => {      
           const formStorage = {
           nomeCasal: this.form.nomeCasal,
-          email: this.form.email,
+          email: res.email,
           mensagem: this.form.mensagem,
           musica: this.form.musica,
           autor: this.form.autor,
