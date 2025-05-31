@@ -52,7 +52,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
     }
   }
  async renderCardPaymentBrick() {
-    const mp = new MercadoPago('TEST-4680fad6-5fa1-46f2-b9e7-7068baa77e08', {
+    const mp = new MercadoPago('APP_USR-7941953569846694-052011-c9a80b76a1c4f0515732a479edd4b150-2093661193', {
       locale: 'pt-BR',
     });
 
@@ -63,7 +63,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
       'cardPaymentBrick_container',
       {
         initialization: {
-          amount: this.valorPlanoSelecionado,
+          amount: 1, //this.valorPlanoSelecionado,
           payer: {
             email: '',
           },
@@ -93,7 +93,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
               }
                const payload = {
                 ...cardFormData,
-                transactionAmount: this.valorPlanoSelecionado, // valor em reais
+                transactionAmount: 1, //this.valorPlanoSelecionado, // valor em reais
               };
               fetch('https://lovelink-backend-deploy.onrender.com/api/payment/card', {
                 method: 'POST',
