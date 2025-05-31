@@ -63,7 +63,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
       'cardPaymentBrick_container',
       {
         initialization: {
-          amount: 1.0, //this.valorPlanoSelecionado,
+          amount: this.valorPlanoSelecionado,
           payer: {
             email: '',
           },
@@ -93,7 +93,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
               }
                const payload = {
                 ...cardFormData,
-                transactionAmount: 1.0, //this.valorPlanoSelecionado, // valor em reais
+                transactionAmount: this.valorPlanoSelecionado, // valor em reais
               };
               fetch('https://lovelink-backend-deploy.onrender.com/api/payment/card', {
                 method: 'POST',
