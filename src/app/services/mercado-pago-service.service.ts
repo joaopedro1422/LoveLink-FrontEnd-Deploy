@@ -7,7 +7,7 @@ declare var MercadoPago: any;
 export class MercadoPagoServiceService {
   mp: any;
    constructor(private http: HttpClient) {
-    this.mp = new MercadoPago('APP_USR-7941953569846694-052011-c9a80b76a1c4f0515732a479edd4b150-2093661193', {
+    this.mp = new MercadoPago('APP_USR-c42e2128-cd2e-481a-ac6d-8de7a14ab8cc', {
       locale: 'pt-BR',
     });
   }
