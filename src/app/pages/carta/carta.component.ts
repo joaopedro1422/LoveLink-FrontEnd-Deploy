@@ -40,6 +40,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   imageUrl: string | null = null;
   slug: string | null = null;
   cartaData: any = {};
+  parceiroData: any = {};
   album: string[] | null = null;
   apresentacao: boolean = true;
   private _indexImagemAtiva: number = 0;
@@ -93,6 +94,19 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     
   }
 
+  async getParceiroPagina(id: string){
+       try {   
+        this.http.get<any>(`${apiUrl}/parceiros/getParceiro/${id}`).subscribe((res) => {
+          this.parceiroData = res;
+          console.log(res);
+        }, (err)=> {
+          alert("Erro ao buscar Parceiro");
+        })       
+      }
+      catch (error ){
+        console.log()
+      }
+  }
   
   async ngOnInit(): Promise<void> {
 
@@ -109,10 +123,12 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       this.slug = params.get('slug');
       this.http.get<Pagina>(`${apiUrl}/paginas/${this.slug}/${this.cartaId}`).subscribe((res) => {
         this.cartaData = res;
-       
         this.safeMusicaUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.cartaData.videoId}?autoplay=1`);
         this.inicializaPlaylist();
         this.cdRef.detectChanges();
+        if(this.cartaData.idParceiro){
+          this.getParceiroPagina(this.cartaData.idParceiro);
+        }
         setInterval(() => {
           this.atualizarContador();
         }, 1000);
