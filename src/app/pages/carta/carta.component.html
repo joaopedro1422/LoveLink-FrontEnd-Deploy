@@ -153,12 +153,12 @@
         </div>
         <div class="espaco"></div>
         <div class="espaco"></div>
-       <footer *ngIf="!parceiroData">           
+       <footer *ngIf="!cartaData.idParceiro">           
             <div class="container-footer1" >
                 <img src="logoLoveLink.png" alt="">
             </div>
         </footer>
-         <footer *ngIf="parceiroData">           
+         <footer *ngIf="cartaData.idParceiro">           
             <div class="container-footer1" >
                 <img src="logoLoveLink.png" alt="">
                 <img [src]="parceiroData.imagem" alt="">
