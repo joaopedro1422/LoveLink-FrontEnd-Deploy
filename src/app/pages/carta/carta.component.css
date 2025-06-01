@@ -452,6 +452,7 @@ h5 {
   .container-footer1{
     width: 100%;
     height: 55px;
+    padding-bottom: 32px;
    display: flex;
    flex-direction: column;
    justify-content: center;
