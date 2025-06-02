@@ -607,6 +607,31 @@
     color: gray;
     margin-top: -20px;
   }
+  .design-badge {
+    position: absolute;
+    top: 18px;
+    left: 0%;
+    transform: translateX(-50%);
+     background: linear-gradient(hsl(0, 100%, 4%), #0c0000), linear-gradient(45deg, rgb(248, 40, 92), #fd1a0a);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+    color: rgb(255, 61, 87);
+    padding: 8px 16px;
+    border-radius: 10px;
+    border:  2px solid transparent;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    animation: pulse 2s infinite;
+}
+
+/* Animação sutil */
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.02); }
+    100% { transform: translateX(-50%) scale(1); }
+}
   
   .faq-title {
     text-align: center;
@@ -1006,6 +1031,24 @@
   .hero-content{
     padding-bottom: 90px;
   }
+    .design-badge {
+    position: absolute;
+    top: 20px;
+    left: 0%;
+    transform: translateX(-50%);
+     background: linear-gradient(hsl(0, 100%, 4%), #0c0000), linear-gradient(45deg, rgb(248, 40, 92), #fd1a0a);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+    color: rgb(255, 61, 87);
+    padding: 4px 11px;
+    border-radius: 10px;
+    border:  2px solid transparent;
+    font-weight: bold;
+    font-size: 8px;
+    box-shadow: 0 4px 12px rgba(255, 29, 78, 0.274);
+    z-index: 10;
+    animation: pulse 2s infinite;
+}
   .title.planos p{
     display: none;
   }
