@@ -66,11 +66,11 @@ export class CartaPreviewComponent implements OnInit, OnChanges, OnDestroy {
     const agora = new Date();
     let delta = Math.floor((agora.getTime() - inicio.getTime()) / 1000); // em segundos
   
-    const anos = Math.floor(delta / (365.25 * 24 * 3600));
-    delta -= anos * 365.25 * 24 * 3600;
+    const anos = Math.floor(delta / (365 * 24 * 3600));
+    delta -= anos * 365 * 24 * 3600;
   
-    const meses = Math.floor(delta / (30.44 * 24 * 3600));
-    delta -= meses * 30.44 * 24 * 3600;
+    const meses = Math.floor(delta / (30 * 24 * 3600));
+    delta -= meses * 30 * 24 * 3600;
   
     const dias = Math.floor(delta / (24 * 3600));
     delta -= dias * 24 * 3600;

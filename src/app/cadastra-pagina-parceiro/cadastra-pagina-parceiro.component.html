@@ -248,7 +248,7 @@
       <div class="containerButtons" >
         <div class="controls">
             <button class="btn-style1" (click)="prevStep()" [disabled]="currentStep === 0">Voltar</button>
-            <button *ngIf="currentStep!==6" class="btn-style2" (click)="nextStep()" [disabled]="currentStep === 6">Próxima etapa ></button>
+            <button *ngIf="emailConfirmado" class="btn-style2" (click)="nextStep()" [disabled]="currentStep === 6">Próxima etapa ></button>
           </div>
       </div>
       <div class="espaco"></div>
