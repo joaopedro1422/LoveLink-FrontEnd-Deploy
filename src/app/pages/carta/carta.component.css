@@ -542,6 +542,7 @@ dialog{
 .container-input input,textarea{
   border-radius: 5px;
   border: 1px solid gray;
+  color: white;
   background-color: #1f1f1f;
   border: 1px solid rgb(70, 70, 70);
 }
