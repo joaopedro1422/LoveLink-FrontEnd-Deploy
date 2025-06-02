@@ -66,6 +66,7 @@ export class PaginaInicialComponent {
   ];
   constructor(private router: Router,  private sanitizer: DomSanitizer) {}
   ngOnInit() {
+    
     this.iniciarCarrossel();
   }
   iniciarCarrossel() {
