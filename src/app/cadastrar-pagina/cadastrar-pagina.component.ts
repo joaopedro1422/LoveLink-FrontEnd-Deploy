@@ -545,14 +545,12 @@ startReenviarTimer() {
     imagens: this.form.imagens,
  
   } ;
- 
     const sessionId = Date.now().toString();
-    
     // Salva apenas no localStorage para manter após o redirect
     localStorage.setItem('sessionId', sessionId);
     localStorage.setItem('dadosCadastro_' + sessionId, JSON.stringify(formStorage));
     setTimeout(() => {
-    window.location.href = `http://accounts.spotify.com/authorize?response_type=code&client_id=${this.clientId}&scope=app-remote-control streaming&redirect_uri=https://lovelink-frontenddeploy.vercel.app/criarCarta`;
+    window.location.href = `http://accounts.spotify.com/authorize?response_type=code&client_id=${this.clientId}&scope=app-remote-control streaming&redirect_uri=https://www.lovelinkbr.com.br/criarCarta`;
   }, 300)
   }
 
