@@ -512,8 +512,8 @@ startReenviarTimer() {
     }
     if(this.currentStep ===6){
       if(!this.emailConfirmado){
-        //alert("Verifique o seu Email para poder avançar.")
-        this.currentStep++;
+        alert("Verifique o seu Email para poder avançar.")
+    
       }
       else{
          this.currentStep++;

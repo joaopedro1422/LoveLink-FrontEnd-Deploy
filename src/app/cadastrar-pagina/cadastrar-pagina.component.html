@@ -381,8 +381,8 @@
       <div class="containerButtons" >
         <div class="controls">
             <button class="btn-style1" (click)="prevStep()" [disabled]="currentStep === 0">Voltar</button>
-            <button *ngIf="currentStep!==7 && currentStep!==6" *ngIf="emailConfirmado " class="btn-style2" (click)="nextStep()" [disabled]="currentStep === 8">Próxima etapa ></button>
-            <button *ngIf="currentStep===6 && emailEnviado && emailConfirmado" class="btn-style2" (click)="nextStep()" [disabled]="currentStep === 8">Próxima etapa ></button>
+            <button *ngIf="currentStep!==7" *ngIf="emailConfirmado " class="btn-style2" (click)="nextStep()" [disabled]="currentStep === 8">Próxima etapa ></button>
+         
           </div>
       </div>
       <div class="espaco"></div>
