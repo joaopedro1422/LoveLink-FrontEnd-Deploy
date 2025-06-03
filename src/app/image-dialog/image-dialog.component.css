@@ -2,9 +2,7 @@ img{
     height: 315px;
     width: 100%;
 }
-button{
-    width: 15px;
-}
+
 p{
     color: rgb(187,
     0, 0);
@@ -23,6 +21,9 @@ p{
   width: 100vw;
   z-index: 10;
 }
+.btn-adicionar{
+  width: 100%;
+}
 .dialog-container{
     z-index: 10000;
     max-width: 265px;
@@ -34,6 +35,10 @@ p{
     align-items: center;
     background-color: red;
     background-color: transparent;
+}
+.container-input input{
+  background-color: transparent;
+  color: black;
 }
 .custom-fullscreen-dialog .cdk-overlay-pane {
   position: fixed !important;
@@ -73,6 +78,7 @@ p{
   transform: translate(-50%, -50%);
   z-index: 11;
 }
+
 .modal-container{
   display: flex;
   flex-direction: column;
@@ -94,4 +100,11 @@ p{
     padding: 0;
     color: red;
     border: none;
+  }
+
+   .btn-fechar{
+    border: none;
+    color: gray;
+    background-color: transparent;
+    text-decoration: underline;
   }

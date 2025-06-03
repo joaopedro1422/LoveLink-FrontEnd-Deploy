@@ -4,6 +4,7 @@ import { Carta } from '../../models/carta';
 import { CommonModule , NgFor, NgForOf, NgIf} from '@angular/common'; 
 import { firebaseConfig } from '../../../environments/firebase';
 import { initializeApp } from 'firebase/app';
+
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getStorage, ref, listAll,deleteObject, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -66,14 +67,18 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   imagemAtual = '';
   descricaoAtual = '';
   dataAtual: Date | null = null;
- 
+  mensagemErro: string | null = null;
   openImageDialog(event: MouseEvent,image: string, descricao: string, data: Date): void {
     this.imagemAtual = image;
     this.descricaoAtual = descricao;
     this.dataAtual = data;
     this.modalAberto = true;
   }
-  removerImagem(imageUrl: string) {
+   removerImagem(imageUrl: string) {
+    if(this.cartaData.slug ==='daniel-e-rafaela' && this.cartaData.id === 6){
+      this.mensagemErro = "Não é possivel fazer alterações nessa página Exemplo"
+      return
+    }
     this.removeFotoAlbum(imageUrl); // Usa sua função já existente
     this.modalAberto = false;
   }

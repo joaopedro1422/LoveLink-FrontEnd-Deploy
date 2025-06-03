@@ -17,8 +17,11 @@
                 [imageUrl]="imagemAtual"
                 [descricao]="descricaoAtual"
                 [data_const]="dataAtual"
+            
                 (fechar)="fecharImagem()"
-                (remover)="removerImagem(imagemAtual)">
+                (remover)="removerImagem(imagemAtual)"
+                [mensagemErro]="mensagemErro">
+                
             </app-image-dialog>           
               <dialog #modal>
                 <div class="container-modal-adc">

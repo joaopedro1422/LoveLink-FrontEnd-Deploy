@@ -5,15 +5,28 @@
     <div class="modal-container">
       <ng-container *ngIf="imageUrl; else loading">
         <img [src]="imageUrl" alt="Imagem detalhada" (click)="fecharModal()" />
+        <button (click)="fecharModal()"  class="btn-fechar">
+                    Fechar
+        </button>
       </ng-container>
+
 
       <p>{{ descricao }}</p>
       <span>{{ data_const | date: 'dd/MM/yyyy' }}</span>
 
       <div class="btn-wrapper">
-        <button (click)="removerFoto()" class="btn-remover-outro">
+        <button (click)="abrirRemove()" class="btn-remover-outro">
           <i class="fas fa-trash"></i>
         </button>
+        <div class="container-input" *ngIf="openRemove"  style="margin-top: 5px;">
+                        <span style="color: black;">Realmente deseja excluir este Registro?</span>
+                      
+                         <button
+                          (click)="removerFoto();"
+                          class="btn-adicionar" [disabled]="email===''">Remover</button>
+                           <span style="color: red; font-family: Arial, Helvetica, sans-serif; font-size: 11px">{{mensagemErro}}</span>
+          </div>   
+
       </div>
    
 
