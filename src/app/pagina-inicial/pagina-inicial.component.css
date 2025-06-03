@@ -1033,8 +1033,8 @@
   }
     .design-badge {
     position: absolute;
-    top: 20px;
-    left: 0%;
+    top: 15px;
+    left: 20%;
     transform: translateX(-50%);
      background: linear-gradient(hsl(0, 100%, 4%), #0c0000), linear-gradient(45deg, rgb(248, 40, 92), #fd1a0a);
   background-clip: padding-box, border-box;
