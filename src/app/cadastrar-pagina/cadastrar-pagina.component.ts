@@ -178,11 +178,16 @@ export class CadastrarPaginaComponent implements OnInit {
       const formStorage = JSON.parse(dadosSalvos);
       this.form.nomeCasal = formStorage.nomeCasal;
       this.form.email = formStorage.email;
+       if(formStorage.email !== ''){
+        this.emailConfirmado = true;
+        this.emailEnviado = true;
+      }
       this.form.mensagem = formStorage.mensagem;
       this.form.musica = formStorage.musica;
       this.form.autor = formStorage.autor;
       this.form.data = formStorage.data;
       this.form.titulo = formStorage.titulo;
+      this.form.email = formStorage.email;
       this.form.videoId = formStorage.videoId;
       this.form.playlist = formStorage.playlist;
       this.musicsPreview = formStorage.playlist;
@@ -196,14 +201,16 @@ export class CadastrarPaginaComponent implements OnInit {
       album: Array.isArray(formStorage.album) ? formStorage.album : [],
     };
     } 
+   
   }
   else{
     let sessionId = sessionStorage.getItem('sessionId') || localStorage.getItem('sessionId');
     let dadosSalvos = sessionStorage.getItem('dadosCadastro_' + sessionId) || localStorage.getItem('dadosCadastro_' + sessionId);
     if(dadosSalvos)
      if(!this.novaPagina) {
-     console.log(this.novaPagina + "entrou aqui no novapagina em")
+     
       const formStorage = JSON.parse(dadosSalvos);
+     
       this.form.nomeCasal = formStorage.nomeCasal;
       this.form.email = formStorage.email;
       this.form.mensagem = formStorage.mensagem;
@@ -223,6 +230,7 @@ export class CadastrarPaginaComponent implements OnInit {
       album: Array.isArray(formStorage.album) ? formStorage.album : [],
     };
     } 
+   
   }
 
   this.preencherAlbumPadrao();
@@ -482,14 +490,14 @@ startReenviarTimer() {
 }
 
   nextStep() {
- //   for (let i = 0; i < localStorage.length; i++) {
-//    const key = localStorage.key(i);
-   // if (key && key.startsWith('dadosCadastro_')) {
- //     localStorage.removeItem(key);
-      // como estamos modificando o localStorage durante o loop, reinicia a contagem
-  //    i = -1;
- //   }
- //remover os registros no checkout }
+for (let i = 0; i < localStorage.length; i++) {
+ const key = localStorage.key(i);
+  if (key && key.startsWith('dadosCadastro_')) {
+   localStorage.removeItem(key);
+   
+
+  }
+ }
     const formStorage = {
     nomeCasal: this.form.nomeCasal,
     mensagem: this.form.mensagem,
@@ -500,7 +508,7 @@ startReenviarTimer() {
     videoId: this.form.videoId,
     playlist: this.form.playlist,
     imagens: this.form.imagens,
- 
+    email: this.form.email,
   } ;
    localStorage.removeItem('dadosCadastro');
     const sessionId = Date.now().toString();

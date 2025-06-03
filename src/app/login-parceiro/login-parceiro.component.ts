@@ -50,6 +50,7 @@ export class LoginParceiroComponent {
       },
       error: (err) => {
         this.errorMessage = 'Email ou senha incorretos.';
+           this.carregandoLogin = false;
       }
     });
   }

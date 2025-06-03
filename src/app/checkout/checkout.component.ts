@@ -34,6 +34,7 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
   registroCompleto = false;
   pagamentoAprovado = false;
   parcelas = [1, 2, 3, 4, 5, 6];
+  valorAntigoPlanoSelecionado: number | null = null;
   parcelaSelecionada = 1;
   primeiroNome = '';
   carregandoRegistro = false;
@@ -155,7 +156,12 @@ export class CheckoutComponent implements AfterViewInit,OnInit , OnDestroy{
    
       this.valorPlanoSelecionado = this.formData.valor;
       this.planoSelecionado = this.formData.planoSelecionado;
-    
+      if(this.planoSelecionado === 'Anual'){
+        this.valorAntigoPlanoSelecionado = precos.precoAnualAntigo;
+      }
+      else{
+        this.valorAntigoPlanoSelecionado = precos.precoVitalicioAntigo;
+      }
    
  }
   confirmaCompra(){
