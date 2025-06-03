@@ -58,4 +58,29 @@ export class SpotifyService {
         return [];
       }
     }
+   
+    trocaCodigoPorTokenParceiro(code: string){
+      let body ={
+        grant_type: "authorization_code",
+        code,
+        redirect_uri: "https://lovelinkbr.com.br/criarCartaParceiro"
+      }
+      const basicAuth = btoa(`${this.clientId}:${this.clientSecret}`); 
+      axios({
+        method: "POST",
+        url: "https://accounts.spotify.com/api/token",
+        data: new URLSearchParams(Object.entries(body)).toString(),
+        headers: {
+          Authorization: `Basic ${btoa(`${this.clientId}:${this.clientSecret}`)}`,
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }).then(response =>{
+        const accessToken = response.data.access_token;
+        localStorage.setItem('spotify_access_token', accessToken); // <- aqui armazenamos
+        console.log("Access token armazenado:", accessToken);
+      }).catch(error => {
+        console.error("Erro ao trocar código por token:", error);
+      })
+    }
+   
 }

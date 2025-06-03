@@ -172,7 +172,7 @@ export class CadastraPaginaParceiroComponent {
   
         if (this.spotifyCode) {
           this.currentStep = 5;
-          this.spotifyService.trocaCodigoPorToken(this.spotifyCode);
+          this.spotifyService.trocaCodigoPorTokenParceiro(this.spotifyCode);
         
         }
       });
