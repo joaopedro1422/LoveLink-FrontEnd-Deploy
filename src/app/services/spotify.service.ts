@@ -63,7 +63,7 @@ export class SpotifyService {
       let body ={
         grant_type: "authorization_code",
         code,
-        redirect_uri: "https://lovelinkbr.com.br/criarCartaParceiro"
+        redirect_uri: "https://lovelinkbr.com.br/cadastraPaginaParceiro"
       }
       const basicAuth = btoa(`${this.clientId}:${this.clientSecret}`); 
       axios({
