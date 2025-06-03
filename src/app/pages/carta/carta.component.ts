@@ -85,9 +85,12 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   abrePagina(){
     if(this.cartaData){
         this.apresentacao = false;
-        this.startHeartsAnimation();
+          setTimeout(() => {
+          this.apresentacao = false;
+        }, 1000); // ajuste esse tempo se necessário
           setTimeout(() => {
         this.youtubePlayer?.playVideo();
+        this.startHeartsAnimation();
         }, 3500); // ajuste esse tempo se necessário
     }
   
@@ -394,7 +397,7 @@ startHeartsAnimation(): void {
 
   const intervalId = setInterval(() => {
     createHeart();
-  }, 220); // Cria novos corações periodicamente
+  }, 400); // Cria novos corações periodicamente
   setTimeout(() => {
     clearInterval(intervalId); // Para a criação dos corações após um tempo
     console.log("Parando a criação de corações...");
