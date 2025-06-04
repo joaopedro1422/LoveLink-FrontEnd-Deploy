@@ -57,7 +57,8 @@ export class QrcodeComponent implements AfterViewInit{
       this.handleRouteParams(params);
         console.log('Elemento do canvas:', this.paginaId);
         this.qrCode.update({
-            data: `https://lovelink-frontenddeploy.vercel.app/${this.slug}/${this.paginaId}`
+           // data: `https://lovelink-frontenddeploy.vercel.app/${this.slug}/${this.paginaId}`
+           data: `https://lovelink-frontenddeploy.vercel.app/priscila-e-ricardo/24`
         });
 
 
