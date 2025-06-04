@@ -67,6 +67,7 @@
             <div class="container-image" (click)="startHeartsAnimation()">
                  <div  *ngIf="cartaData?.imagens?.length > 0"
                 class="item"
+                loading="lazy"
                 [style.backgroundImage]="
                     'url(' + cartaData.imagens[indexImagemAtiva] + ')'
                 "
