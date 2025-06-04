@@ -201,6 +201,10 @@ export class CadastrarPaginaComponent implements OnInit {
       album: Array.isArray(formStorage.album) ? formStorage.album : [],
     };
     } 
+    else{
+             this.emailConfirmado = false;
+        this.emailEnviado = false;
+    }
    
   }
   else{
