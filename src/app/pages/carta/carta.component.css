@@ -467,8 +467,8 @@ h5 {
   }
 
   .container-footer1 img{
-    height: 30px;
-    width: min-content;
+    max-height: 30px;
+    max-width: 89px;
     margin-top:9px
   }
   @media (min-width: 1024px) and (max-width: 1366px) {
