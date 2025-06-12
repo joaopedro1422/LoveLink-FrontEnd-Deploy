@@ -38,13 +38,11 @@ const apiUrl = `${environment.apiUrl}`;
 })
 
 
-
+// Componente para a criação de uma página pelo cliente final
 export class CadastrarPaginaComponent implements OnInit {
- 
   currentStep = 0;
   imagePreviews: string[] = [];
   selectedFiles: File[] = [];
-
   steps = [
     { label: 'Nome do Casal', icon: 'coracaostep.png' },
     { label: 'Fotos para seção inicial', icon: 'camerastep.png' },

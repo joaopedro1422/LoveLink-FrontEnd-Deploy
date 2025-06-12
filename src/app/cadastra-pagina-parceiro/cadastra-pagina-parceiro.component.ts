@@ -37,6 +37,8 @@ const apiUrl = `${environment.apiUrl}`;
   templateUrl: './cadastra-pagina-parceiro.component.html',
   styleUrl: './cadastra-pagina-parceiro.component.css'
 })
+
+// Componente para a criação de uma página pelo Parceiro Logado
 export class CadastraPaginaParceiroComponent {
   currentStep = 0;
     imagePreviews: string[] = [];

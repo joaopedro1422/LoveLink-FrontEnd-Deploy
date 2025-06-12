@@ -60,21 +60,22 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   };
   
   constructor(private route: ActivatedRoute, private http: HttpClient, private dialog: MatDialog , private sanitizer: DomSanitizer, private cdRef: ChangeDetectorRef) {
-    initializeApp(firebaseConfig.firebase);
-    
+    initializeApp(firebaseConfig.firebase); 
   }
   modalAberto = false;
   imagemAtual = '';
   descricaoAtual = '';
   dataAtual: Date | null = null;
   mensagemErro: string | null = null;
+
   openImageDialog(event: MouseEvent,image: string, descricao: string, data: Date): void {
     this.imagemAtual = image;
     this.descricaoAtual = descricao;
     this.dataAtual = data;
     this.modalAberto = true;
   }
-   removerImagem(imageUrl: string) {
+
+  removerImagem(imageUrl: string) {
     if(this.cartaData.slug ==='daniel-e-rafaela' && this.cartaData.id === 6){
       this.mensagemErro = "Não é possivel fazer alterações nessa página Exemplo"
       return
@@ -85,8 +86,8 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   fecharImagem() {
   this.modalAberto = false;
 }
+// Função para sair da página de apresentação e abrir o conteúdo da página | Inicia o Vídeo Youtube 
 @ViewChild(YoutubePlayerComponent) youtubePlayer!: YoutubePlayerComponent;
-
   abrePagina(){
     if(this.cartaData){
         this.apresentacao = false;
@@ -96,12 +97,11 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
           setTimeout(() => {
         this.youtubePlayer?.playVideo();
         this.startHeartsAnimation();
-        }, 3500); // ajuste esse tempo se necessário
+        }, 2000); // ajuste esse tempo se necessário
     }
-  
-    
   }
 
+  // Requisição para obter o parceiro relacionado à criação da página
   async getParceiroPagina(id: string){
        try {   
         this.http.get<any>(`${apiUrl}/parceiros/getParceiro/${id}`).subscribe((res) => {
@@ -117,14 +117,12 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
   }
   
   async ngOnInit(): Promise<void> {
-
-    
-  
     this.route.paramMap.subscribe((params) => {
       this.handleRouteParams(params);
     });
   }
 
+  // Recupera as credenciais da página presentes na URL e requisita o conteudo correspondente
   private async handleRouteParams(params: ParamMap): Promise<void> {
     try {
       this.cartaId = params.get('id');
@@ -222,6 +220,8 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     }
   }
   }
+
+  // Adiciona um novo registro ao álbum de fotos
   errorAdc = ''
   adicionarFotoAlbum(){
     if(this.novaFoto.email !== this.cartaData.email){
@@ -237,6 +237,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     })
   }
 
+  // Função que remove um registro do álbum de fotos
   removeFotoAlbum(url: string){
     const storage = getStorage(); 
     const albumAtualizado = this.cartaData.album.filter((card: FotoAlbum) => card.url !== url);  
@@ -256,6 +257,7 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     }
   );
   }
+  // Funções para a funcionalidade do carrosel de imagens
   iniciarTimer(): void {
     this.timerSubs = timer(11000).subscribe(() => {
       this.ativarImagem(
@@ -280,28 +282,23 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
     this._indexImagemAtiva =
       value < this.cartaData.imagens.length ? value : 0;
   }
+
+  // Função para a formatação do contador em tempo real
    atualizarContador() {
     if (!this.cartaData?.data) return;
-  
     const inicio = new Date(this.cartaData.data);
     const agora = new Date();
-    let delta = Math.floor((agora.getTime() - inicio.getTime()) / 1000); // em segundos
-  
+    let delta = Math.floor((agora.getTime() - inicio.getTime()) / 1000); // em segundos 
     const anos = Math.floor(delta / (365 * 24 * 3600));
     delta -= anos * 365 * 24 * 3600;
-  
     const meses = Math.floor(delta / (30 * 24 * 3600));
-    delta -= meses * 30 * 24 * 3600;
-  
+    delta -= meses * 30 * 24 * 3600; 
     const dias = Math.floor(delta / (24 * 3600));
     delta -= dias * 24 * 3600;
-  
     const horas = Math.floor(delta / 3600);
     delta -= horas * 3600;
-  
     const minutos = Math.floor(delta / 60);
     const segundos = delta % 60;
-  
     this.tempoDecorrido = `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos e      ${segundos} segundos`;
   }
   async ngOnChanges(changes: SimpleChanges): Promise<void> {
@@ -320,16 +317,14 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       this.iniciarCarrossel();
     }
   }
-  
+  // Função que recebe a referência (Url) da imagem e faz uma requisição ao Firebase Storage para recuperar e exibir a imagem correspondente
   async getImage(url: string): Promise<string> {
     if (!this.cartaData || !this.cartaData.imagem) {
       console.error("cartaData ainda não foi carregado.");
       return 'path/to/defaultImage.jpg'; // Retorne um valor padrão caso os dados não estejam carregados
-    }
-  
+    } 
     const storage = getStorage();
-    const storageRef = ref(storage, url);
-  
+    const storageRef = ref(storage, url); 
     try {
       const downloadUrl = await getDownloadURL(storageRef);
       return downloadUrl; // Retorne a URL acessível
@@ -338,6 +333,8 @@ export class CartaComponent implements OnInit, OnChanges, OnDestroy  {
       return 'path/to/defaultImage.jpg'; // Defina uma imagem padrão ou trate o erro adequadamente
     }
   }
+
+  // Função para preencher o album durante a inicialização da página
   async updateAlbumUrls(): Promise<void> {
     if (!this.cartaData?.album) return;
     for (let i = 0; i < this.cartaData.album.length; i++) {
@@ -364,7 +361,6 @@ extractVideoId(url: string): string {
   const youtubeWatchRegex = /(?:youtube\.com\/watch\?v=)([^&]+)/;
   const youtubeShortRegex = /(?:youtu\.be\/)([^?&]+)/;
   const embedRegex = /youtube\.com\/embed\/([^?&]+)/;
-
   if (youtubeWatchRegex.test(url)) {
     videoId = url.match(youtubeWatchRegex)?.[1] || '';
   } else if (youtubeShortRegex.test(url)) {
@@ -372,7 +368,6 @@ extractVideoId(url: string): string {
   } else if (embedRegex.test(url)) {
     videoId = url.match(embedRegex)?.[1] || '';
   }
-
   return videoId;
 }
 
