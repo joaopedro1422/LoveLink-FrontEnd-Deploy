@@ -3,6 +3,7 @@
 <p>Em :https://www.lovelinkbr.com.br/</p>
 <br>
 <p>A Lovelink é um sistema que permite aos usuários a criação de páginas dedicadas personalizadas para presentear alguém, sendo dividida em dois fluxos de usabilidade.</p>
+<p>Foram implementadas integraç~eos com: Youtube API, Spotify API e Mercado Pago Checkout API.</p>
 <br>
 <p><b>Fluxo consumidor final:</b> <br> - O usuário acessa a página de cadastro e preenche o formulário de Conteúdo com as fotos, músicas, títulos, textos e etc. É possível pré-visualizar o resultado final da página durante a criação.
 <br> - No último passo do cadastro, o usuário é direcionado à página de Checkout (com integração via API Mercado Pago)
@@ -27,4 +28,8 @@
 
 
 <img width="1866" height="901" alt="Captura de tela 2025-08-07 141359" src="https://github.com/user-attachments/assets/305e89e5-7c15-4e32-97b8-c1b23e112131" />
+
+
+<p>*Por estar em StandBy, a hospedagem do backend está com plano gratuito, significa que após um periodo de não utilização há um atraso na primeira nova requisição, levando a uma pequena espera no carregamento das páginas*</p>
+
 
